@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+const cart = useCartStore();
+console.log(cart.totalCartItems);
+</script>
 
 <template>
   <div class="flex items-center justify-center mb-1 md:mb-0">
@@ -21,7 +24,7 @@
       </svg>
       <span
         class="absolute -top-2 left-4 rounded-full bg-red-500 p-0.5 px-2 text-sm text-red-50"
-        >14</span
+        >{{ cart.totalCartItems }}</span
       >
     </div>
   </div>

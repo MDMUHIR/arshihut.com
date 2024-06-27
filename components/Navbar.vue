@@ -12,9 +12,13 @@ const route = useRoute();
         class="nav-home flex justify-center items-center h-full px-2 oreder-1"
       >
         <nuxt-link to="/">
-          <button class="text-2xl font-extrabold "><span class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-black">
-    UniStore
-  </span></button>
+          <button class="text-2xl font-extrabold">
+            <span
+              class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-black"
+            >
+              UniStore
+            </span>
+          </button>
         </nuxt-link>
       </div>
 
@@ -57,9 +61,8 @@ const route = useRoute();
               Products
             </button>
           </nuxt-link>
-          <nuxt-link to="">
+          <nuxt-link to="/categories">
             <button
-              
               class="nav-item text-sm font-semibold relative inline mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
             >
               Categories
@@ -77,7 +80,9 @@ const route = useRoute();
       <div
         class="nav-end flex flex-col md:flex-row justify-between items-center"
       >
-        <iconsCartIcon />
+        <nuxt-link to="/cart">
+          <iconsCartIcon />
+        </nuxt-link>
         <div class="">
           <client-only>
             <button

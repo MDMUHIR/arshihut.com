@@ -18,7 +18,7 @@ const category = useCategoryStore();
     >
       Add New Category
     </button>
-    <!-- <AddPostForm /> -->
+    
     <form v-if="category.showAddForm" @submit.prevent="category.addCategory()">
       <div class="md:px-20 pt-6 mb-6">
         <div class="bg-white rounded-md p-6 max-w-2xl mx-auto">
@@ -97,7 +97,7 @@ const category = useCategoryStore();
       </div>
     </form>
 
-    <!-- /////////////////// -->
+    <!-- Data ShoW -->
     <div class="rounded-lg border-2">
       <template v-for="(item, index) in data.categories" :key="index">
         <div

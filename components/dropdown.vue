@@ -6,11 +6,11 @@ console.log(route.path);
 
 <template>
   <div
-    class=" w-56 pt-2 overflow-hidden bg-white rounded-bl-lg  shadow-xl bg-gradient-to-r from-neutral-500 to-stone-600"
+    class="w-56 pt-2 overflow-hidden bg-white rounded-bl-lg shadow-2xl bg-gradient-to-r border-l  border-black from-neutral-500 to-stone-600 "
   >
     <client-only>
       <button
-        class="flex w-full items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+        class="flex w-full items-center p-3 -mt-2 text-sm text-gray-600 bg-stone-300 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
       >
         <img
           class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"
@@ -32,16 +32,18 @@ console.log(route.path);
       <template v-if="'admin' == auth.user.type">
         <nuxt-link to="/admin">
           <button
-          :class="route.name === 'admin' ? 'text-gray-400' : 'dark:text-gray-300'"
-            class="block w-full px-4 py-3 text-sm font-bold text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+            :class="
+              route.name === 'admin' ? 'text-gray-400' : 'dark:text-gray-300'
+            "
+            class="block w-full px-4 py-3 text-sm font-bold text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
           >
             Dashboard
           </button>
         </nuxt-link>
         <nuxt-link to="/">
           <button
-          :class="route.path === '/' ? 'text-gray-400' : 'dark:text-gray-300'"
-            class="block w-full px-4 py-3 text-sm font-bold text-gray-600 capitalize transition-colors duration-200 transform  hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+            :class="route.path === '/' ? 'text-gray-400' : 'dark:text-gray-300'"
+            class="block w-full px-4 py-3 text-sm font-bold text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
           >
             Home
           </button>
@@ -50,13 +52,13 @@ console.log(route.path);
       </template>
       <template v-if="'customer' == auth.user.type">
         <button
-          class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+          class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
         >
           view profile
         </button>
 
         <button
-          class="flex items-center justify-center w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+          class="flex items-center justify-center w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +77,7 @@ console.log(route.path);
         </button>
 
         <button
-          class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+          class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
         >
           Orders
         </button>
@@ -83,7 +85,7 @@ console.log(route.path);
         <hr class="border-gray-200 dark:border-gray-700" />
 
         <button
-          class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+          class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
         >
           Invite Friends
         </button>
@@ -91,12 +93,12 @@ console.log(route.path);
         <hr class="border-gray-200 dark:border-gray-700" />
 
         <button
-          class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+          class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
         >
           Help & Support
         </button>
         <button
-          class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+          class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
         >
           Contact
         </button>
@@ -104,7 +106,7 @@ console.log(route.path);
       </template>
       <button
         @click="auth.logout()"
-        class="flex justify-center items-center w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+        class="flex justify-center items-center w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
       >
         <!--  @click="authStore.logout()" -->
         <svg
@@ -130,7 +132,7 @@ console.log(route.path);
       <hr class="border-gray-200 dark:border-gray-700" />
       <button
         @click="togDropdMenu()"
-        class="Close w-full py-1  hover:bg-red-600 hover:text-stone-900 px-5 text-red-600 font-bold text-center border-red-500 border-2 rounded-bl-lg bg-stone-900 border-r-0"
+        class="Close w-full py-1 hover:bg-red-600 hover:text-stone-900 px-5 text-red-600 font-bold text-center border-red-500 border-2 rounded-bl-lg bg-stone-900 border-r-0"
       >
         Close
       </button>

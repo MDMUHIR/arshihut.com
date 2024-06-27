@@ -20,11 +20,11 @@ const item = useProductStore();
     <!-- ///// -->
     <div
       v-if="item.showAddForm || item.showUpdateForm"
-      class="bg-stone-500/75 rounded-lg border shadow-2xl m-3 flex items-center justify-center h-5/6  fixed top-22 left-0 right-0"
+      class="bg-stone-500/75 rounded-lg border shadow-2xl m-3 flex items-center justify-center h-5/6 fixed top-22 left-0 right-0"
     >
       <form
         @submit.prevent="item.formSubmition()"
-        class="bg-white w-full m-10 rounded-lg border shadow-2xl"
+        class="bg-white w-full h-full scroll-m-1 overflow-scroll m-10 rounded-lg border shadow-2xl"
       >
         <div class="md:px-20 p-6">
           <div class="rounded-md w-full mx-auto px-2">
@@ -155,14 +155,15 @@ const item = useProductStore();
         :key="index"
       >
         <div
-          class="max-w-xs min-w-56 h-80 rounded-lg bg-white p-2 pt-3 shadow duration-125  hover:shadow-md hover:bg-neutral-200"
+          class="max-w-xs min-w-56 h-80 rounded-lg bg-white p-2 pt-3 shadow duration-125 hover:shadow-md hover:bg-neutral-200"
         >
-          <img
-            class="rounded-lg h-4/6 object-center cursor-pointer mx-auto"
-            :src="apiBase + product.image"
-            alt="product"
-          />
-
+          <nuxt-link :to="`/admin/products/${product.id}`">
+            <img
+              class="rounded-lg h-4/6 object-center cursor-pointer mx-auto"
+              :src="apiBase + product.image"
+              alt="product"
+            />
+          </nuxt-link>
           <div class="middle flex justify-between">
             <p class="my-4 pl-4 font-bold text-gray-500">
               {{ product.name }}

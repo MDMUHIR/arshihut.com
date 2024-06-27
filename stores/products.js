@@ -33,6 +33,7 @@ export const useProductStore = defineStore(
         data.products = response.data;
       });
     };
+   
 
     const selectFile = (event) => {
       const file = event.target.files[0];
@@ -73,7 +74,7 @@ export const useProductStore = defineStore(
 
     const updateProduct = () => {
       console.log("Update");
-      const res = fetchUploadApi("/api/admin/products/update", productData);
+      const res = fetchUploadApi("api/admin/products/update", productData);
       res.then((response) => {
         if (response.status) {
           for (let i = 0; i < data.products.length; i++) {
