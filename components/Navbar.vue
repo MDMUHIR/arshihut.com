@@ -1,6 +1,7 @@
 <script setup>
 const auth = useAuthStore();
 const route = useRoute();
+const item = useProductStore();
 </script>
 
 <template>
@@ -16,7 +17,7 @@ const route = useRoute();
             <span
               class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-black"
             >
-              UniStore
+              MAVENMART
             </span>
           </button>
         </nuxt-link>
@@ -25,10 +26,12 @@ const route = useRoute();
       <div
         class="nav-center flex flex-col justify-between items-center py-2 h-full w-full px-2"
       >
-        <div
+        <form
+          @submit.prevent="item.getProducts()"
           class="search-bar bg-white flex items-center rounded-lg overflow-hidden p-1 text-black md:w-1/2"
         >
           <input
+            v-model="item.searchInputText"
             type="text "
             class="px-2 w-full rounded outline-none text-sm font-semibold"
             placeholder="Search"
@@ -47,7 +50,7 @@ const route = useRoute();
               ></path>
             </svg>
           </button>
-        </div>
+        </form>
 
         <!-- -------------------------------------------
         nav customer items

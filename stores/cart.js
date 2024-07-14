@@ -86,6 +86,9 @@ export const useCartStore = defineStore(
     };
     fetchCartData();
 
+    const emptyCart = () => {
+      data.cart = [];
+    };
     return {
       totalCartItems,
       totalPrice,
@@ -93,6 +96,7 @@ export const useCartStore = defineStore(
       deleteItem,
       updateCart,
       fetchCartData,
+      emptyCart,
     };
   },
   {

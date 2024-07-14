@@ -1,6 +1,8 @@
 export const useProductStore = defineStore(
   "product",
   () => {
+    // states
+
     const productData = reactive({
       name: "",
       description: "",
@@ -9,10 +11,16 @@ export const useProductStore = defineStore(
       stock: 1,
       product_id: null,
       category_id: 2,
-    })
+    });
     const showAddForm = ref(false);
     const showUpdateForm = ref(false);
     const previewImage = ref(null);
+
+    // Searching states
+    const searchInputText = ref("");
+    const filteredProducts = ref([]);
+
+    const lastProduct = ref([]);
     // Actions
 
     const addProduct = () => {
@@ -24,17 +32,46 @@ export const useProductStore = defineStore(
         clearSubmition();
       });
     };
-    
 
-    const getProducts = () => {
-      const res = fetchApiData("api/products", {}, "GET");
-      res.then((response) => {
-        console.log(response);
+    const getProducts = async (categoryId) => {
+      try {
+        const response = await fetchApiData("api/products", {}, "GET");
         data.products = response.data;
-      });
+        lastProduct.value = response.data[response.data.length - 1];
+        // Filter products Category after data is fetched
+        if (searchInputText.value) {
+          filteredProducts.value = filterProductsByTextInput();
+          console.log("Checking" + filteredProducts);
+        } else {
+          filteredProducts.value = filterProductsByCategory(categoryId);
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
-   
 
+    getProducts();
+    
+    // product searching operations
+    const filterProductsByTextInput = () => {
+      return data.products.filter((product) =>
+        product.name.toLowerCase().includes(searchInputText.value.toLowerCase())
+      );
+    };
+
+    const filterProductsByCategory = (categoryId) => {
+      return data.products.filter(
+        (product) => product.category_id === categoryId
+      );
+    };
+    const toggleFilteredProducts = () => {
+      if (filteredProducts.value.length == 0) {
+        return false;
+      } else {
+        return true;
+      }
+    };
+    // Image Selection
     const selectFile = (event) => {
       const file = event.target.files[0];
       if (file) {
@@ -115,6 +152,9 @@ export const useProductStore = defineStore(
       showAddForm,
       showUpdateForm,
       previewImage,
+      searchInputText,
+      filteredProducts,
+      lastProduct,
       addProduct,
       getProducts,
       selectFile,
@@ -123,6 +163,8 @@ export const useProductStore = defineStore(
       updateProduct,
       formSubmition,
       clearSubmition,
+      filterProductsByCategory,
+      toggleFilteredProducts,
     };
   }
   // {

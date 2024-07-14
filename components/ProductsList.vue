@@ -1,23 +1,50 @@
 <script setup>
-const item = useProductStore();
-
 const cart = useCartStore();
 
 const saved = useSavedStore();
+
+// Define props
+const props = defineProps({
+  filteredProducts: {
+    type: Array,
+    required: true,
+  },
+});
+
+// console.log(props.filteredProducts.length);
 </script>
 
 <template>
-  <div class="main py-12 min-h-svh bg-stone-100">
+  <div class="main relative overflow-y-auto ">
+    <button
+      @click="filteredProducts.length = 0"
+      class="top-24 left-4 fixed bg-white hover:bg-red-500 ml-1 px-2 rounded-tl-lg hover:text-white text-red-500"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="4"
+        stroke="currentColor"
+        class="h-9 w-10 cursor-pointer duration-150 "
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
     <div
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-4"
     >
       <div
         class="mx-auto px-5"
-        v-for="(product, index) in data.products"
+        v-for="(product, index) in filteredProducts"
         :key="index"
       >
         <div
-          class="max-w-xs min-w-56 h-80 rounded-lg bg-white p-2 pt-3 shadow duration-125 hover:shadow-md hover:bg-neutral-200"
+          class="max-w-xs min-w-48 h-80 rounded-lg bg-white p-2 pt-3 shadow duration-125 hover:shadow-md hover:bg-neutral-200"
         >
           <nuxt-link :to="`/product/${product.id}`">
             <img

@@ -9,7 +9,7 @@ const password = ref("");
 <template>
   <ReusableLoader v-if="loading" />
   <div
-    class="min-h-screen flex items-center justify-center w-full bg-[url('~/assets/images/city.webp')] bg-bottom bg-no-repeat"
+    class="min-h-screen flex items-center justify-center w-full bg-[url('~/public/images/city.webp')] bg-bottom bg-no-repeat"
   >
     <div
       class="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md"

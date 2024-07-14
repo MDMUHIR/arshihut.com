@@ -9,7 +9,11 @@ module.exports = {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "custom-bg": "url('@/assets/images/bannerBG.jpg')",
+      },
+    },
   },
   plugins: [],
-}
+};

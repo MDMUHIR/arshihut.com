@@ -5,7 +5,7 @@ const route = useRoute();
 
 <template>
   <div
-    class="nab w-full border-b-2 shadow-md bg-gradient-to-r from-emerald-500 to-emerald-900 fixed top-0 left-0 right-0 text-white flex justify-between items-center py-4 "
+    class="nab w-full border-b-2 shadow-md bg-gradient-to-r from-emerald-500 to-emerald-900 fixed top-0 left-0 right-0 text-white flex justify-between items-center py-4"
   >
     <div
       class="nav-home flex justify-center items-center h-full w-56 p-2 oreder-1"
@@ -28,7 +28,7 @@ const route = useRoute();
                 ? 'scale-110 font-bold shadow-2xl border-red-600  bg-black '
                 : ''
             "
-            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300 "
+            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300"
           >
             Products
           </button>
@@ -46,24 +46,22 @@ const route = useRoute();
           </button>
         </nuxt-link>
 
-        <button
-          :class="
-            route.path === '/admin/users'
-              ? 'scale-110 font-bold shadow-2xl border-red-600  bg-black'
-              : ''
-          "
-          class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300"
-        >
-          Users
-        </button>
+        <nuxt-link to="/admin/coupons">
+          <button
+            :class="
+              route.path === '/admin/users'
+                ? 'scale-110 font-bold shadow-2xl border-red-600  bg-black'
+                : ''
+            "
+            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300"
+          >
+            Coupons
+          </button>
+        </nuxt-link>
       </div>
     </div>
     <div class="nav-end flex items-center">
-      <button
-        v-if="auth.isAuthenticated"
-        @click="togDropdMenu()"
-        
-      >
+      <button v-if="auth.isAuthenticated" @click="togDropdMenu()">
         <IconsUserIcon />
       </button>
 

@@ -1,8 +1,5 @@
 <script setup>
-const shipping = ref(10);
-const finalTotalPrice = computed(() => {
-  return cart.totalPrice + shipping.value;
-});
+
 const cart = useCartStore();
 
 onBeforeMount(() => {});
@@ -89,27 +86,23 @@ onBeforeMount(() => {});
         <div
           class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3"
         >
-          <div class="mb-2 flex justify-between">
-            <p class="text-gray-700">Subtotal</p>
-            <p class="text-gray-700">${{ cart.totalPrice }}</p>
-          </div>
-          <div class="flex justify-between">
-            <p class="text-gray-700">Shipping</p>
-            <p class="text-gray-700">${{ shipping }}</p>
-          </div>
+          
+          
           <hr class="my-4" />
           <div class="flex justify-between">
             <p class="text-lg font-bold">Total</p>
             <div class="block">
-              <p class="mb-1 text-lg font-bold">${{ finalTotalPrice }} USD</p>
-              <p class="text-sm text-gray-700 float-end">including VAT</p>
+              <p class="mb-1 text-lg font-bold">${{ cart.totalPrice }} USD</p>
+              <p class="text-xs text-gray-700 float-end">including VAT</p>
             </div>
           </div>
+          <nuxt-link to="/checkout">
           <button
             class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
           >
-            Place Order
+            Checkout
           </button>
+        </nuxt-link>
         </div>
       </div>
     </div>

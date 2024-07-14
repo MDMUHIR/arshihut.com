@@ -1,12 +1,11 @@
 <script setup>
 const auth = useAuthStore();
 const route = useRoute();
-console.log(route.path);
 </script>
 
 <template>
   <div
-    class="w-56 pt-2 overflow-hidden bg-white rounded-bl-lg shadow-2xl bg-gradient-to-r border-l  border-black from-neutral-500 to-stone-600 "
+    class="w-56 pt-2 overflow-hidden bg-white rounded-bl-lg shadow-2xl bg-gradient-to-r border-l border-black from-neutral-500 to-stone-600"
   >
     <client-only>
       <button
@@ -56,31 +55,33 @@ console.log(route.path);
         >
           view profile
         </button>
-
-        <button
-          class="flex items-center justify-center w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            class="w-5 h-5 mr-2"
+        <nuxt-link to="/saved">
+          <button
+            class="flex items-center justify-center w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
           >
-            <path
-              fill-rule="evenodd"
-              d="M10 2c-1.716 0-3.408.106-5.07.31C3.806 2.45 3 3.414 3 4.517V17.25a.75.75 0 0 0 1.075.676L10 15.082l5.925 2.844A.75.75 0 0 0 17 17.25V4.517c0-1.103-.806-2.068-1.93-2.207A41.403 41.403 0 0 0 10 2Z"
-              clip-rule="evenodd"
-            />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="w-5 h-5 mr-2"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 2c-1.716 0-3.408.106-5.07.31C3.806 2.45 3 3.414 3 4.517V17.25a.75.75 0 0 0 1.075.676L10 15.082l5.925 2.844A.75.75 0 0 0 17 17.25V4.517c0-1.103-.806-2.068-1.93-2.207A41.403 41.403 0 0 0 10 2Z"
+                clip-rule="evenodd"
+              />
+            </svg>
 
-          Saved
-        </button>
-
-        <button
-          class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
-        >
-          Orders
-        </button>
+            Saved
+          </button>
+        </nuxt-link>
+        <nuxt-link to="/orders">
+          <button
+            class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+          >
+            Orders
+          </button>
+        </nuxt-link>
 
         <hr class="border-gray-200 dark:border-gray-700" />
 
