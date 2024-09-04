@@ -2,12 +2,14 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+
   modules: [
     "@pinia/nuxt", // needed
     "@pinia-plugin-persistedstate/nuxt",
@@ -21,4 +23,14 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["./stores"],
   },
+
+  vite: {
+    server: {
+      hmr: {
+        overlay: false,
+      },
+    },
+  },
+
+  compatibilityDate: "2024-08-29",
 });

@@ -78,7 +78,15 @@ onBeforeMount(() => {
           class="bottom-part flex flex-col items-center md:flex-row justify-between"
         >
           <p class="text-xl font-black text-gray-800">${{ product.price }}</p>
+          <nuxt-link v-if="cart.isInCart(product.id)" to="/cart">
+            <button
+              class="add-cart bg-gray-400 hover:bg-gray-500 text-white border-black add-cart py-1 md:py-2 px-2 md:px-5 text-sm font-semibold border-2 rounded md:ml-2 mt-2 md:mt-0"
+            >
+              <span>Go to Cart</span>
+            </button>
+          </nuxt-link>
           <button
+            v-else
             @click="cart.addItem(product)"
             class="add-cart py-1 md:py-2 px-2 md:px-5 text-sm font-semibold bg-blue-500 hover:bg-blue-600 text-white border-2 border-black rounded md:ml-2 mt-2 md:mt-0"
           >

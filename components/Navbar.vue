@@ -8,14 +8,14 @@ const item = useProductStore();
   <div
     class="nab w-full border-b-2 shadow-md bg-gradient-to-r from-stone-500 to-stone-700 fixed top-0 left-0 right-0 text-white z-50"
   >
-    <div class="nav-top flex justify-between items-center">
+    <div class="nav-top flex flex-col sm:flex-row justify-between items-center">
       <div
         class="nav-home flex justify-center items-center h-full px-2 oreder-1"
       >
         <nuxt-link to="/">
-          <button class="text-2xl font-extrabold">
+          <button class="text-2xl font-extrabold duration-150">
             <span
-              class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-black"
+              class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-black hover:from-black hover:to-red-500 "
             >
               MAVENMART
             </span>
@@ -33,7 +33,7 @@ const item = useProductStore();
           <input
             v-model="item.searchInputText"
             type="text "
-            class="px-2 w-full rounded outline-none text-sm font-semibold"
+            class="px-2 w-full rounded outline-none text-sm"
             placeholder="Search"
           />
           <button class="border-l-2 px-2">
@@ -56,49 +56,64 @@ const item = useProductStore();
         nav customer items
         ------------------------------------------- -->
 
-        <div class="nav-customer-items flex justify-center items-center gap-4">
+        <div
+          class="nav-customer-items flex justify-center items-center gap-4 mt-2"
+        >
           <nuxt-link to="/products">
             <button
-              class="nav-item text-sm font-semibold relative inline mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
+              :class="
+                route.path === '/products'
+                  ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white'
+                  : 'font-semibold'
+              "
+              class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
             >
               Products
             </button>
           </nuxt-link>
           <nuxt-link to="/categories">
             <button
-              class="nav-item text-sm font-semibold relative inline mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
+              :class="
+                route.path === '/categories'
+                  ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white'
+                  : 'font-semibold'
+              "
+              class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
             >
               Categories
             </button>
           </nuxt-link>
 
           <button
-            class="nav-item text-sm font-semibold relative inline mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
+            :class="
+              route.path === '/support'
+                ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white'
+                : 'font-semibold'
+            "
+            class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
           >
             Support
           </button>
         </div>
       </div>
 
-      <div
-        class="nav-end flex flex-col md:flex-row justify-between items-center"
-      >
+      <div class="nav-end flex flex-row justify-between items-center">
         <nuxt-link to="/cart">
           <iconsCartIcon />
         </nuxt-link>
-        <div class="">
+        <div class="z-10">
           <client-only>
             <button
               v-if="auth.isAuthenticated"
               @click="togDropdMenu()"
-              class="relative inline mx-2 rounded-full text-sm font-medium before:bg-violet-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0 hover:scale-125 duration-300"
+              class="relative mx-2 rounded-full text-sm font-medium before:bg-violet-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0 hover:scale-125 duration-300"
             >
               <IconsUserIcon />
             </button>
 
             <nuxt-link v-else to="/login">
               <button
-                class="relative flex mx-2 text-sm font-medium before:bg-orange-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
+                class="relative flex mx-2 text-sm font-medium before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +139,7 @@ const item = useProductStore();
           </client-only>
         </div>
 
-        <dropdown v-if="showDdMenu" class="absolute right-0 top-16 mt-1" />
+        <dropdown v-if="showDdMenu" class="absolute right-0 top-16 mt-3 z-10" />
       </div>
     </div>
   </div>

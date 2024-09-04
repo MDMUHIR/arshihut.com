@@ -35,7 +35,7 @@ export const fetchUploadApi = async (endPoint = "", params = {}) => {
   const auth = useAuthStore();
   const token = auth.getUserToken();
 
-  console.log(auth.getUserToken());
+  // console.log(auth.getUserToken());
   const res = await axios.post(apiBase + endPoint, params, {
     headers: {
       "Access-Control-Allow-Origin": "*",

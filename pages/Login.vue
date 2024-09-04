@@ -2,6 +2,12 @@
 const auth = useAuthStore();
 const email = ref("admin@gmail.com");
 const password = ref("admin");
+
+const showPassword = ref(false);
+
+const passwordnputType = computed(() =>
+  showPassword.value ? "text" : "password"
+);
 </script>
 
 <template>
@@ -11,7 +17,7 @@ const password = ref("admin");
       class="min-h-screen flex items-center justify-center w-full bg-[url('~/public/images/city.webp')] bg-bottom bg-no-repeat"
     >
       <div
-        class="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md"
+        class="bg-white dark:bg-gray-900 rounded-lg px-8 py-6 max-w-md"
       >
         <h1 class="text-2xl font-bold text-center mb-4 dark:text-gray-200">
           Welcome Back!
@@ -50,14 +56,26 @@ const password = ref("admin");
               class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >Password</label
             >
-            <input
-              v-model="password"
-              type="password"
-              id="password"
-              class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              placeholder="Enter your password"
-              required
-            />
+            <div
+              class="password-feild flex border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
+            >
+              <input
+                v-model="password"
+                :type="passwordnputType"
+                id="password"
+                class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                @click="showPassword = !showPassword"
+                type="button"
+                class="p-2"
+              >
+                <IconsHide v-if="showPassword" />
+                <IconsShow v-else />
+              </button>
+            </div>
             <a
               href="#"
               class="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -79,7 +97,7 @@ const password = ref("admin");
               >
             </div>
             <nuxt-link to="register">
-              <p class="text-xs text-indigo-500 hover:text-indigo-700">
+              <p class="text-sm text-indigo-500 hover:text-indigo-700">
                 Create Account
               </p>
             </nuxt-link>

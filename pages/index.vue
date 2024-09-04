@@ -8,21 +8,14 @@ const item = useProductStore();
   <!-- {{ auth.user }}
 
   <pre>{{ item.lastProduct }}</pre> -->
-  <div class="welcome-text mt-16 block">
-    <h1
-      v-if="auth.user"
-      class="text-3xl text-center font-bold p-5 bg-orange-400 rounded-b-3xl"
-    >
-      Welcome {{ auth.user.name }}
-    </h1>
-  </div>
+  <div class="welcome-text mt-10 block pb-1"></div>
 
   <div
-    class="banner flex flex-col text-center p-10 m-10 rounded-2xl shadow-2xl bg-cover mt-4 bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat"
+    class="banner flex flex-col text-center p-10 m-10 rounded-2xl shadow-lg shadow-black bg-cover bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat"
   >
     <h1 class="text-5xl font-extrabold mb-4">
       <span
-        class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-black"
+        class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-white"
       >
         GREAT DEAL
       </span>
@@ -42,10 +35,10 @@ const item = useProductStore();
           {{ item.lastProduct.category.name }}
         </h1>
       </div>
-      <div class="image w-1/2 md:p-10">
-        <nuxt-link :to="`/product/${item.lastProduct.id}`">
+      <div class="image w-1/2 md:p-10 inline-block rounded-lg">
+        <nuxt-link :to="`/products/${item.lastProduct.id}`">
           <img
-            class="w-full hover:scale-105 duration-150"
+            class="w-full hover:scale-105 duration-150 "
             :src="apiBase + item.lastProduct.image"
             alt=""
           />

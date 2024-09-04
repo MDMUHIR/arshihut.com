@@ -17,6 +17,12 @@ export const useCartStore = defineStore(
       return parseFloat(total.toFixed(2));
     });
 
+    // #/ Check the item is the cart________________
+
+    const isInCart = (productId) => {
+      return data.cart.some((item) => item.product_id === productId);
+    };
+
     const addItem = (product) => {
       const index = data.cart.findIndex(
         (item) => item.product_id == product.id
@@ -35,6 +41,8 @@ export const useCartStore = defineStore(
         } else {
           data.cart[index] = cartItem;
         }
+
+        notify("Added to cart", "success");
       });
     };
 
@@ -42,12 +50,13 @@ export const useCartStore = defineStore(
       const res = fetchAuthorizedApi(
         `api/cart/delete/${item.id}`,
         {},
-        "DELETE"
+        "delete"
       );
 
       res.then((response) => {
         if (response.status) {
           data.cart.splice(index, 1);
+          notify("Dleleted from cart", "error");
         }
       });
     };
@@ -92,6 +101,7 @@ export const useCartStore = defineStore(
     return {
       totalCartItems,
       totalPrice,
+      isInCart,
       addItem,
       deleteItem,
       updateCart,

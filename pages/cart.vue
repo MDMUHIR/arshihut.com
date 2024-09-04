@@ -1,18 +1,33 @@
 <script setup>
-
 const cart = useCartStore();
 
 onBeforeMount(() => {});
 </script>
 
 <template>
-  <div class="bg-stone-200 min-h-svh">
-    <div class="h-screen bg-stone-200 pt-20">
-      <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
+  <div class="h-full min-h-screen bg-stone-200 pb-2">
+    <div class="bg-stone-200 min-h-svh">
+      <div class="page-hero flex justify-center items-center">
+        <h1
+          class="text-xl text-center font-bold px-5 py-1 pt-5  bg-orange-400 rounded-b-3xl shadow-lg"
+        >
+          Cart Items
+        </h1>
+      </div>
 
       <div
-        class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0"
+        class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 mt-5"
       >
+        <!-- while the cart is empty -->
+        <div
+          v-if="data.cart.length === 0"
+          class="rounded-lg md:w-2/3 flex justify-center items-center"
+        >
+          <p class="text-center font-light text-2xl italic mt-36 text-red-500">
+            !!! The Cart is Empty
+          </p>
+        </div>
+        <!-- product showcase -->
         <div class="rounded-lg md:w-2/3">
           <template v-for="(item, index) in data.cart" :key="index">
             <div
@@ -84,11 +99,9 @@ onBeforeMount(() => {});
 
         <!-- Sub total -->
         <div
-          class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3"
+          class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3 sticky top-56"
         >
-          
-          
-          <hr class="my-4" />
+         
           <div class="flex justify-between">
             <p class="text-lg font-bold">Total</p>
             <div class="block">
@@ -97,12 +110,12 @@ onBeforeMount(() => {});
             </div>
           </div>
           <nuxt-link to="/checkout">
-          <button
-            class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
-          >
-            Checkout
-          </button>
-        </nuxt-link>
+            <button
+              class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
+            >
+              Checkout
+            </button>
+          </nuxt-link>
         </div>
       </div>
     </div>

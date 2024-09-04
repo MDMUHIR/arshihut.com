@@ -1,10 +1,12 @@
 export const useAuthStore = defineStore(
   "auth",
   () => {
+    // States
     const user = ref(null);
     const isAuthenticated = ref(false);
     const errors = ref(null);
 
+    // Actions
     const login = (email, password) => {
       loading.value = true;
       fetchApiData("api/login", { email, password }, "POST").then((res) => {

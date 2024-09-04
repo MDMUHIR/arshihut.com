@@ -1,9 +1,17 @@
 <script setup>
+// -------States------
 const auth = useAuthStore();
 const cart = useCartStore();
 const order = useOrderStore();
+const coupon = useCouponStore();
+
 const countryCode = ref("+880");
 const number = ref("");
+const deliberyCost = ref(null);
+const couponData = computed(() => coupon.couponData);
+
+// _______Actions_______
+
 const customerNumber = computed({
   get() {
     return countryCode.value + number.value;
@@ -118,32 +126,69 @@ const renderCities = () => {
 };
 
 const createOrder = () => {
-  const status = order.placeOrder(checkout);
-  if (status) {
-    navigateTo("/orders");
+  if (
+    checkout.name !== "" &&
+    checkout.email !== "" &&
+    checkout.line1 !== "" &&
+    number.value !== ""
+  ) {
+    const status = order.placeOrder(checkout);
+    if (status) {
+      navigateTo("/orders");
+    } else {
+      alert("Failed to place order");
+    }
   } else {
-    alert("Faild to order");
+    alert("Fields marked with a star are required");
   }
 };
-// const shipping = ref(10);
-// const finalTotalPrice = computed(() => {
-//   return cart.totalPrice + shipping.value;
-// });
+
+const deliveryCostDefine = computed(() => {
+  if (checkout.country === "Bangladesh") {
+    return 0.6;
+  } else {
+    return 10;
+  }
+});
+
+const checkoutTotal = computed(() => {
+  let total;
+
+  if (couponData.value != null) {
+    if (couponData.value.type === "percentage") {
+      total =
+        cart.totalPrice -
+        (cart.totalPrice * couponData.value.discount) / 100 +
+        deliveryCostDefine.value;
+    } else {
+      total =
+        cart.totalPrice - couponData.value.discount + deliveryCostDefine.value;
+    }
+  } else {
+    total = cart.totalPrice + deliveryCostDefine.value;
+  }
+
+  // Ensure the result has two decimal places
+  return parseFloat(total.toFixed(2));
+});
 </script>
 
 <template>
-  <div class="h-full bg-stone-200 py-10">
-    <pre>{{ checkout }}</pre>
-    <h1 class="mb-10 text-center text-2xl font-bold">Checkout page</h1>
+  <div class="h-full min-h-screen bg-stone-200 pb-2">
+    <div class="page-hero flex justify-center items-center">
+      <h1
+        class="text-xl text-center font-bold px-5 py-1 pt-5 bg-orange-400 rounded-b-3xl shadow-lg"
+      >
+        Checkout Page
+      </h1>
+    </div>
 
-    <div
-      class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 mb-20"
-    >
+    <div class="mx-auto max-w-5xl px-6 md:flex md:space-x-6 xl:px-0 mb-20 mt-2">
       <div class="rounded-lg md:w-2/3">
-        <div class="space-y-4 md:space-y-6" action="#">
+        <form class="space-y-4 md:space-y-6">
           <div>
             <label class="block mb-2 text-sm font-medium text-gray-900"
-              >Name</label
+              >Name<span class="text-red-500 font-extrabold">*</span></label
             >
             <input
               v-model="checkout.name"
@@ -154,7 +199,7 @@ const createOrder = () => {
           </div>
           <div>
             <label class="block mb-2 text-sm font-medium text-gray-900"
-              >Email</label
+              >Email<span class="text-red-500 font-extrabold">*</span></label
             >
             <input
               v-model="checkout.email"
@@ -203,13 +248,15 @@ const createOrder = () => {
 
           <div>
             <label class="block mb-2 text-sm font-medium text-gray-900"
-              >Address 1</label
+              >Address 1<span class="text-red-500 font-extrabold"
+                >*</span
+              ></label
             >
             <input
               v-model="checkout.line1"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:outline-none focus:shadow-2xl w-full p-2.5"
               placeholder="Address 1"
-              required=""
+              required
             />
           </div>
           <div>
@@ -226,7 +273,7 @@ const createOrder = () => {
 
           <div>
             <label class="block mb-2 text-sm font-medium text-gray-900"
-              >Phone</label
+              >Phone<span class="text-red-500 font-extrabold">*</span></label
             >
             <div class="flex">
               <div
@@ -235,8 +282,9 @@ const createOrder = () => {
                 {{ countryCode }}
               </div>
               <input
+                type="number"
                 v-model="number"
-                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg rounded-l-none focus:outline-none focus:shadow-2xl p-2.5"
+                class="no-spinner bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg rounded-l-none focus:outline-none focus:shadow-2xl p-2.5"
                 placeholder="number"
                 required=""
               />
@@ -251,53 +299,88 @@ const createOrder = () => {
               v-model="checkout.notes"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:outline-none focus:shadow-2xl w-full p-2.5"
               placeholder="Notes"
-              required=""
+              required
             />
           </div>
-          <div>
-            <label class="block mb-2 text-sm font-medium text-gray-900"
-              >Payment Method</label
-            >
-            <select
-              v-model="checkout.payment_method"
-              class="p-2 rounded focus:outline-none focus:shadow-2xl"
-            >
-              <option value="cod">Cash on Delivery</option>
-              <option value="paypal">Paypal</option>
-            </select>
+          <div class="sm:flex justify-between">
+            <div class="payment-method">
+              <label class="block mb-2 text-sm font-medium text-gray-900"
+                >Payment Method</label
+              >
+              <select
+                v-model="checkout.payment_method"
+                class="p-2 rounded focus:outline-none focus:shadow-2xl"
+              >
+                <option value="cod">Cash on Delivery</option>
+                <option value="paypal">Paypal</option>
+              </select>
+            </div>
+            <!-- Coupon input -->
+            <div class="mt-5 sm:mt-0">
+              <label class="block mb-2 text-sm font-medium text-gray-900"
+                >Apply Coupon</label
+              >
+              <input
+                v-model="checkout.coupon"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-l-lg focus:outline-none focus:shadow-2xl p-2.5"
+                placeholder="Enter Coupon"
+              />
+
+              <button
+                type="button"
+                @click="coupon.applyCoupon(checkout)"
+                class="p-2 bg-red-500 rounded-r text-white"
+              >
+                Apply
+              </button>
+            </div>
+
+            <!-- <p v-if="coupon.couponData != null">{{ checkoutTotal }}</p> -->
           </div>
-        </div>
+        </form>
       </div>
 
       <!--======  total Summary ======-->
-      <div
-        class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3"
-      >
-        <div class="mb-2 flex justify-between">
-          <p class="text-gray-700">Subtotal</p>
-          <p class="text-gray-700">${{ cart.totalPrice }}</p>
-        </div>
-        <div class="flex justify-between">
-          <p class="text-gray-700">Shipping</p>
-          <p class="text-gray-700">
-            <span class="mr-2 text-teal-600">+</span>$ shp
-          </p>
-        </div>
-        <hr class="my-4" />
-        <div class="flex justify-between">
-          <p class="text-lg font-bold">Total</p>
-          <div class="block">
-            <p class="mb-1 text-lg font-bold">$egfe USD</p>
-            <p class="text-xs text-gray-700 float-end">including VAT</p>
+      <div class="right-part md:w-1/3 md:min-h-full mt-6 md:mt-0">
+        <div class="rounded-lg border bg-white p-6 shadow-md sticky top-52">
+          <div class="mb-2 flex justify-between">
+            <p class="text-gray-700">Subtotal</p>
+            <p class="text-gray-700">{{ cart.totalPrice }}</p>
           </div>
-        </div>
+          <div class="flex justify-between">
+            <p class="text-gray-700">Shipping</p>
+            <p class="text-gray-700">
+              <span class="mr-2 text-red-600">+</span> {{ deliveryCostDefine }}
+            </p>
+          </div>
+          <div class="flex justify-between">
+            <p class="text-gray-700">Discount</p>
+            <p class="text-gray-700">
+              <span class="mr-2 text-teal-600">-</span>
+              <span v-if="couponData"
+                >{{ couponData.discount }}
+                <span v-show="(couponData.type = 'percentage')">%</span></span
+              >
+            </p>
+          </div>
+          <hr class="my-4" />
+          <div class="flex justify-between">
+            <p class="text-lg font-bold">Total</p>
+            <div class="block">
+              <p class="mb-1 text-lg font-bold">
+                $<span>{{ checkoutTotal }}</span> USD
+              </p>
+              <p class="text-xs text-gray-700 float-end">including VAT</p>
+            </div>
+          </div>
 
-        <button
-          @click="createOrder()"
-          class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
-        >
-          Place Order
-        </button>
+          <button
+            @click="createOrder()"
+            class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
+          >
+            Place Order
+          </button>
+        </div>
       </div>
     </div>
   </div>

@@ -5,13 +5,17 @@ const route = useRoute();
 
 <template>
   <div
-    class="nab w-full border-b-2 shadow-md bg-gradient-to-r from-emerald-500 to-emerald-900 fixed top-0 left-0 right-0 text-white flex justify-between items-center py-4"
+    class="nab w-full border-b-2 shadow-emerald-800/20 shadow-md bg-gradient-to-r from-emerald-500 to-emerald-900 fixed top-0 left-0 right-0 text-white flex justify-between items-center py-4"
   >
     <div
       class="nav-home flex justify-center items-center h-full w-56 p-2 oreder-1"
     >
       <nuxt-link to="/admin">
-        <button class="font-bold text-2xl">Admin Panel</button>
+        <button
+          class="font-bold text-2xl bg-gradient-to-r from-red-500 to-black hover:from-black hover:to-red-500 px-2 rounded-full"
+        >
+          Admin Panel
+        </button>
       </nuxt-link>
     </div>
     <!-- -------------------------------------------
@@ -49,13 +53,37 @@ const route = useRoute();
         <nuxt-link to="/admin/coupons">
           <button
             :class="
-              route.path === '/admin/users'
+              route.path === '/admin/coupons'
                 ? 'scale-110 font-bold shadow-2xl border-red-600  bg-black'
                 : ''
             "
             class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300"
           >
             Coupons
+          </button>
+        </nuxt-link>
+        <nuxt-link to="/admin/orders">
+          <button
+            :class="
+              route.path === '/admin/orders'
+                ? 'scale-110 font-bold shadow-2xl border-red-600  bg-black'
+                : ''
+            "
+            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300"
+          >
+            Orders
+          </button>
+        </nuxt-link>
+        <nuxt-link to="/admin/users">
+          <button
+            :class="
+              route.path === '/admin/users'
+                ? 'scale-110 font-bold shadow-2xl border-red-600  bg-black'
+                : ''
+            "
+            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300"
+          >
+            Users
           </button>
         </nuxt-link>
       </div>

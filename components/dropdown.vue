@@ -1,15 +1,17 @@
 <script setup>
 const auth = useAuthStore();
 const route = useRoute();
+
+const currentLayout = computed(() => route.meta.layout || "default");
 </script>
 
 <template>
   <div
-    class="w-56 pt-2 overflow-hidden bg-white rounded-bl-lg shadow-2xl bg-gradient-to-r border-l border-black from-neutral-500 to-stone-600"
+    class="w-56 pt-2 overflow-hidden bg-stone-500/90 rounded-bl-lg shadow-2xl border-black"
   >
     <client-only>
       <button
-        class="flex w-full items-center p-3 -mt-2 text-sm text-gray-600 bg-stone-300 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+        class="flex w-full items-center p-3 font-semibold text-white bg-stone-300 transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-l-full"
       >
         <img
           class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"
@@ -17,47 +19,51 @@ const route = useRoute();
           alt="jane avatar"
         />
         <div class="mx-1">
-          <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200">
+          <h1 class="font-semibold text-gray-700 dark:text-gray-200">
             {{ auth.user.name }}
           </h1>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
+          <p class="font-semibold text-gray-500 dark:text-gray-400">
             {{ auth.user.email }}
           </p>
         </div>
       </button>
 
-      <hr class="border-gray-200 dark:border-gray-700" />
+      <!-- for admin __-_-_-_--_--__ -->
 
       <template v-if="'admin' == auth.user.type">
         <nuxt-link to="/admin">
           <button
             :class="
-              route.name === 'admin' ? 'text-gray-400' : 'dark:text-gray-300'
+              currentLayout === 'adminlayout' ? 'text-red-300' : 'text-gray-100'
             "
-            class="block w-full px-4 py-3 text-sm font-bold text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+            class="block w-full px-4 py-3 mt-2 font-bold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
           >
             Dashboard
           </button>
         </nuxt-link>
         <nuxt-link to="/">
           <button
-            :class="route.path === '/' ? 'text-gray-400' : 'dark:text-gray-300'"
-            class="block w-full px-4 py-3 text-sm font-bold text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+            :class="
+              currentLayout === 'default' ? 'text-yellow-300' : 'text-gray-100'
+            "
+            class="block w-full px-4 py-3 font-bold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
           >
-            Home
+            Customer View
           </button>
         </nuxt-link>
-        <hr class="border-gray-200 dark:border-gray-700" />
       </template>
+
+      <!-- for customer__-_-_-_--_--__ -->
+
       <template v-if="'customer' == auth.user.type">
-        <button
-          class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
-        >
-          view profile
-        </button>
-        <nuxt-link to="/saved">
+        <nuxt-link to="/wishlist">
           <button
-            class="flex items-center justify-center w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+            :class="
+              route.path === '/wishlist'
+                ? ' font-bold shadow-md shadow-white border-red-600  bg-white text-black '
+                : 'text-white'
+            "
+            class="flex items-center justify-center w-full px-4 py-3 mt-2 font-semibold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -72,21 +78,26 @@ const route = useRoute();
               />
             </svg>
 
-            Saved
+            Wishlist
           </button>
         </nuxt-link>
         <nuxt-link to="/orders">
           <button
-            class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+            :class="
+              route.path === '/orders'
+                ? ' font-bold  border-red-600  bg-white text-black shadow-md shadow-white'
+                : 'text-white'
+            "
+            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
           >
-            Orders
+            My Orders
           </button>
         </nuxt-link>
 
-        <hr class="border-gray-200 dark:border-gray-700" />
+        
 
         <button
-          class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+          class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
         >
           Invite Friends
         </button>
@@ -94,20 +105,16 @@ const route = useRoute();
         <hr class="border-gray-200 dark:border-gray-700" />
 
         <button
-          class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+          class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
         >
           Help & Support
         </button>
-        <button
-          class="block w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
-        >
-          Contact
-        </button>
+
         <hr class="border-gray-200 dark:border-gray-700" />
       </template>
       <button
         @click="auth.logout()"
-        class="flex justify-center items-center w-full px-4 py-3 text-sm text-gray-600 bg-gray-300 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-white"
+        class="flex justify-center items-center w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
       >
         <!--  @click="authStore.logout()" -->
         <svg

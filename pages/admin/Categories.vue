@@ -5,7 +5,6 @@ definePageMeta({
 
 
 const category = useCategoryStore();
-
 </script>
 
 <template>
@@ -98,7 +97,7 @@ const category = useCategoryStore();
     </form>
 
     <!-- Data ShoW -->
-    <div class="rounded-lg border-2">
+    <div class="rounded-lg  grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4   gap-4 px-4">
       <template v-for="(item, index) in data.categories" :key="index">
         <div
           class="justify-between items-center rounded-lg p-6 shadow-md sm:flex sm:justify-start border"
@@ -107,7 +106,7 @@ const category = useCategoryStore();
           <img
             :src="apiBase + item.image"
             alt="product-image"
-            class="w-full rounded-lg sm:w-40"
+            class="w-full rounded-lg sm:w-32"
           />
           <div
             class="sm:ml-4 sm:flex sm:w-full sm:justify-between items-center"

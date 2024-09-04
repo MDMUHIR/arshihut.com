@@ -5,77 +5,86 @@ definePageMeta({
 
 const coupon = useCouponStore();
 coupon.fetchCoupons();
-
-const couponData = reactive({
-  code: "",
-  type: "fixed",
-  discount: "",
-});
 </script>
 
 <template>
+  <button
+    v-if="!coupon.showCouAddform && !coupon.showCouUpdateform"
+    @click="coupon.showCouAddform = true"
+    type="submit"
+    class="px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-purple-600 hover:bg-purple-700 duration-150 mb-6 mt-28"
+  >
+    Add New Coupon
+  </button>
+  <!-- // -->
+  <div
+    v-if="coupon.showCouAddform || coupon.showCouUpdateform"
+    class="bg-stone-500/75 rounded-lg border shadow-2xl m-3 flex items-center justify-center h-5/6 fixed top-22 left-0 right-0"
+  >
+    <form @submit.prevent="coupon.formSubmit()">
+      <div class="md:px-20 pt-6 mb-6">
+        <div class="bg-white rounded-md p-6 max-w-2xl mx-auto">
+          <h1 class="text-center text-2xl font-bold text-gray-500 mb-10">
+            Add Coupons
+          </h1>
+          <div class="space-y-4">
+            <div>
+              <label for="code" class="text-lx font-serif">Coupon Code:</label>
+              <input
+                v-model="coupon.couponForm.code"
+                type="text"
+                placeholder="Coupon Code"
+                id="code"
+                class="w-full outline-none py-1 px-2 text-md border-2 rounded-md"
+              />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-900"
+                >Coupon Type</label
+              >
+              <select
+                v-model="coupon.couponForm.type"
+                class="p-2 border-2 rounded"
+              >
+                <option value="fixed">Fixed</option>
+                <option value="percentage">Percentage</option>
+              </select>
+            </div>
+            <div>
+              <label for="discount" class="text-lx font-serif">Discount:</label>
+              <input
+                v-model="coupon.couponForm.discount"
+                type="text"
+                placeholder="Add Discount"
+                id="discount"
+                class="w-full outline-none py-1 px-2 text-md border-2 rounded-md"
+              />
+            </div>
 
-
-  <form @submit.prevent="coupon.addCoupons(couponData)">
-    <div class="md:px-20 pt-6 mb-6">
-      <div class="bg-white rounded-md p-6 max-w-2xl mx-auto">
-        <h1 class="text-center text-2xl font-bold text-gray-500 mb-10">
-          Add Coupons
-        </h1>
-        <div class="space-y-4">
-          <div>
-            <label for="code" class="text-lx font-serif">Coupon Code:</label>
-            <input
-              v-model="couponData.code"
-              type="text"
-              placeholder="Coupon Code"
-              id="code"
-              class="w-full outline-none py-1 px-2 text-md border-2 rounded-md"
-            />
-          </div>
-          <div>
-            <label class="block mb-2 text-sm font-medium text-gray-900"
-              >Coupon Type</label
-            >
-            <select v-model="couponData.type" class="p-2 border-2 rounded">
-              <option value="fixed">Fixed</option>
-              <option value="percentage">Percentage</option>
-            </select>
-          </div>
-          <div>
-            <label for="discount" class="text-lx font-serif">Discount:</label>
-            <input
-              v-model="couponData.discount"
-              type="text"
-              placeholder="Add Discount"
-              id="discount"
-              class="w-full outline-none py-1 px-2 text-md border-2 rounded-md"
-            />
-          </div>
-
-          <div class="btn flex justify-between">
-            <!-- <button
-              @click="category.showAddForm = false"
-              class="mx-auto block rounded-md text-lg text-red-600 font-bold border px-4 hover:bg-neutral-200 duration-150"
-            >
-              Cancel
-            </button> -->
-            <button
-              type="submit"
-              class="px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 duration-150"
-            >
-              Submit
-            </button>
+            <div class="btn flex justify-between">
+              <button
+                @click="coupon.cancelSubmition()"
+                class="mx-auto block rounded-md text-lg text-red-600 font-bold border px-4 hover:bg-neutral-200 duration-150"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 duration-150"
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 
   <!-- Showing Coupons -->
 
   <div
-    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mt-10 rounded-lg border-2 mb-10"
+    class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-10 rounded-lg  mb-10"
   >
     <template v-for="(item, index) in data.coupons" :key="index">
       <div
@@ -99,11 +108,16 @@ const couponData = reactive({
             class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"
           >
             <div class="flex items-center space-x-4">
-              <button class="cursor-pointer duration-150 hover:text-red-500">
-                Edit
-              </button>
+              <!-- The edit button is disabled due to (backend) internal server error -->
 
-              <button>
+              <!-- <button
+                @click="coupon.editSelection(item)"
+                class="cursor-pointer duration-150 hover:text-red-500"
+              >
+                Edit
+              </button> -->
+              <!-- delete button -->
+              <button @click="coupon.deleteCoupons(index, item)">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
