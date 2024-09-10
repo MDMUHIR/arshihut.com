@@ -8,7 +8,15 @@ export const loading = ref(false);
 
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+import confetti from "canvas-confetti";
 
+export const launchConfetti = () => {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 },
+  });
+};
 export const notify = (msg, type) => {
   toast(msg, {
     theme: "colored",

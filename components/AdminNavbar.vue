@@ -12,7 +12,12 @@ const route = useRoute();
     >
       <nuxt-link to="/admin">
         <button
-          class="font-bold text-2xl bg-gradient-to-r from-red-500 to-black hover:from-black hover:to-red-500 px-2 rounded-full"
+          :class="
+            route.path === '/admin'
+              ? 'shadow-inner bg-gradient-to-r from-red-500/50 to-black/50 '
+              : ''
+          "
+          class="nav-item font-bold text-2xl rounded-full px-3 duration-300 shadow-black hover:text-black"
         >
           Admin Panel
         </button>
@@ -29,10 +34,10 @@ const route = useRoute();
           <button
             :class="
               route.path === '/admin/products'
-                ? 'scale-110 font-bold shadow-2xl border-red-600  bg-black '
+                ? 'scale-110 font-bold shadow-inner bg-gradient-to-r from-red-500/50 to-black/50'
                 : ''
             "
-            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300"
+            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300 shadow-black"
           >
             Products
           </button>
@@ -41,10 +46,10 @@ const route = useRoute();
           <button
             :class="
               route.path === '/admin/categories'
-                ? 'scale-110 font-bold shadow-2xl border-red-600  bg-black'
+                ? 'scale-110 font-bold shadow-inner bg-gradient-to-r from-red-500/50 to-black/50'
                 : ''
             "
-            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300"
+            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300 shadow-black"
           >
             Categories
           </button>
@@ -54,10 +59,10 @@ const route = useRoute();
           <button
             :class="
               route.path === '/admin/coupons'
-                ? 'scale-110 font-bold shadow-2xl border-red-600  bg-black'
+                ? 'scale-110 font-bold shadow-inner bg-gradient-to-r from-red-500/50 to-black/50'
                 : ''
             "
-            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300"
+            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300 shadow-black"
           >
             Coupons
           </button>
@@ -66,10 +71,10 @@ const route = useRoute();
           <button
             :class="
               route.path === '/admin/orders'
-                ? 'scale-110 font-bold shadow-2xl border-red-600  bg-black'
+                ? 'scale-110 font-bold shadow-inner bg-gradient-to-r from-red-500/50 to-black/50'
                 : ''
             "
-            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300"
+            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300 shadow-black"
           >
             Orders
           </button>
@@ -78,19 +83,19 @@ const route = useRoute();
           <button
             :class="
               route.path === '/admin/users'
-                ? 'scale-110 font-bold shadow-2xl border-red-600  bg-black'
+                ? 'scale-110 font-bold shadow-inner bg-gradient-to-r from-red-500/50 to-black/50'
                 : ''
             "
-            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300"
+            class="nav-item font-semibold border rounded p-2 hover:scale-110 duration-300 shadow-black"
           >
             Users
           </button>
         </nuxt-link>
       </div>
     </div>
-    <div class="nav-end flex items-center">
+    <div class="nav-end flex items-center pe-2">
       <button v-if="auth.isAuthenticated" @click="togDropdMenu()">
-        <IconsUserIcon />
+        <IconsUserIcon class="scale-125" />
       </button>
 
       <dropdown v-if="showDdMenu" class="absolute right-0 top-20 mt-2" />

@@ -17,8 +17,10 @@ export const useAuthStore = defineStore(
           loading.value = false;
           if ("admin" == res.data.type) {
             navigateTo("/admin");
+            launchConfetti()
           } else {
             navigateTo("/");
+            launchConfetti();
           }
         } else {
           loading.value = false;

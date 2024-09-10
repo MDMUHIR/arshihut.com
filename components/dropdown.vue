@@ -7,17 +7,46 @@ const currentLayout = computed(() => route.meta.layout || "default");
 
 <template>
   <div
-    class="w-56 pt-2 overflow-hidden bg-stone-500/90 rounded-bl-lg shadow-2xl border-black"
+    class="w-56 pt-2 overflow-hidden bg-stone-500/90 rounded-bl-lg shadow-xl shadow-black/50 border-black"
   >
     <client-only>
       <button
-        class="flex w-full items-center p-3 font-semibold text-white bg-stone-300 transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-l-full"
+        class="flex w-full items-center p-3 font-semibold text-white bg-stone-300 transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white "
       >
-        <img
-          class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"
-          src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tYW4lMjBibHVlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=face&w=500&q=200"
-          alt="jane avatar"
-        />
+        <svg
+          height="45px"
+          width="45px"
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 473.935 473.935"
+          xml:space="preserve"
+          fill="#000000"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <circle
+              style="fill: #ea4949"
+              cx="236.967"
+              cy="236.967"
+              r="236.967"
+            ></circle>
+            <path
+              style="fill: #ee6d6d"
+              d="M236.952,473.935c78.533,0,148.115-38.222,191.232-97.058c-8.011-11.48-39.525-45.025-145.593-70.548 c0-24.082-2.398-38.507-2.398-38.507s31.289-43.337,33.691-103.513c0-9.568,4.7-77.436-77.017-80.508c0-0.03,0-0.079,0-0.101 c-0.202,0-0.382,0.045-0.602,0.045c-0.21,0-0.385-0.045-0.595-0.045c0,0.022,0,0.075,0,0.101 c-81.702,3.068-77.017,70.941-77.017,80.505c2.398,60.175,33.691,103.513,33.691,103.513s-2.417,14.425-2.417,38.507 C86.664,331.174,54.08,363.623,45.044,375.908C88.104,435.286,157.997,473.935,236.952,473.935z"
+            ></path>
+            <path
+              style="fill: #f7a1a1"
+              d="M363.769,60.131H105.586c-2.582,0-4.677,2.095-4.677,4.677v258.183c0,2.582,2.095,4.677,4.677,4.677 h258.183c2.582,0,4.677-2.095,4.677-4.677V64.808C368.446,62.222,366.355,60.131,363.769,60.131z M359.092,318.314H110.263V69.485 h248.829V318.314z"
+            ></path>
+          </g>
+        </svg>
         <div class="mx-1">
           <h1 class="font-semibold text-gray-700 dark:text-gray-200">
             {{ auth.user.name }}
@@ -93,8 +122,6 @@ const currentLayout = computed(() => route.meta.layout || "default");
             My Orders
           </button>
         </nuxt-link>
-
-        
 
         <button
           class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"

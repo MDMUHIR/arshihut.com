@@ -15,7 +15,12 @@ const item = useProductStore();
         <nuxt-link to="/">
           <button class="text-2xl font-extrabold duration-150">
             <span
-              class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-black hover:from-black hover:to-red-500 "
+              :class="
+                route.path === '/'
+                  ? 'bg-gradient-to-r'
+                  : 'bg-gradient-to-l  '
+              "
+              class="bg-clip-text text-transparent  from-white to-red-400 hover:from-black hover:to-red-500 duration-150"
             >
               MAVENMART
             </span>
@@ -63,10 +68,10 @@ const item = useProductStore();
             <button
               :class="
                 route.path === '/products'
-                  ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white'
+                  ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white shadow-inner '
                   : 'font-semibold'
               "
-              class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
+              class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150"
             >
               Products
             </button>
@@ -75,10 +80,10 @@ const item = useProductStore();
             <button
               :class="
                 route.path === '/categories'
-                  ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white'
+                  ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white shadow-inner'
                   : 'font-semibold'
               "
-              class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
+              class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 p-0"
             >
               Categories
             </button>
@@ -87,10 +92,10 @@ const item = useProductStore();
           <button
             :class="
               route.path === '/support'
-                ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white'
+                ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white shadow-inner'
                 : 'font-semibold'
             "
-            class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
+            class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150p-0"
           >
             Support
           </button>

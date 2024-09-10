@@ -1,6 +1,6 @@
 <script setup>
 const cart = useCartStore();
-console.log(cart.totalCartItems);
+
 </script>
 
 <template>

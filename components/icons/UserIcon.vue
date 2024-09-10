@@ -5,8 +5,12 @@
     viewBox="0 0 24 24"
     stroke-width="1.5"
     stroke="currentColor"
-    :class="showDdMenu? 'bg-black border border-red-600':''"
-    class="w-7 h-7  rounded-full"
+    :class="
+      showDdMenu
+        ? 'scale-110 font-bold shadow-inner shadow-black bg-gradient-to-r from-red-500/50 to-black/50 p-1'
+        : ''
+    "
+    class="w-7 h-7 rounded-full duration-150"
   >
     <path
       stroke-linecap="round"

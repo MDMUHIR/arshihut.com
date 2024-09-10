@@ -39,7 +39,6 @@ const formatDate = (dateString) => {
 
 <template>
   <div class="main">
-    <pre>{{ order.orders }}</pre>
     <!-- while there in no order -->
     <div
       v-if="order.orders.length === 0"

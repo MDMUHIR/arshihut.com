@@ -11,15 +11,17 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    "@pinia/nuxt", // needed
-    "@pinia-plugin-persistedstate/nuxt",
+    // needed
     // "@nuxtjs/axios",
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
+    "vue3-carousel-nuxt",
   ],
 
   pinia: {
     storesDirs: ["./stores/**", "./custom-folder/stores/**"],
   },
-
+ 
   imports: {
     dirs: ["./stores"],
   },
@@ -27,9 +29,10 @@ export default defineNuxtConfig({
   vite: {
     server: {
       hmr: {
-        overlay: false,
+        overlay: true,
       },
     },
+
   },
 
   compatibilityDate: "2024-08-29",

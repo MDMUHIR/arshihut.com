@@ -6,10 +6,23 @@ onBeforeMount(() => {
 });
 
 const toggleOrderId = ref(null);
+const getStatusClass = (status) => {
+  return status === "pending"
+    ? "bg-blue-300"
+    : status === "processing"
+    ? "bg-yellow-300"
+    : status === "shipped"
+    ? "bg-teal-300"
+    : status === "delivered"
+    ? "bg-green-400"
+    : status === "canceled"
+    ? "bg-red-500"
+    : "bg-indigo-20"; // Default case
+};
 </script>
 
 <template>
-  <h1 class="text-center text-2xl font-semibold mt-20">My Orders</h1>
+  <h1 class="text-center text-2xl font-semibold pt-10">My Orders</h1>
   <div class="rounded-lg sm:m-8">
     <!-- <pre>{{ data.orders }}</pre> -->
     <template v-for="(order, index) in data.orders" :key="index">
@@ -18,49 +31,58 @@ const toggleOrderId = ref(null);
           <p class="font-bold p-2 rounded-2xl border-2 block">
             {{ index + 1 }}
           </p>
-          <p class="font-bold bg-stone-200 p-2 rounded-2xl border block">
+          <p class="font-bold bg-stone-200 py-2 px-4 rounded-2xl border block">
             Order id: {{ order.id }}
           </p>
-          <p class="font-bold bg-stone-200 p-2 rounded-2xl border block">
+          <p
+            :class="getStatusClass(order.status)"
+            class="font-bold  py-2 px-4 rounded-2xl border block"
+          >
             Status: {{ order.status }}
           </p>
         </div>
-        <div class="order-deta">
-          <p class="font-semibold">Total Price: ${{ order.total }}</p>
-          <p class="font-semibold">
-            Payment Method: {{ order.payment_method
-            }}<span class="font-thin text-red-600">
-              - ({{ order.payment_status }})</span
-            >
-          </p>
-          <p class="font-semibold">
-            Note: <span class="text-sm font-normal">{{ order.notes }}</span>
-          </p>
+        <div class="flex flex-col md:flex-row justify-around">
+          <div class="order-deta">
+            <p class="font-semibold">Total Price: ${{ order.total }}</p>
+            <p class="font-semibold">
+              Payment Method: {{ order.payment_method
+              }}<span class="font-thin text-red-600">
+                - ({{ order.payment_status }})</span
+              >
+            </p>
+            <p class="font-semibold">
+              Note: <span class="text-sm font-normal">{{ order.notes }}</span>
+            </p>
+          </div>
+          <hr />
+          <div class="order-deta mb-4">
+            <p class="font-semibold">
+              Name: <span class="font-normal">{{ order.name }} </span>
+            </p>
+            <p class="font-semibold">
+              Email: <span class="font-normal">{{ order.email }} </span>
+            </p>
+            <p class="font-semibold">
+              Phone: <span class="font-normal">{{ order.phone }} </span>
+            </p>
+            <p class="font-semibold">
+              Address:
+              <span class="font-normal"
+                >{{ order.line1 }}, {{ order.city }}, {{ order.country }}
+              </span>
+            </p>
+          </div>
         </div>
-        <div class="order-deta mb-4">
-          <p class="font-semibold">
-            Name: <span class="font-normal">{{ order.name }} </span>
-          </p>
-          <p class="font-semibold">
-            Email: <span class="font-normal">{{ order.email }} </span>
-          </p>
-          <p class="font-semibold">
-            Phone: <span class="font-normal">{{ order.phone }} </span>
-          </p>
-          <p class="font-semibold">
-            Address:
-            <span class="font-normal"
-              >{{ order.line1 }}, {{ order.city }}, {{ order.country }}
-            </span>
-          </p>
-        </div>
-        <button
-          v-show="toggleOrderId !== order.id"
-          @click="toggleOrderId = order.id"
-          class="px-4 py-2 rounded-2xl text-white bg-purple-900 border"
-        >
-          Preview Products
-        </button>
+
+        
+          <button
+            v-show="toggleOrderId !== order.id"
+            @click="toggleOrderId = order.id"
+            class="px-4  rounded-2xl text-white bg-purple-900 border mx-auto"
+          >
+            Preview Products
+          </button>
+       
         <template v-for="(product, index) in order.products" :key="index">
           <div
             v-if="toggleOrderId == order.id"

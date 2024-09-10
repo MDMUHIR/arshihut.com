@@ -135,6 +135,7 @@ const createOrder = () => {
     const status = order.placeOrder(checkout);
     if (status) {
       navigateTo("/orders");
+      launchConfetti();
     } else {
       alert("Failed to place order");
     }
