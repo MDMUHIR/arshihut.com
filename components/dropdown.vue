@@ -7,11 +7,11 @@ const currentLayout = computed(() => route.meta.layout || "default");
 
 <template>
   <div
-    class="w-56 pt-2 overflow-hidden bg-stone-500/90 rounded-bl-lg shadow-xl shadow-black/50 border-black"
+    class="w-56 pt-2 overflow-hidden bg-gradient-to-l from-[#171717]/75 to-stone-700/75 rounded-bl-lg shadow-xl shadow-black/50 border-black"
   >
     <client-only>
       <button
-        class="flex w-full items-center p-3 font-semibold text-white bg-stone-300 transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white "
+        class="flex w-full items-center p-3 font-semibold text-white bg-stone-300 dark:bg-neutral-500 transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white"
       >
         <svg
           height="45px"
@@ -63,9 +63,11 @@ const currentLayout = computed(() => route.meta.layout || "default");
         <nuxt-link to="/admin">
           <button
             :class="
-              currentLayout === 'adminlayout' ? 'text-red-300' : 'text-gray-100'
+              currentLayout === 'adminlayout'
+                ? ' bg-black/75 italic'
+                : 'text-gray-100'
             "
-            class="block w-full px-4 py-3 mt-2 font-bold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
+            class="block w-full px-4 py-3 mt-2 font-bold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
           >
             Dashboard
           </button>
@@ -73,9 +75,11 @@ const currentLayout = computed(() => route.meta.layout || "default");
         <nuxt-link to="/">
           <button
             :class="
-              currentLayout === 'default' ? 'text-yellow-300' : 'text-gray-100'
+              currentLayout === 'default'
+                ? ' bg-black/75 italic'
+                : 'text-gray-100'
             "
-            class="block w-full px-4 py-3 font-bold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
+            class="block w-full px-4 py-3 font-bold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
           >
             Customer View
           </button>
@@ -89,10 +93,10 @@ const currentLayout = computed(() => route.meta.layout || "default");
           <button
             :class="
               route.path === '/wishlist'
-                ? ' font-bold shadow-md shadow-white border-red-600  bg-white text-black '
+                ? ' font-bold shadow-md shadow-white border-red-600  bg-white dark:bg-neutral-500  text-black '
                 : 'text-white'
             "
-            class="flex items-center justify-center w-full px-4 py-3 mt-2 font-semibold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
+            class="flex items-center justify-center w-full px-4 py-3 mt-2 font-semibold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -114,17 +118,17 @@ const currentLayout = computed(() => route.meta.layout || "default");
           <button
             :class="
               route.path === '/orders'
-                ? ' font-bold  border-red-600  bg-white text-black shadow-md shadow-white'
+                ? ' font-bold  border-red-600  bg-white dark:bg-neutral-500   text-black shadow-md shadow-white'
                 : 'text-white'
             "
-            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
+            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
           >
             My Orders
           </button>
         </nuxt-link>
 
         <button
-          class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
+          class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
         >
           Invite Friends
         </button>
@@ -132,7 +136,7 @@ const currentLayout = computed(() => route.meta.layout || "default");
         <hr class="border-gray-200 dark:border-gray-700" />
 
         <button
-          class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
+          class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
         >
           Help & Support
         </button>
@@ -141,7 +145,7 @@ const currentLayout = computed(() => route.meta.layout || "default");
       </template>
       <button
         @click="auth.logout()"
-        class="flex justify-center items-center w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-gray-500 dark:hover:text-white rounded-r-full"
+        class="flex justify-center items-center w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
       >
         <!--  @click="authStore.logout()" -->
         <svg

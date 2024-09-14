@@ -22,7 +22,13 @@ const getStatusClass = (status) => {
 </script>
 
 <template>
-  <h1 class="text-center text-2xl font-semibold pt-10">My Orders</h1>
+  <div class="page-hero flex justify-center items-center">
+    <h1
+      class="text-xl text-center font-bold px-5 py-1 pt-5 bg-orange-400 rounded-b-3xl shadow-lg"
+    >
+      My Orders
+    </h1>
+  </div>
   <div class="rounded-lg sm:m-8">
     <!-- <pre>{{ data.orders }}</pre> -->
     <template v-for="(order, index) in data.orders" :key="index">
@@ -36,7 +42,7 @@ const getStatusClass = (status) => {
           </p>
           <p
             :class="getStatusClass(order.status)"
-            class="font-bold  py-2 px-4 rounded-2xl border block"
+            class="font-bold py-2 px-4 rounded-2xl border block"
           >
             Status: {{ order.status }}
           </p>
@@ -74,15 +80,14 @@ const getStatusClass = (status) => {
           </div>
         </div>
 
-        
-          <button
-            v-show="toggleOrderId !== order.id"
-            @click="toggleOrderId = order.id"
-            class="px-4  rounded-2xl text-white bg-purple-900 border mx-auto"
-          >
-            Preview Products
-          </button>
-       
+        <button
+          v-show="toggleOrderId !== order.id"
+          @click="toggleOrderId = order.id"
+          class="px-4 rounded-2xl text-white bg-purple-900 border mx-auto"
+        >
+          Preview Products
+        </button>
+
         <template v-for="(product, index) in order.products" :key="index">
           <div
             v-if="toggleOrderId == order.id"

@@ -8,7 +8,7 @@ const category = useCategoryStore();
 </script>
 
 <template>
-  <div class="mt-28">
+  <div class="mt-16">
     <button
       v-show="!category.showAddForm"
       @click="category.showAddForm = true"

@@ -27,7 +27,7 @@ const toggleWishlist = (product) => {
     <button
       v-if="productStore.toggleFilteredProducts()"
       @click="filteredProducts.length = 0"
-      class=" top-56 sm:top-20 -left-2 sm:left-4 fixed bg-red-500 hover:text-red-500 sm:ml-1 px-1 sm:px-2  sm:rounded-tl-lg hover:bg-white text-white rotate-90 sm:rotate-0"
+      class="top-56 sm:top-20 -left-2 sm:left-4 fixed bg-red-500 hover:text-red-500 sm:ml-1 px-1 sm:px-2 sm:rounded-tl-lg hover:bg-white text-white rotate-90 sm:rotate-0"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const toggleWishlist = (product) => {
       >
         <!-- <pre>{{ product }}</pre> -->
         <div
-          class="max-w-xs min-w-48 rounded-lg bg-white p-2 pt-3  duration-125 shadow-sm shadow-black hover:shadow-md hover:bg-neutral-200"
+          class="max-w-xs min-w-48 rounded-lg bg-white dark:bg-[#302f2f] p-2 pt-3 duration-125 shadow-sm shadow-black hover:shadow-md dark:hover:dark:bg-[#0a0a0a]/75 hover:bg-neutral-200"
           :class="'customer' == auth.user.type ? 'h-80' : 'h-40'"
         >
           <nuxt-link :to="`/products/${product.id}`">
@@ -73,8 +73,10 @@ const toggleWishlist = (product) => {
             "
           >
             <nuxt-link :to="`/product/${product.id}`" class="">
-              <p class="my-4 font-bold text-gray-500 text-center">
-                {{ product.name }}
+              <p
+                class="my-4 font-bold text-gray-500 dark:text-[#e5e5e5] text-center truncate"
+              >
+                {{ truncatedHeadingText(product.name) }}
               </p>
             </nuxt-link>
             <button
@@ -94,7 +96,7 @@ const toggleWishlist = (product) => {
             v-if="'customer' == auth.user.type"
             class="bottom flex justify-between items-center"
           >
-            <p class="ml-3 text-sm font-bold text-gray-800">
+            <p class="ml-3 text-sm font-bold text-gray-800 dark:text-white">
               ${{ product.price }}
             </p>
             <nuxt-link

@@ -6,7 +6,7 @@ const item = useProductStore();
 
 <template>
   <div
-    class="nab w-full border-b-2 shadow-md bg-gradient-to-r from-stone-500 to-stone-700 fixed top-0 left-0 right-0 text-white z-50"
+    class="nab w-full border-b-2 shadow-md bg-gradient-to-r from-[#171717] to-stone-700 fixed top-0 left-0 right-0 text-white z-50"
   >
     <div class="nav-top flex flex-col sm:flex-row justify-between items-center">
       <div
@@ -16,11 +16,9 @@ const item = useProductStore();
           <button class="text-2xl font-extrabold duration-150">
             <span
               :class="
-                route.path === '/'
-                  ? 'bg-gradient-to-r'
-                  : 'bg-gradient-to-l  '
+                route.path === '/' ? 'bg-gradient-to-r' : 'bg-gradient-to-l  '
               "
-              class="bg-clip-text text-transparent  from-white to-red-400 hover:from-black hover:to-red-500 duration-150"
+              class="bg-clip-text text-transparent from-white to-red-400 hover:from-black hover:to-red-500 duration-150"
             >
               MAVENMART
             </span>
@@ -89,7 +87,7 @@ const item = useProductStore();
             </button>
           </nuxt-link>
 
-          <button
+          <!-- <button
             :class="
               route.path === '/support'
                 ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white shadow-inner'
@@ -98,7 +96,7 @@ const item = useProductStore();
             class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150p-0"
           >
             Support
-          </button>
+          </button> -->
         </div>
       </div>
 

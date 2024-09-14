@@ -26,3 +26,9 @@ export const notify = (msg, type) => {
     dangerouslyHTMLString: true,
   });
 };
+
+export const truncatedHeadingText = (headingText) => {
+  return headingText.length > 20
+    ? headingText.substring(0, 20) + "..."
+    : headingText;
+};

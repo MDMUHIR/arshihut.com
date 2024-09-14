@@ -73,9 +73,9 @@ import "vue3-carousel/dist/carousel.css";
               </nuxt-link>
               <div class="middle flex justify-between">
                 <h2
-                  class="my-4 pl-4 text-xl font-bold text-gray-500 text-center"
+                  class="my-4 pl-4 text-xl font-bold text-gray-500 dark:text-[#e5e5e5] text-center"
                 >
-                  {{ product.name }}
+                  {{ truncatedHeadingText(product.name) }}
                 </h2>
               </div>
             </div>
@@ -90,7 +90,6 @@ import "vue3-carousel/dist/carousel.css";
         </template>
       </Carousel>
     </div>
-    
   </div>
 </template>
 

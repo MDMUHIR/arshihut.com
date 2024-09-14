@@ -5,8 +5,8 @@ onBeforeMount(() => {});
 </script>
 
 <template>
-  <div class="h-full min-h-screen bg-stone-200 pb-2">
-    <div class="bg-stone-200 min-h-svh">
+  <div class="h-full min-h-screen  pb-2">
+    <div class=" min-h-svh">
       <div class="page-hero flex justify-center items-center">
         <h1
           class="text-xl text-center font-bold px-5 py-1 pt-5  bg-orange-400 rounded-b-3xl shadow-lg"

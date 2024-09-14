@@ -8,7 +8,6 @@ const item = useProductStore();
 
 <template>
   <div class="main mt-20">
-
     <!--Add product Button and input -->
     <div class="top-bar flex flex-col md:flex-row justify-between px-4 pt-2">
       <!-- AddForm Toggler Button -->
@@ -186,7 +185,7 @@ const item = useProductStore();
 
     <!-- Product show -->
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-4 mt-6" 
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-4 mt-6"
     >
       <div
         class="mx-auto px-5"
@@ -205,7 +204,7 @@ const item = useProductStore();
           </nuxt-link>
           <div class="middle flex justify-between">
             <p class="my-4 pl-4 font-bold text-gray-500">
-              {{ product.name }}
+              {{ truncatedHeadingText(product.name) }}
             </p>
           </div>
 
