@@ -14,7 +14,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="w-full h-screen mt-28">
+  <div class="w-full h-screen pt-28">
     <div
       class="relative flex flex-col md:flex-row space-y-3 rounded-xl shadow-lg p-3 w-full md:space-x-2 mx-auto border border-white bg-white"
     >

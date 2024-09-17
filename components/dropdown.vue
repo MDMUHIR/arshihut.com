@@ -11,7 +11,7 @@ const currentLayout = computed(() => route.meta.layout || "default");
   >
     <client-only>
       <button
-        class="flex w-full items-center p-3 font-semibold text-white bg-stone-300 dark:bg-neutral-500 transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white"
+        class="flex w-full items-center p-3 font-semibold text-white bg-stone-300 dark:bg-neutral-500 transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white"
       >
         <svg
           height="45px"
@@ -67,7 +67,7 @@ const currentLayout = computed(() => route.meta.layout || "default");
                 ? ' bg-black/75 italic'
                 : 'text-gray-100'
             "
-            class="block w-full px-4 py-3 mt-2 font-bold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
+            class="block w-full px-4 py-3 mt-2 font-bold capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
           >
             Dashboard
           </button>
@@ -79,7 +79,7 @@ const currentLayout = computed(() => route.meta.layout || "default");
                 ? ' bg-black/75 italic'
                 : 'text-gray-100'
             "
-            class="block w-full px-4 py-3 font-bold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
+            class="block w-full px-4 py-3 font-bold capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
           >
             Customer View
           </button>
@@ -96,7 +96,7 @@ const currentLayout = computed(() => route.meta.layout || "default");
                 ? ' font-bold shadow-md shadow-white border-red-600  bg-white dark:bg-neutral-500  text-black '
                 : 'text-white'
             "
-            class="flex items-center justify-center w-full px-4 py-3 mt-2 font-semibold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
+            class="flex items-center justify-center w-full px-4 py-3 mt-2 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -121,31 +121,36 @@ const currentLayout = computed(() => route.meta.layout || "default");
                 ? ' font-bold  border-red-600  bg-white dark:bg-neutral-500   text-black shadow-md shadow-white'
                 : 'text-white'
             "
-            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
+            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
           >
             My Orders
           </button>
         </nuxt-link>
 
-        <button
-          class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
+        <!-- <button
+          class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform  hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
         >
           Invite Friends
-        </button>
+        </button> -->
 
         <hr class="border-gray-200 dark:border-gray-700" />
-
-        <button
-          class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
-        >
-          Help & Support
-        </button>
-
+        <nuxt-link to="/support">
+          <button
+            :class="
+              route.path === '/support'
+                ? ' font-bold  border-red-600  bg-white dark:bg-neutral-500  text-black shadow-md shadow-white'
+                : 'text-white'
+            "
+            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
+          >
+            Help & Support
+          </button>
+        </nuxt-link>
         <hr class="border-gray-200 dark:border-gray-700" />
       </template>
       <button
         @click="auth.logout()"
-        class="flex justify-center items-center w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform dark:text-white hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
+        class="flex justify-center items-center w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black dark:hover:bg-stone-500 dark:hover:text-white rounded-r-full"
       >
         <!--  @click="authStore.logout()" -->
         <svg

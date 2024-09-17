@@ -12,14 +12,14 @@ coupon.fetchCoupons();
     v-if="!coupon.showCouAddform && !coupon.showCouUpdateform"
     @click="coupon.showCouAddform = true"
     type="submit"
-    class="px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-purple-600 hover:bg-purple-700 duration-150 mb-6 mt-28"
+    class="px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-purple-600 hover:bg-purple-700 duration-150 mb-6 mt-24"
   >
     Add New Coupon
   </button>
   <!-- // -->
   <div
     v-if="coupon.showCouAddform || coupon.showCouUpdateform"
-    class="bg-stone-500/75 rounded-lg border shadow-2xl m-3 flex items-center justify-center h-5/6 fixed top-22 left-0 right-0"
+    class="bg-stone-500/75 rounded-lg border shadow-2xl m-3 flex items-center justify-center h-5/6 fixed top-24 left-0 right-0"
   >
     <form @submit.prevent="coupon.formSubmit()">
       <div class="md:px-20 pt-6 mb-6">
@@ -84,21 +84,25 @@ coupon.fetchCoupons();
   <!-- Showing Coupons -->
 
   <div
-    class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-10 rounded-lg  mb-10"
+    class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-8 rounded-lg mb-10"
   >
     <template v-for="(item, index) in data.coupons" :key="index">
       <div
-        class="justify-between items-center rounded-lg p-6 shadow-md sm:flex sm:justify-start border"
+        class="justify-between items-center rounded-lg p-6  sm:flex sm:justify-start border dark:text-[#e5e5e5] bg-gradient-to-tr from-black/20 to-red-500/20 relative shadow-black/40 shadow-lg"
       >
-        <p class="text-xl font-semibold mr-4">{{ index + 1 }}</p>
+        <p class="text-xl font-semibold mr-4">{{ index + 1 }}.</p>
 
         <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between items-center">
           <div class="mt-5 sm:mt-0">
-            <h2 class="text-xl font-bold text-gray-900">{{ item.code }}</h2>
-            <p class="mt-1 text-xs text-gray-700">{{ item.type }}</p>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-[#e5e5e5]">
+              {{ item.code }}
+            </h2>
+            <p class="mt-1 text-xs text-gray-700 dark:text-[#f1dbdb]">
+              {{ item.type }}
+            </p>
           </div>
           <div class="mt-5 sm:mt-0">
-            <h2 class="text-2xl font-bold text-gray-900">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-[#e5e5e5]">
               <span v-if="item.type == 'fixed'">$</span>
               {{ item.discount }}
               <span v-if="item.type == 'percentage'">%</span>

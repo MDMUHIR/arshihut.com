@@ -6,6 +6,7 @@ export const useAuthStore = defineStore(
     const isAuthenticated = ref(false);
     const errors = ref(null);
 
+    const isAdmin = ref(false);
     // Actions
     const login = (email, password) => {
       loading.value = true;
@@ -16,9 +17,11 @@ export const useAuthStore = defineStore(
           user.value = res.data;
           loading.value = false;
           if ("admin" == res.data.type) {
+            isAdmin.value = true;
             navigateTo("/admin");
-            launchConfetti()
+            launchConfetti();
           } else {
+            isAdmin.value = false;
             navigateTo("/");
             launchConfetti();
           }
@@ -59,6 +62,7 @@ export const useAuthStore = defineStore(
       user,
       isAuthenticated,
       errors,
+      isAdmin,
       login,
       logout,
       register,

@@ -8,7 +8,7 @@ const category = useCategoryStore();
 </script>
 
 <template>
-  <div class="mt-16">
+  <div class="mt-20 pt-3">
     <button
       v-show="!category.showAddForm"
       @click="category.showAddForm = true"
@@ -97,10 +97,10 @@ const category = useCategoryStore();
     </form>
 
     <!-- Data ShoW -->
-    <div class="rounded-lg  grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4   gap-4 px-4">
+    <div class="rounded-lg  grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  gap-4 px-4 ">
       <template v-for="(item, index) in data.categories" :key="index">
         <div
-          class="justify-between items-center rounded-lg p-6 shadow-md sm:flex sm:justify-start border"
+          class="justify-between items-center rounded-lg p-6 shadow-md sm:flex sm:justify-start border dark:bg-stone-200"
         >
           <p class="text-xl font-semibold mr-4">{{ index + 1 }}</p>
           <img

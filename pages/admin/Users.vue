@@ -8,14 +8,12 @@ const userStore = useUserStore();
 onBeforeMount(() => {
   userStore.fetchAllUsers();
 });
-
-
 </script>
 
 <template>
   <div class="main">
     <!-- top -->
-    <div class="top-bar flex flex-col md:flex-row justify-between p-4 ">
+    <div class="top-bar flex flex-col md:flex-row justify-between p-4">
       <button
         v-if="!userStore.showUserAddForm && !userStore.showUserUpdateForm"
         @click="userStore.showUserAddForm = true"
@@ -140,11 +138,16 @@ onBeforeMount(() => {
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4 mt-4 rounded-lg mb-10 px-4"
     >
-      <template v-for="(item, index) in userStore.getFilteredUsers()" :key="index">
+      <template
+        v-for="(item, index) in userStore.getFilteredUsers()"
+        :key="index"
+      >
         <div
           class="justify-between items-center rounded-lg pl-5 pb-3 sm:flex sm:justify-start border bg-gradient-to-tr from-black/40 to-red-500/40 relative shadow-black/40 shadow-lg"
         >
-          <p class="text-xl font-semibold mr-2">{{ index + 1 }}</p>
+          <p class="text-xl font-semibold mr-2 dark:text-[#e5e5e5]">
+            {{ index + 1 }}
+          </p>
 
           <div class="sm:ml-4 w-full items-center mt-1">
             <div

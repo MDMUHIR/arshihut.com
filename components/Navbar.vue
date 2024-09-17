@@ -6,7 +6,7 @@ const item = useProductStore();
 
 <template>
   <div
-    class="nab w-full border-b-2 shadow-md bg-gradient-to-r from-[#171717] to-stone-700 fixed top-0 left-0 right-0 text-white z-50"
+    class="nab w-full border-b shadow-md bg-gradient-to-r from-[#171717] to-stone-700 fixed top-0 left-0 right-0 text-white z-50"
   >
     <div class="nav-top flex flex-col sm:flex-row justify-between items-center">
       <div

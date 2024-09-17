@@ -54,8 +54,7 @@ const toggleWishlist = (product) => {
       >
         <!-- <pre>{{ product }}</pre> -->
         <div
-          class="max-w-xs min-w-48 rounded-lg bg-white dark:bg-[#302f2f] p-2 pt-3 duration-125 shadow-sm shadow-black hover:shadow-md dark:hover:dark:bg-[#0a0a0a]/75 hover:bg-neutral-200"
-          :class="'customer' == auth.user.type ? 'h-80' : 'h-40'"
+          class="max-w-xs min-w-48 rounded-lg bg-white dark:bg-[#302f2f] p-2 pt-3 duration-125 shadow-sm shadow-black hover:shadow-md dark:hover:dark:bg-[#0a0a0a]/75 hover:bg-neutral-200 h-80"
         >
           <nuxt-link :to="`/products/${product.id}`">
             <img
@@ -65,12 +64,8 @@ const toggleWishlist = (product) => {
             />
           </nuxt-link>
           <div
-            class="middle flex items-center"
-            :class="
-              'customer' == auth.user.type
-                ? 'justify-between'
-                : 'justify-center'
-            "
+            class="middle flex items-center justify-between"
+            
           >
             <nuxt-link :to="`/product/${product.id}`" class="">
               <p
@@ -79,11 +74,9 @@ const toggleWishlist = (product) => {
                 {{ truncatedHeadingText(product.name) }}
               </p>
             </nuxt-link>
-            <button
-              v-if="'customer' == auth.user.type"
-              @click="toggleWishlist(product)"
-              class="w-6"
-            >
+
+            <!-- v-if="!auth.isAdmin" -->
+            <button @click="toggleWishlist(product)" class="w-6">
               <IconsBookmarkDash
                 v-if="wishStore.isInWishlist(product.id)"
                 class="w-full"
@@ -93,7 +86,7 @@ const toggleWishlist = (product) => {
           </div>
 
           <div
-            v-if="'customer' == auth.user.type"
+          
             class="bottom flex justify-between items-center"
           >
             <p class="ml-3 text-sm font-bold text-gray-800 dark:text-white">

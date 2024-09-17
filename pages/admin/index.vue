@@ -18,7 +18,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="main pt-10 place-items-center">
+  <div class="main pt-5 place-items-center mt-24">
     <!-- <pre></pre> -->
     <ClientOnly>
       <!--  -->

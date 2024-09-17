@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ["./stores/**", "./custom-folder/stores/**"],
   },
- 
+
   imports: {
     dirs: ["./stores"],
   },
@@ -29,10 +29,9 @@ export default defineNuxtConfig({
   vite: {
     server: {
       hmr: {
-        overlay: true,
+        overlay: false,
       },
     },
-
   },
 
   compatibilityDate: "2024-08-29",

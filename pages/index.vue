@@ -9,7 +9,7 @@ import "vue3-carousel/dist/carousel.css";
 <template>
   <div class="main pt-2 pb-10">
     <div
-      class="banner flex flex-col text-center p-10 m-10 rounded-2xl shadow-lg shadow-black bg-cover bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat"
+      class="banner flex flex-col text-center p-10 m-10 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat "
     >
       <h1 class="text-5xl font-extrabold mb-4">
         <span
