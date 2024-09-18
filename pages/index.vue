@@ -7,11 +7,13 @@ import "vue3-carousel/dist/carousel.css";
 </script>
 
 <template>
-  <div class="main pt-2 pb-10">
+  <div class="main pt-2 pb-10 min-h-svh">
+
+    <!-- Banner -->
     <div
-      class="banner flex flex-col text-center p-10 m-10 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat "
+      class="banner flex flex-col text-center p-10 m-10 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat  h-screen relative"
     >
-      <h1 class="text-5xl font-extrabold mb-4">
+      <h1 class="text-5xl font-extrabold mb-4 absolute top-5 left-0 right-0">
         <span
           class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-white"
         >
@@ -20,7 +22,7 @@ import "vue3-carousel/dist/carousel.css";
       </h1>
       <div
         v-if="item.lastProduct"
-        class="img-details flex justify-between items-center"
+        class="img-details flex justify-between items-center my-auto"
       >
         <div class="details w-1/2 flex flex-col items-center">
           <h1 class="text-5xl font-semibold text-white leading-normal">

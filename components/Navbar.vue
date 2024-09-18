@@ -20,7 +20,7 @@ const item = useProductStore();
               "
               class="bg-clip-text text-transparent from-white to-red-400 hover:from-black hover:to-red-500 duration-150"
             >
-              MAVENMART
+              DIGITALNEST
             </span>
           </button>
         </nuxt-link>

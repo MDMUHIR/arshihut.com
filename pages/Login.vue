@@ -1,7 +1,7 @@
 <script setup>
 const auth = useAuthStore();
-const email = ref("admin@gmail.com");
-const password = ref("admin");
+const email = ref("");
+const password = ref("");
 
 const showPassword = ref(false);
 
@@ -16,9 +16,7 @@ const passwordnputType = computed(() =>
     <div
       class="min-h-screen flex items-center justify-center w-full bg-[url('~/public/images/city.webp')] bg-bottom bg-no-repeat"
     >
-      <div
-        class="bg-white dark:bg-gray-900 rounded-lg px-8 py-6 max-w-md"
-      >
+      <div class="bg-white dark:bg-gray-900 rounded-lg px-8 py-6 max-w-md">
         <h1 class="text-2xl font-bold text-center mb-4 dark:text-gray-200">
           Welcome Back!
         </h1>
