@@ -68,7 +68,7 @@ import "vue3-carousel/dist/carousel.css";
             >
               <nuxt-link :to="`/products/${product.id}`">
                 <img
-                  class="rounded-lg h-4/6 object-center cursor-pointer mx-auto hover:scale-110 duration-150"
+                  class="rounded-lg h-4/6 object-center cursor-pointer mx-auto hover:scale-110  duration-150"
                   :src="apiBase + product.image"
                   alt="product"
                 />

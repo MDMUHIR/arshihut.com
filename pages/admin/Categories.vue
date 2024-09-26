@@ -100,7 +100,7 @@ const category = useCategoryStore();
     <div class="rounded-lg  grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  gap-4 px-4 ">
       <template v-for="(item, index) in data.categories" :key="index">
         <div
-          class="justify-between items-center rounded-lg p-6 shadow-md sm:flex sm:justify-start border dark:bg-stone-200"
+          class="justify-between items-center rounded-lg p-6 shadow-md sm:flex sm:justify-start border dark:bg-[#131313] dark:text-white"
         >
           <p class="text-xl font-semibold mr-4">{{ index + 1 }}</p>
           <img
@@ -112,8 +112,8 @@ const category = useCategoryStore();
             class="sm:ml-4 sm:flex sm:w-full sm:justify-between items-center"
           >
             <div class="mt-5 sm:mt-0">
-              <h2 class="text-lg font-bold text-gray-900">{{ item.name }}</h2>
-              <p class="mt-1 text-xs text-gray-700">{{ item.description }}</p>
+              <h2 class="text-lg font-bold text-gray-900 dark:text-white">{{ item.name }}</h2>
+              <p class="mt-1 text-xs text-gray-700 dark:text-white">{{ item.description }}</p>
             </div>
             <div
               class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"

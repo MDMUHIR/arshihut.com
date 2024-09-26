@@ -87,7 +87,7 @@ const item = useProductStore();
                 <textarea
                   v-model="item.productData.description"
                   id="description"
-                  cols="30"
+                  cols="36"
                   rows="3"
                   placeholder="whrite here.."
                   class="w-full font-serif p-4 text-gray-600 bg-indigo-50 outline-none rounded-md"
@@ -185,7 +185,7 @@ const item = useProductStore();
 
     <!-- Product show -->
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-4 mt-6"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-7 mt-6"
     >
       <div
         class="mx-auto px-5"
@@ -193,7 +193,7 @@ const item = useProductStore();
         :key="index"
       >
         <div
-          class="max-w-xs min-w-56 h-80 rounded-lg bg-white p-2 pt-3 shadow-sm shadow-black duration-125 hover:shadow-md hover:bg-neutral-200"
+          class="max-w-xs min-w-56 h-80 rounded-lg bg-white px-2 pt-3 shadow-sm shadow-black duration-125 hover:shadow-md hover:bg-neutral-200"
         >
           <nuxt-link :to="`/products/${product.id}`">
             <img

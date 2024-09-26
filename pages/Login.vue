@@ -68,7 +68,7 @@ const passwordnputType = computed(() =>
               <button
                 @click="showPassword = !showPassword"
                 type="button"
-                class="p-2 text-white"
+                class="p-2 dark:text-white"
               >
                 <IconsHide v-if="showPassword" />
                 <IconsShow v-else />

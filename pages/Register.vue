@@ -16,9 +16,7 @@ const passwordnputType = computed(() =>
   <div
     class="min-h-screen flex items-center justify-center w-full bg-[url('~/public/images/city.webp')] bg-bottom bg-no-repeat"
   >
-    <div
-      class="bg-white dark:bg-gray-900  rounded-lg px-8 py-6 max-w-md"
-    >
+    <div class="bg-white dark:bg-gray-900 rounded-lg px-8 py-6 max-w-md">
       <h1 class="text-2xl font-bold text-center mb-4 dark:text-gray-200">
         Sign up with new Account!
       </h1>
@@ -52,7 +50,10 @@ const passwordnputType = computed(() =>
             placeholder="your@email.com"
             required
           />
-          <p class="text-xs text-red-500 font-bold mt-1" v-if="auth.errors">
+          <p
+            class="text-xs text-red-500 font-bold mt-1"
+            v-if="auth.errors && auth.errors !== 'Unauthorized'"
+          >
             ⚠️{{ auth.errors }}
           </p>
         </div>
@@ -76,14 +77,12 @@ const passwordnputType = computed(() =>
             <button
               @click="showPassword = !showPassword"
               type="button"
-              class="p-2 text-white"
+              class="p-2 dark:text-white"
             >
               <IconsHide v-if="showPassword" />
               <IconsShow v-else />
             </button>
           </div>
-
-         
         </div>
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center">

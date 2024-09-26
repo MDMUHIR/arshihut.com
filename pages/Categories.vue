@@ -11,7 +11,7 @@ const product = useProductStore();
       <template v-for="(item, index) in data.categories" :key="index">
         <div
           @click="product.getProducts(item.id)"
-          class="items-center justify-center rounded-lg p-3 shadow-md flex border relative bg-white hover:bg-[#d19494]  hover:scale-105 duration-150 cursor-pointer"
+          class="items-center justify-center rounded-lg p-3 shadow-md flex border relative bg-white hover:bg-[#c594d1]  hover:scale-105 duration-150 cursor-pointer"
         >
           <p
             class="text-xl font-semibold mr-4 absolute top-50 left-4 bg-white px-1 outline-1 text-center border rounded-full border-black shadow-md"
