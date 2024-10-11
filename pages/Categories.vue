@@ -4,9 +4,9 @@ const product = useProductStore();
 </script>
 
 <template>
-  <div class="main py-2 min-h-svh bg-stone-100 dark:bg-[#212121]">
+  <div class="main py-2 px-4 min-h-svh bg-stone-100 dark:bg-[#212121]">
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mt-10 rounded-lg border-2"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mt-10 rounded-lg "
     >
       <template v-for="(item, index) in data.categories" :key="index">
         <div

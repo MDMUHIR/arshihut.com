@@ -8,34 +8,38 @@ import "vue3-carousel/dist/carousel.css";
 
 <template>
   <div class="main pt-2 pb-10 min-h-svh">
-
     <!-- Banner -->
     <div
-      class="banner flex flex-col text-center p-10 m-10 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat  h-screen relative"
+      class="banner flex flex-col text-center p-10 m-10 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat bg-blend-overlay md:bg-transparent bg-gray-800 bg-opacity-50 md:h-screen relative"
     >
-      <h1 class="text-5xl font-extrabold mb-4 absolute top-5 left-0 right-0">
+      <h1 class="md:text-5xl font-extrabold mb-4 absolute top-5 left-0 right-0">
         <span
           class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-white"
         >
           GREAT DEAL
         </span>
       </h1>
+
       <div
         v-if="item.lastProduct"
-        class="img-details flex justify-between items-center my-auto"
+        class="img-details flex flex-col-reverse md:flex-row justify-between items-center md:my-auto"
       >
-        <div class="details w-1/2 flex flex-col items-center">
-          <h1 class="text-5xl font-semibold text-white leading-normal">
+        <!-- details-part -->
+        <div class="details md:w-1/2 flex flex-col items-center">
+          <h1
+            class="text-xl md:text-5xl font-bold font-mono text-white leading-normal"
+          >
             {{ item.lastProduct.name }}
           </h1>
           <h1
             v-if="item.lastProduct.category"
-            class="text-xl italic font-thin text-gray-300 w-full"
+            class="text-xl italic font-thin text-gray-300 font-serif w-full"
           >
             {{ item.lastProduct.category.name }}
           </h1>
         </div>
-        <div class="image w-1/2 md:p-10 inline-block rounded-lg">
+        <!-- image -->
+        <div class="image w-full md:w-1/2 md:p-10 inline-block rounded-lg">
           <nuxt-link :to="`/products/${item.lastProduct.id}`">
             <img
               class="w-full hover:scale-105 duration-150"
@@ -68,7 +72,7 @@ import "vue3-carousel/dist/carousel.css";
             >
               <nuxt-link :to="`/products/${product.id}`">
                 <img
-                  class="rounded-lg h-4/6 object-center cursor-pointer mx-auto hover:scale-110  duration-150"
+                  class="rounded-lg h-4/6 object-center cursor-pointer mx-auto hover:scale-110 duration-150"
                   :src="apiBase + product.image"
                   alt="product"
                 />

@@ -24,10 +24,11 @@ const toggleWishlist = (product) => {
 
 <template>
   <div class="main relative overflow-y-auto">
+    <!-- for searching compoonent -->
     <button
       v-if="productStore.toggleFilteredProducts()"
       @click="filteredProducts.length = 0"
-      class="top-56 sm:top-20 -right-2  sm:right-2 mt-2 fixed bg-red-500 hover:text-red-500 sm:ml-1 px-1 sm:px-5 border hover:bg-white text-white rotate-90 sm:rotate-0"
+      class="top-56 sm:top-20 -right-2 sm:right-2 mt-2 fixed bg-red-500 hover:text-red-500 sm:ml-1 px-1 sm:px-5 border hover:bg-white text-white rotate-90 sm:rotate-0"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -44,17 +45,19 @@ const toggleWishlist = (product) => {
         />
       </svg>
     </button>
+    <!-- /_-_-_-_-----_----_______---- -->
+
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-4"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-4 justify-center items-center"
     >
       <div
-        class="mx-auto "
+        class="mx-auto"
         v-for="(product, index) in filteredProducts"
         :key="index"
       >
         <!-- <pre>{{ product }}</pre> -->
         <div
-          class="max-w-xs min-w-48 rounded-lg bg-white dark:bg-[#302f2f] px-2  duration-125 shadow-sm shadow-black hover:shadow-md dark:hover:dark:bg-[#0a0a0a]/75 hover:bg-neutral-200 duration-150 h-80"
+          class="max-w-xs min-w-48 rounded-lg bg-white dark:bg-[#302f2f] px-2 duration-125 shadow-sm shadow-black hover:shadow-md dark:hover:dark:bg-[#0a0a0a]/75 hover:bg-neutral-200 duration-150 h-80"
         >
           <nuxt-link :to="`/products/${product.id}`">
             <img
@@ -63,10 +66,7 @@ const toggleWishlist = (product) => {
               alt="product"
             />
           </nuxt-link>
-          <div
-            class="middle flex items-center justify-between"
-            
-          >
+          <div class="middle flex items-center justify-between">
             <nuxt-link :to="`/product/${product.id}`" class="">
               <p
                 class="my-4 font-bold text-gray-500 dark:text-[#e5e5e5] text-center truncate"
@@ -85,10 +85,7 @@ const toggleWishlist = (product) => {
             </button>
           </div>
 
-          <div
-          
-            class="bottom flex justify-between items-center"
-          >
+          <div class="bottom flex justify-between items-center">
             <p class="ml-3 text-sm font-bold text-gray-800 dark:text-white">
               ${{ product.price }}
             </p>
