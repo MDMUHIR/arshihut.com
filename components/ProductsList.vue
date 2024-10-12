@@ -47,17 +47,15 @@ const toggleWishlist = (product) => {
     </button>
     <!-- /_-_-_-_-----_----_______---- -->
 
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-4 justify-center items-center"
-    >
+    <div class="card flex flex-wrap items-center justify-center gap-4">
       <div
-        class="mx-auto"
+        class="bg-red-500 w-auto"
         v-for="(product, index) in filteredProducts"
         :key="index"
       >
         <!-- <pre>{{ product }}</pre> -->
         <div
-          class="max-w-xs min-w-48 rounded-lg bg-white dark:bg-[#302f2f] px-2 duration-125 shadow-sm shadow-black hover:shadow-md dark:hover:dark:bg-[#0a0a0a]/75 hover:bg-neutral-200 duration-150 h-80"
+          class="h-80 rounded-lg bg-white dark:bg-[#302f2f] px-2 duration-125 shadow-sm shadow-black hover:shadow-md dark:hover:dark:bg-[#0a0a0a]/75 hover:bg-neutral-200 duration-150"
         >
           <nuxt-link :to="`/products/${product.id}`">
             <img
@@ -114,4 +112,9 @@ const toggleWishlist = (product) => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* .card {
+  display: flex;
+ justify-content: flex-start;
+} */
+</style>

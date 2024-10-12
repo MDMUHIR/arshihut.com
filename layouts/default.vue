@@ -19,7 +19,7 @@ onBeforeMount(async () => {
     <div class="header">
       <Navbar />
     </div>
-    <div class="body mt-32 sm:mt-16 dark:bg-[#212121]">
+    <div class="body mt-24 sm:mt-16 dark:bg-[#212121]">
       <div
         v-if="product.toggleFilteredProducts()"
         class="Filtered-Profducts fixed top-0 left-0 right-0 bottom-0 sm:mx-4 mb-1 mt-32 sm:mt-24 sm:10 z-40"

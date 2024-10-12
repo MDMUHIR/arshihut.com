@@ -9,6 +9,7 @@ const item = useProductStore();
     class="nab w-full border-b shadow-md bg-gradient-to-r from-[#171717] to-stone-700 fixed top-0 left-0 right-0 text-white z-50"
   >
     <div class="nav-top flex flex-col sm:flex-row justify-between items-center">
+      
       <div
         class="nav-home flex justify-center items-center h-full px-2 oreder-1"
       >
@@ -27,7 +28,7 @@ const item = useProductStore();
       </div>
 
       <div
-        class="nav-center flex flex-col justify-between items-center py-2 h-full w-full px-2"
+        class="nav-center flex flex-col justify-between items-center py-2 h-full w-full px-2 relative"
       >
         <form
           @submit.prevent="item.getProducts()"
@@ -56,7 +57,7 @@ const item = useProductStore();
         </form>
 
         <!-- -------------------------------------------
-        nav customer items
+        nav Navigation buttons
         ------------------------------------------- -->
 
         <div
@@ -69,7 +70,7 @@ const item = useProductStore();
                   ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white shadow-inner '
                   : 'font-semibold'
               "
-              class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150"
+              class="nav-item text-sm lg:text-lg  relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150"
             >
               Products
             </button>
@@ -81,7 +82,7 @@ const item = useProductStore();
                   ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white shadow-inner'
                   : 'font-semibold'
               "
-              class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 p-0"
+              class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 p-0"
             >
               Categories
             </button>
@@ -93,14 +94,18 @@ const item = useProductStore();
                 ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white shadow-inner'
                 : 'font-semibold'
             "
-            class="nav-item text-sm relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150p-0"
+            class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150p-0"
           >
             Support
           </button> -->
         </div>
+
+
+
       </div>
 
-      <div class="nav-end flex flex-row justify-between items-center">
+      <!-- Login buttons -->
+      <div class="nav-end absolute  right-0  bottom-2 sm:static flex  flex-col sm:flex-row justify-between items-center">
         <nuxt-link to="/cart">
           <iconsCartIcon />
         </nuxt-link>
