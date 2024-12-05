@@ -1,6 +1,8 @@
 export const useCartStore = defineStore(
   "cart",
   () => {
+    const auth = useAuthStore();
+
     const totalCartItems = computed(() => {
       let total = 0;
       for (let id in data.cart) {
@@ -23,10 +25,20 @@ export const useCartStore = defineStore(
       return data.cart.some((item) => item.product_id === productId);
     };
 
+    // add item to cart
     const addItem = (product) => {
+      // console.log(auth.user);
+
       const index = data.cart.findIndex(
         (item) => item.product_id == product.id
       );
+
+      if (auth.user === null) {
+        notify(
+          "Please login or create a user account to add items to cart",
+          "error"
+        );
+      }
 
       const res = fetchAuthorizedApi(
         "api/cart/add",
@@ -90,7 +102,9 @@ export const useCartStore = defineStore(
     const fetchCartData = () => {
       const res = fetchAuthorizedApi("api/cart");
       res.then((response) => {
-        data.cart = response.data;
+        if (response) {
+          data.cart = response.data;
+        }
       });
     };
     fetchCartData();

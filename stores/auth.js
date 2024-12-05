@@ -54,8 +54,15 @@ export const useAuthStore = defineStore(
       togDropdMenu();
       navigateTo("/login");
     };
+
     const getUserToken = () => {
-      return user.value.accessToken;
+      if (!user.value) {
+        // Check if user.value is null or undefined
+        console.log("Unauthorized user");
+        return null; // Explicitly return null or handle the error
+      }
+
+      return user.value.accessToken; // Return the token if the user is authenticated
     };
 
     return {

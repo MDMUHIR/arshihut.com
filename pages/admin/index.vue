@@ -11,6 +11,8 @@ const userCtrl = useUserStore();
 
 const order = useOrderStore();
 
+const auth = useAuthStore();
+
 onBeforeMount(() => {
   userCtrl.fetchAllUsers();
   order.fetchAdminOrders();
@@ -18,8 +20,8 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="main pt-5  mt-24">
-    <!-- <pre></pre> -->
+  <div class="main pt-5 mt-24">
+    <!-- <pre>{{ auth.getUserToken() }}</pre> -->
     <ClientOnly>
       <!--  -->
       <div
@@ -144,7 +146,7 @@ onBeforeMount(() => {
             <p
               class="block antialiased font-sans text-xl leading-normal font-normal text-blue-gray-600"
             >
-             Monthly Orders
+              Monthly Orders
             </p>
             <h4
               class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900"

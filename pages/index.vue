@@ -9,6 +9,7 @@ import "vue3-carousel/dist/carousel.css";
 <template>
   <div class="main pt-2 pb-10 min-h-svh">
     <!-- Banner -->
+   
     <div
       class="banner flex flex-col text-center p-10 m-10 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat bg-blend-overlay md:bg-transparent bg-gray-800 bg-opacity-50 md:h-screen relative"
     >

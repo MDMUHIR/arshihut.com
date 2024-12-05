@@ -15,7 +15,7 @@ export const useOrderStore = defineStore("order", () => {
   const fetchOrders = () => {
     const res = fetchAuthorizedApi("api/orders", {}, "GET");
     res.then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       data.orders = response.data;
     });
   };
