@@ -14,7 +14,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="w-full h-screen flex flex-col  justify-center">
+  <div class="w-full h-screen flex flex-col justify-center">
     <div
       class="relative flex flex-col md:flex-row space-y-3 rounded-xl shadow-lg p-3 w-full md:space-x-2 mx-auto border border-white bg-white dark:bg-black/25"
     >
@@ -27,7 +27,10 @@ onBeforeMount(() => {
       </div>
       <div class="w-full md:w-2/3 dark:text-white flex flex-col space-y-2 p-3">
         <div class="flex justify-between item-center">
-          <p v-if="product.category" class="text-gray-500 dark:text-gray-200 font-medium md:block">
+          <p
+            v-if="product.category"
+            class="text-gray-500 dark:text-gray-200 font-medium md:block"
+          >
             {{ product.category.name }}
           </p>
           <div class="flex items-center">
@@ -68,7 +71,9 @@ onBeforeMount(() => {
             Superhost
           </div>
         </div>
-        <h3 class="font-black text-gray-800 dark:text-gray-200 md:text-3xl text-xl">
+        <h3
+          class="font-black text-gray-800 dark:text-gray-200 md:text-3xl text-xl"
+        >
           {{ product.name }}
         </h3>
         <p class="md:text-lg text-gray-500 text-base dark:text-white">
@@ -77,7 +82,9 @@ onBeforeMount(() => {
         <div
           class="bottom-part flex flex-col items-center md:flex-row justify-between"
         >
-          <p class="text-xl font-black text-gray-800 dark:text-white">${{ product.price }}</p>
+          <p class="text-xl font-black text-gray-800 dark:text-white">
+            ${{ product.price }}
+          </p>
           <nuxt-link v-if="cart.isInCart(product.id)" to="/cart">
             <button
               class="add-cart bg-gray-400 hover:bg-gray-500 text-white border-black add-cart py-1 md:py-2 px-2 md:px-5 text-sm font-semibold border-2 rounded md:ml-2 mt-2 md:mt-0"

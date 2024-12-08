@@ -51,7 +51,7 @@ const updateOrder = () => {
 </script>
 
 <template>
-  <div class="w-full mt-28 bg-stone-300 z-2">
+  <div class="w-full  bg-stone-300 dark:bg-[#443c3c] z-2 py-10 md:px-10">
     <div
       class="relative flex flex-col md:flex-row space-y-3 rounded-xl shadow-lg p-3 w-full md:space-x-2 mx-auto border border-white bg-white z-2"
     >

@@ -7,7 +7,7 @@ const item = useProductStore();
 </script>
 
 <template>
-  <div class="main mt-20">
+  <div class="main Admin-Products pt-10">
     <!--Add product Button and input -->
     <div class="top-bar flex flex-col md:flex-row justify-between px-4 pt-2">
       <!-- AddForm Toggler Button -->

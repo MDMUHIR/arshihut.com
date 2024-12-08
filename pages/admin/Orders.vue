@@ -38,7 +38,7 @@ const formatDate = (dateString) => {
 </script>
 
 <template>
-  <div class="main">
+  <div class="main Admin-Orders pt-5">
     <!-- while there in no order -->
     <div
       v-if="order.orders.length === 0"
@@ -48,7 +48,7 @@ const formatDate = (dateString) => {
         !!! There is no order...
       </p>
     </div>
-    <div class="orders p-4 grid grid-col-1 md:grid-cols-2 gap-2">
+    <div class="orders p-4 grid grid-col-1 md:grid-cols-2 gap-2 ">
       <template v-for="(item, index) in order.orders" :key="index">
         <nuxt-link :to="`orders/${item.id}`">
           <div

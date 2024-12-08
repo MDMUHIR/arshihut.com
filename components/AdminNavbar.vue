@@ -5,7 +5,7 @@ const route = useRoute();
 
 <template>
   <div
-    class="nab w-full border-b shadow-emerald-800/20 shadow-md bg-gradient-to-r from-emerald-500 to-emerald-900 fixed top-0 left-0 right-0 text-white flex justify-between items-center py-4"
+    class="nab w-full border-b shadow-emerald-800/20 shadow-md bg-gradient-to-r from-emerald-500 to-emerald-900 fixed top-0 left-0 right-0 text-white flex justify-between items-center lg:py-2"
   >
     <div
       class="nav-home flex justify-center items-center h-full w-56 p-2 oreder-1"

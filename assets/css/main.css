@@ -12,3 +12,12 @@
 .no-spinner {
   -moz-appearance: textfield;
 }
+
+/* Handle */
+.Scrollbar::-webkit-scrollbar-thumb {
+  opacity: 0.1;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: rgba(243, 0, 0, 0.676);
+  -webkit-box-shadow: inset 0 0 6px rgba(251, 0, 0, 0.5);
+}

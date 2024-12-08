@@ -20,7 +20,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="main pt-5 mt-24">
+  <div class="main pt-10 ">
     <!-- <pre>{{ auth.getUserToken() }}</pre> -->
     <ClientOnly>
       <!--  -->

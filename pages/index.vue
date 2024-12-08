@@ -9,7 +9,7 @@ import "vue3-carousel/dist/carousel.css";
 <template>
   <div class="main pt-2 pb-10 min-h-svh">
     <!-- Banner -->
-   
+
     <div
       class="banner flex flex-col text-center p-10 m-10 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat bg-blend-overlay md:bg-transparent bg-gray-800 bg-opacity-50 md:h-screen relative"
     >
@@ -32,9 +32,14 @@ import "vue3-carousel/dist/carousel.css";
           >
             {{ item.lastProduct.name }}
           </h1>
+          <!-- <h1
+            class="text-xl md:text-5xl font-bold font-mono text-white leading-normal"
+          >
+            {{ item.lastProduct.price }}
+          </h1> -->
           <h1
             v-if="item.lastProduct.category"
-            class="text-xl italic font-thin text-gray-300 font-serif w-full"
+            class="text-xl italic font-thin text-gray-300 font-serif w-full mt-10"
           >
             {{ item.lastProduct.category.name }}
           </h1>
@@ -69,18 +74,18 @@ import "vue3-carousel/dist/carousel.css";
         <Slide v-for="product in data.products" :key="product.id">
           <div class="carousel__item">
             <div
-              class="max-w-xs min-w-56 h-80 rounded-lg p-2 pt-3 duration-125"
+              class="max-w-xs min-w-56 h-72 rounded-lg p-2 pt-3 duration-125"
             >
               <nuxt-link :to="`/products/${product.id}`">
                 <img
-                  class="rounded-lg h-4/6 object-center cursor-pointer mx-auto hover:scale-110 duration-150"
+                  class="rounded-lg h-5/6 w-full  cursor-pointer mx-auto hover:scale-105 duration-150 bg-green-300/75"
                   :src="apiBase + product.image"
                   alt="product"
                 />
               </nuxt-link>
-              <div class="middle flex justify-between">
+              <div class=" flex justify-between">
                 <h2
-                  class="my-4 pl-4 text-xl font-bold text-gray-500 dark:text-[#e5e5e5] text-center"
+                  class=" text-xl font-bold text-gray-500 dark:text-[#e5e5e5] text-center"
                 >
                   {{ truncatedHeadingText(product.name) }}
                 </h2>

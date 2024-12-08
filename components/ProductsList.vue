@@ -49,13 +49,13 @@ const toggleWishlist = (product) => {
 
     <div class="card flex flex-wrap items-center justify-center gap-4">
       <div
-        class="bg-red-500 w-auto"
+        class=" w-auto"
         v-for="(product, index) in filteredProducts"
         :key="index"
       >
         <!-- <pre>{{ product }}</pre> -->
         <div
-          class="h-80 rounded-lg bg-white dark:bg-[#302f2f] px-2 duration-125 shadow-sm shadow-black hover:shadow-md dark:hover:dark:bg-[#0a0a0a]/75 hover:bg-neutral-200 duration-150"
+          class="h-[18rem] rounded-lg bg-white  px-2 duration-125 shadow-sm shadow-black hover:shadow-md  hover:bg-neutral-200 duration-150"
         >
           <nuxt-link :to="`/products/${product.id}`">
             <img
@@ -67,7 +67,7 @@ const toggleWishlist = (product) => {
           <div class="middle flex items-center justify-between">
             <nuxt-link :to="`/product/${product.id}`" class="">
               <p
-                class="my-4 font-bold text-gray-500 dark:text-[#e5e5e5] text-center truncate"
+                class="my-2 font-bold text-gray-700  text-center truncate"
               >
                 {{ truncatedHeadingText(product.name) }}
               </p>
@@ -84,7 +84,7 @@ const toggleWishlist = (product) => {
           </div>
 
           <div class="bottom flex justify-between items-center">
-            <p class="ml-3 text-sm font-bold text-gray-800 dark:text-white">
+            <p class=" text-lg  font-mono font-extrabold text-red-400 ">
               ${{ product.price }}
             </p>
             <nuxt-link

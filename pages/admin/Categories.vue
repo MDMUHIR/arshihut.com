@@ -3,12 +3,11 @@ definePageMeta({
   layout: "adminlayout",
 });
 
-
 const category = useCategoryStore();
 </script>
 
 <template>
-  <div class="mt-20 pt-3">
+  <div class="pt-10">
     <button
       v-show="!category.showAddForm"
       @click="category.showAddForm = true"
@@ -17,7 +16,8 @@ const category = useCategoryStore();
     >
       Add New Category
     </button>
-    
+
+    <!-- Category adding form -->
     <form v-if="category.showAddForm" @submit.prevent="category.addCategory()">
       <div class="md:px-20 pt-6 mb-6">
         <div class="bg-white rounded-md p-6 max-w-2xl mx-auto">
@@ -97,7 +97,10 @@ const category = useCategoryStore();
     </form>
 
     <!-- Data ShoW -->
-    <div class="rounded-lg  grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  gap-4 px-4 ">
+
+    <div
+      class="rounded-lg grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 px-4"
+    >
       <template v-for="(item, index) in data.categories" :key="index">
         <div
           class="justify-between items-center rounded-lg p-6 shadow-md sm:flex sm:justify-start border dark:bg-[#131313] dark:text-white"
@@ -112,8 +115,12 @@ const category = useCategoryStore();
             class="sm:ml-4 sm:flex sm:w-full sm:justify-between items-center"
           >
             <div class="mt-5 sm:mt-0">
-              <h2 class="text-lg font-bold text-gray-900 dark:text-white">{{ item.name }}</h2>
-              <p class="mt-1 text-xs text-gray-700 dark:text-white">{{ item.description }}</p>
+              <h2 class="text-lg font-bold text-gray-900 dark:text-white">
+                {{ item.name }}
+              </h2>
+              <p class="mt-1 text-xs text-gray-700 dark:text-white">
+                {{ item.description }}
+              </p>
             </div>
             <div
               class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"

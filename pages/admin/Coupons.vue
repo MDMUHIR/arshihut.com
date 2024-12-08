@@ -8,7 +8,7 @@ coupon.fetchCoupons();
 </script>
 
 <template>
-  <div class="mt-20 pt-3">
+  <div class="pt-10">
     <button
       v-if="!coupon.showCouAddform && !coupon.showCouUpdateform"
       @click="coupon.showCouAddform = true"

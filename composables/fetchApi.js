@@ -1,4 +1,4 @@
-export const apiBase = "http://127.0.0.1:8000/";
+export const apiBase = "https://xyz.deshori.deshori.com/";
 
 export const fetchApiData = async (
   endPoint = "",

@@ -1,4 +1,5 @@
 <script setup>
+
 const auth = useAuthStore();
 const route = useRoute();
 const item = useProductStore();
@@ -9,17 +10,16 @@ const item = useProductStore();
     class="nab w-full border-b shadow-md bg-gradient-to-r from-[#171717] to-stone-700 fixed top-0 left-0 right-0 text-white z-50"
   >
     <div class="nav-top flex flex-col sm:flex-row justify-between items-center">
-      
       <div
         class="nav-home flex justify-center items-center h-full px-2 oreder-1"
       >
         <nuxt-link to="/">
-          <button class="text-2xl font-extrabold duration-150">
+          <button class="text-2xl font-bold duration-150">
             <span
               :class="
                 route.path === '/' ? 'bg-gradient-to-r' : 'bg-gradient-to-l  '
               "
-              class="bg-clip-text text-transparent from-white to-red-400 hover:from-black hover:to-red-500 duration-150"
+              class="bg-clip-text text-transparent from-white to-red-400 hover:from-[#616161] hover:to-red-500 duration-200"
             >
               DIGITALNEST
             </span>
@@ -28,25 +28,24 @@ const item = useProductStore();
       </div>
 
       <div
-        class="nav-center flex flex-col justify-between items-center py-2 h-full w-full px-2 relative"
+        class="nav-center flex flex-col md:flex-row justify-between md:justify-center items-center py-2 w-full px-2 relative"
       >
         <form
           @submit.prevent="item.getProducts()"
-          class="search-bar bg-white flex items-center rounded-lg overflow-hidden p-1 text-black md:w-1/2"
+          class="search-bar bg-white flex items-center rounded overflow-hidden p-1 text-black md:w-1/2 "
         >
           <input
             v-model="item.searchInputText"
             type="text "
-            class="px-2 w-full rounded outline-none text-sm"
+            class="px-2 w-full rounded-l outline-none text-sm md:text-lg font-medium pl-4 focus: md:h-[47px] bg-transparent"
             placeholder="Search"
           />
-          <button class="border-l-2 px-2">
+          <button class="px-2">
             <svg
+              class="h-6"
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
               y="0px"
-              width="20"
-              height="20"
               viewBox="0 0 50 50"
             >
               <path
@@ -61,16 +60,16 @@ const item = useProductStore();
         ------------------------------------------- -->
 
         <div
-          class="nav-customer-items flex justify-center items-center gap-4 mt-2"
+          class="nav-customer-items flex justify-center items-center gap-4 md:gap-0 mt-2 md:mt-0"
         >
           <nuxt-link to="/products">
             <button
               :class="
                 route.path === '/products'
-                  ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white shadow-inner '
-                  : 'font-semibold'
+                  ? 'text-orange-500 font-semibold  px-2 rounded bg-white  '
+                  : ''
               "
-              class="nav-item text-sm lg:text-lg  relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150"
+              class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-[.5px] before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 md:h-14"
             >
               Products
             </button>
@@ -79,13 +78,14 @@ const item = useProductStore();
             <button
               :class="
                 route.path === '/categories'
-                  ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white shadow-inner'
-                  : 'font-semibold'
+                  ? 'text-orange-500 font-semibold px-2 rounded bg-white '
+                  : ''
               "
-              class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 p-0"
+              class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-[.5px] before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 p-0 md:h-14"
             >
               Categories
             </button>
+            
           </nuxt-link>
 
           <!-- <button
@@ -99,13 +99,12 @@ const item = useProductStore();
             Support
           </button> -->
         </div>
-
-
-
       </div>
 
       <!-- Login buttons -->
-      <div class="nav-end absolute  right-0  bottom-2 sm:static flex  flex-col sm:flex-row justify-between items-center">
+      <div
+        class="nav-end absolute right-0 bottom-2 sm:static flex flex-col sm:flex-row justify-between items-center"
+      >
         <nuxt-link to="/cart">
           <iconsCartIcon />
         </nuxt-link>
