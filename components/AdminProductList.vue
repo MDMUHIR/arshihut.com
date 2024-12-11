@@ -23,7 +23,7 @@ const props = defineProps({
         <nuxt-link :to="`/products/${product.id}`">
           <img
             class="rounded-lg h-4/6 object-center cursor-pointer mx-auto"
-            :src="apiBase + 'public/' + product.image"
+            :src="apiBase + product.image"
             alt="product"
           />
         </nuxt-link>
