@@ -20,7 +20,7 @@ onBeforeMount(() => {
     >
       <div class="w-full md:w-1/3 grid place-items-center">
         <img
-          :src="apiBase + product.image"
+          :src="apiBase + 'public/' + product.image"
           alt="product image"
           class="rounded-xl"
         />

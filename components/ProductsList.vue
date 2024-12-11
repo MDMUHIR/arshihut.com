@@ -53,14 +53,13 @@ const toggleWishlist = (product) => {
         v-for="(product, index) in filteredProducts"
         :key="index"
       >
-       
         <div
           class="h-[18rem] rounded-lg bg-white px-2 duration-125 shadow-sm shadow-black hover:shadow-md hover:bg-neutral-200 duration-150"
         >
           <nuxt-link :to="`/products/${product.id}`">
             <img
               class="rounded-lg h-4/6 object-center cursor-pointer mx-auto"
-              :src="apiBase + product.image"
+              :src="apiBase + 'public/' + product.image"
               alt="product"
             />
           </nuxt-link>

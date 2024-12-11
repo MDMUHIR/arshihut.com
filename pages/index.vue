@@ -50,7 +50,7 @@ import Slider from "~/components/reusable/Slider.vue";
           <nuxt-link :to="`/products/${item.lastProduct.id}`">
             <img
               class="w-full hover:scale-105 duration-150"
-              :src="apiBase + item.lastProduct.image"
+              :src="apiBase + 'public/' + item.lastProduct.image"
               alt=""
             />
           </nuxt-link>

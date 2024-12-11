@@ -5,11 +5,11 @@ onBeforeMount(() => {});
 </script>
 
 <template>
-  <div class="h-full min-h-screen  pb-2">
-    <div class=" min-h-svh">
+  <div class="h-full min-h-screen pb-2">
+    <div class="min-h-svh">
       <div class="page-hero flex justify-center items-center">
         <h1
-          class="text-xl text-center font-bold px-5 py-1 pt-5  bg-orange-400 rounded-b-3xl shadow-lg"
+          class="text-xl text-center font-bold px-5 py-1 pt-5 bg-orange-400 rounded-b-3xl shadow-lg"
         >
           Cart Items
         </h1>
@@ -34,7 +34,7 @@ onBeforeMount(() => {});
               class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
             >
               <img
-                :src="apiBase + item.product.image"
+                :src="apiBase + 'public/' + item.product.image"
                 alt="product-image"
                 class="w-full rounded-lg sm:w-40"
               />
@@ -101,7 +101,6 @@ onBeforeMount(() => {});
         <div
           class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3 sticky top-56"
         >
-         
           <div class="flex justify-between">
             <p class="text-lg font-bold">Total</p>
             <div class="block">
