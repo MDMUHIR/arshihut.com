@@ -11,20 +11,20 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="main">
+  <div class="main py-5">
     <!-- top -->
     <div class="top-bar flex flex-col md:flex-row justify-between p-4">
       <button
         v-if="!userStore.showUserAddForm && !userStore.showUserUpdateForm"
         @click="userStore.showUserAddForm = true"
         type="submit"
-        class="px-6 py-2 rounded-md text-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 duration-150"
+        class="px-6 py-2 rounded-md text-lg font-semibold text-white bg-cyan-600 hover:bg-cyan-700 duration-150"
       >
-        Add New
+        Add New User
       </button>
       <form
         @submit.prevent="userStore.getFilteredUsers()"
-        class="search-bar bg-white flex items-center rounded-lg overflow-hidden p-1 text-black border-2 border-purple-600"
+        class="search-bar bg-white flex items-center rounded-lg overflow-hidden p-1 text-black border-2 border-cyan-600"
       >
         <input
           v-model="userStore.searchInputText"

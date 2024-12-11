@@ -4,6 +4,7 @@ const auth = useAuthStore();
 const item = useProductStore();
 
 import "vue3-carousel/dist/carousel.css";
+import Slider from "~/components/reusable/Slider.vue";
 </script>
 
 <template>
@@ -56,52 +57,32 @@ import "vue3-carousel/dist/carousel.css";
         </div>
       </div>
     </div>
-    <!-- Carousel -->
-    <div
-      class="product-carousel mx-10 py-10 rounded-2xl shadow-inner shadow-black px-1"
-    >
-      <Carousel
-        v-if="data.products != []"
-        :wrapAround="true"
-        :transition="500"
-        :breakpoints="{
-          2560: { itemsToShow: 4 }, // For screens 2560px and up
-          1024: { itemsToShow: 3 }, // For screens 1024px and up
-          768: { itemsToShow: 2 }, // For screens between 768px and 1023px
-          640: { itemsToShow: 1 }, // For screens below 768px
-        }"
-      >
-        <Slide v-for="product in data.products" :key="product.id">
-          <div class="carousel__item">
-            <div
-              class="max-w-xs min-w-56 h-72 rounded-lg p-2 pt-3 duration-125"
-            >
-              <nuxt-link :to="`/products/${product.id}`">
-                <img
-                  class="rounded-lg h-5/6 w-full  cursor-pointer mx-auto hover:scale-105 duration-150 bg-green-300/75"
-                  :src="apiBase + product.image"
-                  alt="product"
-                />
-              </nuxt-link>
-              <div class=" flex justify-between">
-                <h2
-                  class=" text-xl font-bold text-gray-500 dark:text-[#e5e5e5] text-center"
-                >
-                  {{ truncatedHeadingText(product.name) }}
-                </h2>
-              </div>
-            </div>
-          </div>
-        </Slide>
 
-        <template #addons>
-          <Pagination />
-          <Navigation
-            class="bg-red-500/50 rounded-lg hover:bg-purple-500/50 py-2"
-          />
-        </template>
-      </Carousel>
+    <!-- Category Section-->
+    <div class="category mx-10 py-12">
+      <h1 class="text-3xl font-bold dark:text-white">Browse by Categories</h1>
+
+      <Slider
+        :sliderItems="data.categories"
+        type="category"
+        customStyles=""
+        imgStyle="w-auto max-h-28"
+        class="my-5 py-5"
+      />
     </div>
+
+    <!-- Carousel -->
+    <div class="category mx-10 py-12">
+      <h1 class="text-3xl font-bold dark:text-white mb-5">Hot Items</h1>
+      <Slider
+        :sliderItems="data.products"
+        type="product"
+        customStyles=" py-10 rounded-2xl shadow-inner shadow-black"
+        imgStyle="w-full h-auto bg-[#344940]"
+      />
+    </div>
+
+    <MDMUHIR />
   </div>
 </template>
 

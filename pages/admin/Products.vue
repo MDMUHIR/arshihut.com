@@ -3,28 +3,28 @@ definePageMeta({
   layout: "adminlayout",
 });
 
-const item = useProductStore();
+const productStore = useProductStore();
 </script>
 
 <template>
-  <div class="main Admin-Products pt-10">
+  <div class="main Admin-Products py-7">
     <!--Add product Button and input -->
     <div class="top-bar flex flex-col md:flex-row justify-between px-4 pt-2">
       <!-- AddForm Toggler Button -->
       <button
-        v-if="!item.showAddForm && !item.showUpdateForm"
-        @click="item.showAddForm = true"
+        v-if="!productStore.showAddForm && !productStore.showUpdateForm"
+        @click="productStore.showAddForm = true"
         type="submit"
         class="px-6 py-2 block rounded-md text-lg font-semibold text-indigo-100 bg-purple-600 hover:bg-purple-700 duration-150"
       >
         Add New Product
       </button>
       <form
-        @submit.prevent="item.getAdminFilteredProducts()"
+        @submit.prevent="productStore.getAdminFilteredProducts()"
         class="search-bar bg-white flex items-center rounded-lg overflow-hidden p-1 text-black border-2 border-purple-600"
       >
         <input
-          v-model="item.searchProduct"
+          v-model="productStore.searchProduct"
           type="text "
           class="px-2 w-full rounded outline-none text-sm"
           placeholder="Search for user"
@@ -48,17 +48,17 @@ const item = useProductStore();
 
     <!-- Add product Form -->
     <div
-      v-if="item.showAddForm || item.showUpdateForm"
+      v-if="productStore.showAddForm || productStore.showUpdateForm"
       class="bg-stone-500/50 p-2 border shadow-2xl m-3 mt-6 flex items-center justify-center h-5/6 fixed top-16 -left-4 -right-4"
     >
       <form
-        @submit.prevent="item.formSubmition()"
+        @submit.prevent="productStore.formSubmition()"
         class="bg-white w-full h-full scroll-m-1 overflow-scroll m-10 rounded-lg border shadow-2xl"
       >
         <div class="md:px-20 p-6">
           <div class="rounded-md w-full mx-auto px-2">
             <h1
-              v-if="item.showAddForm"
+              v-if="productStore.showAddForm"
               class="text-center text-2xl font-bold text-gray-500 mb-10"
             >
               Add Product
@@ -73,7 +73,7 @@ const item = useProductStore();
               <div>
                 <label for="title" class="text-lx font-serif">Title:</label>
                 <input
-                  v-model="item.productData.name"
+                  v-model="productStore.productData.name"
                   type="text"
                   placeholder="Product name"
                   id="title"
@@ -85,7 +85,7 @@ const item = useProductStore();
                   >Description:</label
                 >
                 <textarea
-                  v-model="item.productData.description"
+                  v-model="productStore.productData.description"
                   id="description"
                   cols="36"
                   rows="3"
@@ -98,7 +98,7 @@ const item = useProductStore();
                   >Price:</label
                 >
                 <input
-                  v-model="item.productData.price"
+                  v-model="productStore.productData.price"
                   type="text"
                   placeholder="Enter Price"
                   id="price"
@@ -110,7 +110,7 @@ const item = useProductStore();
                   >Stock:</label
                 >
                 <input
-                  v-model="item.productData.stock"
+                  v-model="productStore.productData.stock"
                   type="text"
                   placeholder="Total in Stock"
                   id="stock"
@@ -121,15 +121,15 @@ const item = useProductStore();
               <div>
                 <label class="text-lx font-serif">Category:</label>
                 <select
-                  v-model="item.productData.category_id"
+                  v-model="productStore.productData.category_id"
                   class="w-1/2 ml-4 outline-none py-1 px-2 text-md border-2 rounded-md text-black"
                 >
                   <option
-                    v-for="(item, index) in data.categories"
+                    v-for="(productStore, index) in data.categories"
                     :key="index"
-                    :value="item.id"
+                    :value="productStore.id"
                   >
-                    {{ item.name }}
+                    {{ productStore.name }}
                   </option>
                 </select>
               </div>
@@ -151,21 +151,21 @@ const item = useProductStore();
                     /></svg
                 ></label>
                 <input
-                  @change="item.selectFile($event)"
+                  @change="productStore.selectFile($event)"
                   type="file"
                   placeholder="name"
                   id="image"
                   class="m-2 outline-none py-1 px-2 text-md border-2 rounded-md hidden"
                 />
                 <img
-                  v-if="item.previewImage"
-                  :src="item.previewImage"
+                  v-if="productStore.previewImage"
+                  :src="productStore.previewImage"
                   class="w-32 h-32 object-cover m-2 rounded overflow-hidden"
                 />
               </div>
               <div class="btn flex justify-between">
                 <button
-                  @click="item.clearSubmition()"
+                  @click="productStore.clearSubmition()"
                   class="mx-auto block rounded-md text-lg text-red-600 font-bold border px-4 hover:bg-neutral-200 duration-150"
                 >
                   Cancel
@@ -183,50 +183,11 @@ const item = useProductStore();
       </form>
     </div>
 
-    <!-- Product show -->
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-7 mt-6"
-    >
-      <div
-        class="mx-auto px-5"
-        v-for="(product, index) in item.getAdminFilteredProducts()"
-        :key="index"
-      >
-        <div
-          class="max-w-xs min-w-56 h-80 rounded-lg bg-white px-2 pt-3 shadow-sm shadow-black duration-125 hover:shadow-md hover:bg-neutral-200"
-        >
-          <nuxt-link :to="`/products/${product.id}`">
-            <img
-              class="rounded-lg h-4/6 object-center cursor-pointer mx-auto"
-              :src="apiBase + product.image"
-              alt="product"
-            />
-          </nuxt-link>
-          <div class="middle flex justify-between">
-            <p class="my-4 pl-4 font-bold text-gray-500">
-              {{ truncatedHeadingText(product.name) }}
-            </p>
-          </div>
+    <!-- Product showcase -->
 
-          <div class="bottom flex justify-between items-center">
-            <!-- edit button -->
-            <button
-              @click="item.editSelection(product)"
-              class="add-cart py-1 px-2 text-sm font-semibold bg-stone-500 hover:bg-stone-600 text-white border border-black rounded"
-            >
-              Edit
-            </button>
-            <!-- del button -->
-            <button
-              @click="item.deleteProduct(index, product)"
-              class="add-cart py-1 px-2 text-sm font-semibold bg-red-500 hover:bg-red-600 text-white border border-black rounded"
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <AdminProductList
+      :filteredProducts="productStore.getAdminFilteredProducts()"
+    />
   </div>
 </template>
 

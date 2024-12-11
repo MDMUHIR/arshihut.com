@@ -5,7 +5,7 @@ const route = useRoute();
 
 <template>
   <div
-    class="nab w-full border-b shadow-emerald-800/20 shadow-md bg-gradient-to-r from-emerald-500 to-emerald-900 fixed top-0 left-0 right-0 text-white flex justify-between items-center lg:py-2"
+    class="nab w-full border-b shadow-emerald-800/20 shadow-md bg-gradient-to-r from-emerald-500 to-emerald-900 fixed top-0 left-0 right-0 text-white flex flex-col sm:flex-row justify-between items-center lg:py-2"
   >
     <div
       class="nav-home flex justify-center items-center h-full w-56 p-2 oreder-1"
@@ -17,7 +17,7 @@ const route = useRoute();
               ? 'shadow-inner bg-gradient-to-r from-red-500/50 to-black/50 '
               : ''
           "
-          class="nav-item font-bold text-2xl rounded-full px-3 duration-300 shadow-black hover:text-black"
+          class="nav-item font-light text-2xl rounded-full px-3 duration-300 shadow-black hover:text-black"
         >
           Admin Panel
         </button>
@@ -98,7 +98,7 @@ const route = useRoute();
         <IconsUserIcon class="scale-125" />
       </button>
 
-      <dropdown v-if="showDdMenu" class="absolute right-0 top-20 mt-2" />
+      <dropdown v-if="showDdMenu" class="absolute right-0 top-[75px]" />
     </div>
   </div>
 </template>

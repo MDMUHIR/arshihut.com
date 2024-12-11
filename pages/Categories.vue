@@ -4,9 +4,9 @@ const product = useProductStore();
 </script>
 
 <template>
-  <div class="main py-2 px-4 min-h-svh bg-stone-100 dark:bg-[#212121]">
+  <div class="main py-2 px-4 w-full">
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mt-10 rounded-lg"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mt-10 rounded-lg items-start"
     >
       <template v-for="(item, index) in data.categories" :key="index">
         <div
@@ -22,7 +22,7 @@ const product = useProductStore();
             <img
               :src="apiBase + item.image"
               alt="product-image"
-              class="rounded-lg w-28"
+              class="rounded-lg w-auto max-h-28"
             />
             <div class="ml-2 sm:ml-4 sm:flex sm:justify-between items-center">
               <div class="mt-5 sm:mt-0">
@@ -37,13 +37,5 @@ const product = useProductStore();
       </template>
     </div>
   </div>
-  <!-- <div
-    v-if="product.toggleFilteredProducts()"
-    class="fixed top-0 left-0 right-0 m-16 mt-28"
-  >
-    <ProductsList
-      :filteredProducts="product.filteredProducts"
-      class="bg-stone-800/50 w-full py-12 rounded"
-    />
-  </div> -->
+  
 </template>

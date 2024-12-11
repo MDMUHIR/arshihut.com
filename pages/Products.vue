@@ -1,11 +1,9 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
   <div class="main py-12 min-h-svh bg-stone-100 dark:bg-[#212121]">
     <!-- <pre>{{ auth.getUserToken() }}</pre> -->
-    <ProductsList :filteredProducts="data.products" />
+    <ProductsList :filteredProducts="data.products"  />
   </div>
 </template>
 

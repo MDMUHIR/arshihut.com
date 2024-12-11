@@ -53,7 +53,6 @@ export const useCategoryStore = defineStore("category", () => {
     const res = fetchApiData("api/categories", {}, "GET");
     res.then((response) => {
       data.categories = response.data;
-      console.log(response.data);
     });
   };
 

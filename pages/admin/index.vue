@@ -13,14 +13,21 @@ const order = useOrderStore();
 
 const auth = useAuthStore();
 
+const productStore = useProductStore();
+
 onBeforeMount(() => {
   userCtrl.fetchAllUsers();
   order.fetchAdminOrders();
 });
+
+console.log(auth.getUserToken());
+
+const user = useUserStore();
+user.fetchAllUsers();
 </script>
 
 <template>
-  <div class="main pt-10 ">
+  <div class="main pt-10">
     <!-- <pre>{{ auth.getUserToken() }}</pre> -->
     <ClientOnly>
       <!--  -->
@@ -160,7 +167,7 @@ onBeforeMount(() => {
           class="card relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-sm shadow-black"
         >
           <div
-            class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center"
+            class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-cyan-600 to-cyan-400 text-white shadow-cyan-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -188,6 +195,18 @@ onBeforeMount(() => {
           </div>
         </div>
       </div>
+
+      <div class="Out_Of_Stock px-5">
+        <h1 class="text-3xl font-bold dark:text-white">Out of Stock</h1>
+
+        <AdminProductList
+          :filteredProducts="productStore.filterOutOfStockProducts()"
+          v-if="productStore.filterOutOfStockProducts().length > 0"
+        />
+        <p v-else class="text-cyan-500">There are no products out of stock.</p>
+      </div>
+
+      <ReusableProductForm />
     </ClientOnly>
   </div>
 </template>

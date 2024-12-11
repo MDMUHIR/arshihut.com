@@ -28,7 +28,7 @@ const toggleWishlist = (product) => {
     <button
       v-if="productStore.toggleFilteredProducts()"
       @click="filteredProducts.length = 0"
-      class="top-56 sm:top-20 -right-2 sm:right-2 mt-2 fixed bg-red-500 hover:text-red-500 sm:ml-1 px-1 sm:px-5 border hover:bg-white text-white rotate-90 sm:rotate-0"
+      class="top-56 sm:top-[73px] right-1 sm:right-0 fixed bg-red-500 hover:text-red-500 px-5 border hover:bg-white text-white rotate-90 sm:rotate-0"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@ const toggleWishlist = (product) => {
         viewBox="0 0 24 24"
         stroke-width="4"
         stroke="currentColor"
-        class="h-9 w-10 cursor-pointer duration-150"
+        class="h-8 w-10 cursor-pointer duration-150"
       >
         <path
           stroke-linecap="round"
@@ -49,13 +49,13 @@ const toggleWishlist = (product) => {
 
     <div class="card flex flex-wrap items-center justify-center gap-4">
       <div
-        class=" w-auto"
+        class="w-auto"
         v-for="(product, index) in filteredProducts"
         :key="index"
       >
-        <!-- <pre>{{ product }}</pre> -->
+       
         <div
-          class="h-[18rem] rounded-lg bg-white  px-2 duration-125 shadow-sm shadow-black hover:shadow-md  hover:bg-neutral-200 duration-150"
+          class="h-[18rem] rounded-lg bg-white px-2 duration-125 shadow-sm shadow-black hover:shadow-md hover:bg-neutral-200 duration-150"
         >
           <nuxt-link :to="`/products/${product.id}`">
             <img
@@ -66,9 +66,7 @@ const toggleWishlist = (product) => {
           </nuxt-link>
           <div class="middle flex items-center justify-between">
             <nuxt-link :to="`/product/${product.id}`" class="">
-              <p
-                class="my-2 font-bold text-gray-700  text-center truncate"
-              >
+              <p class="my-2 font-bold text-gray-700 text-center truncate">
                 {{ truncatedHeadingText(product.name) }}
               </p>
             </nuxt-link>
@@ -84,8 +82,8 @@ const toggleWishlist = (product) => {
           </div>
 
           <div class="bottom flex justify-between items-center">
-            <p class=" text-lg  font-mono font-extrabold text-red-400 ">
-              ${{ product.price }}
+            <p class="text-lg font-mono font-extrabold text-red-400">
+              ${{ product.stock == 0 ? "00.00" : product.price }}
             </p>
             <nuxt-link
               v-if="cart.isInCart(product.id)"
@@ -98,10 +96,18 @@ const toggleWishlist = (product) => {
                 <span>Go to Cart</span>
               </button>
             </nuxt-link>
+
+            <button
+              v-else-if="product.stock == 0"
+              class="add-cart py-1 px-2 text-sm font-semibold duration-150border border-black rounded bg-red-400 text-white italic cursor-not-allowed"
+            >
+              Out of stock
+            </button>
+
             <button
               v-else
               @click="cart.addItem(product)"
-              class="add-cart py-1 px-2 text-sm font-semibold bg-blue-500 hover:bg-[#640e8b] duration-150 text-white border border-black rounded"
+              class="add-cart py-1 px-2 text-sm font-semibold duration-150 text-white border border-black rounded bg-blue-500 hover:bg-[#640e8b]"
             >
               Add to Cart
             </button>

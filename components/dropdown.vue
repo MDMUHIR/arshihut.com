@@ -7,7 +7,7 @@ const currentLayout = computed(() => route.meta.layout || "default");
 
 <template>
   <div
-    class="w-56 pt-2 overflow-hidden bg-gradient-to-l from-[#171717]/75 to-stone-700/75 rounded-bl-lg shadow-xl shadow-black/50 border-black"
+    class="w-56  overflow-hidden bg-gradient-to-l from-[#171717]/75 to-stone-700/75 rounded-bl-lg shadow-xl shadow-black/50 border-black"
   >
     <client-only>
       <button

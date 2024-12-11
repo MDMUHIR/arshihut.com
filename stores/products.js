@@ -36,6 +36,7 @@ export const useProductStore = defineStore("product", () => {
       const response = await fetchApiData("api/products", {}, "GET");
       if (response) {
         data.products = response.data;
+
         lastProduct.value = response.data[response.data.length - 1];
       }
 
@@ -65,6 +66,7 @@ export const useProductStore = defineStore("product", () => {
       (product) => product.category_id === categoryId
     );
   };
+
   const toggleFilteredProducts = () => {
     if (filteredProducts.value.length == 0) {
       return false;
@@ -72,6 +74,12 @@ export const useProductStore = defineStore("product", () => {
       return true;
     }
   };
+
+  // Get out of stock products
+  const filterOutOfStockProducts = () => {
+    return data.products.filter((product) => product.stock === 0);
+  };
+
   // Image Selection
   const selectFile = (event) => {
     const file = event.target.files[0];
@@ -147,7 +155,7 @@ export const useProductStore = defineStore("product", () => {
   };
 
   const searchProduct = ref("");
-  
+
   const getAdminFilteredProducts = () => {
     if (searchProduct.value) {
       return data.products.filter((item) => {
@@ -182,5 +190,6 @@ export const useProductStore = defineStore("product", () => {
     filterProductsByCategory,
     toggleFilteredProducts,
     getAdminFilteredProducts,
+    filterOutOfStockProducts,
   };
 });

@@ -1,5 +1,4 @@
 <script setup>
-
 const auth = useAuthStore();
 const route = useRoute();
 const item = useProductStore();
@@ -32,7 +31,7 @@ const item = useProductStore();
       >
         <form
           @submit.prevent="item.getProducts()"
-          class="search-bar bg-white flex items-center rounded overflow-hidden p-1 text-black md:w-1/2 "
+          class="search-bar bg-white flex items-center rounded overflow-hidden p-1 text-black md:w-1/2"
         >
           <input
             v-model="item.searchInputText"
@@ -65,11 +64,9 @@ const item = useProductStore();
           <nuxt-link to="/products">
             <button
               :class="
-                route.path === '/products'
-                  ? 'text-orange-500 font-semibold  px-2 rounded bg-white  '
-                  : ''
+                route.path === '/products' ? 'text-orange-500  bg-white  ' : ''
               "
-              class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-[.5px] before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 md:h-14"
+              class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-[.5px] before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 md:h-14 border-2 px-2"
             >
               Products
             </button>
@@ -78,14 +75,13 @@ const item = useProductStore();
             <button
               :class="
                 route.path === '/categories'
-                  ? 'text-orange-500 font-semibold px-2 rounded bg-white '
+                  ? 'text-orange-500   bg-white '
                   : ''
               "
-              class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-[.5px] before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 p-0 md:h-14"
+              class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-[.5px] before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 p-0 md:h-14 border-2 px-2"
             >
               Categories
             </button>
-            
           </nuxt-link>
 
           <!-- <button

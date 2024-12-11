@@ -14,7 +14,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="w-full h-screen flex flex-col justify-center">
+  <div class="w-full min-h-screen flex flex-col justify-center">
     <div
       class="relative flex flex-col md:flex-row space-y-3 rounded-xl shadow-lg p-3 w-full md:space-x-2 mx-auto border border-white bg-white dark:bg-black/25"
     >
@@ -83,7 +83,7 @@ onBeforeMount(() => {
           class="bottom-part flex flex-col items-center md:flex-row justify-between"
         >
           <p class="text-xl font-black text-gray-800 dark:text-white">
-            ${{ product.price }}
+            ${{ product.stock == 0 ? "00.00" : product.price }}
           </p>
           <nuxt-link v-if="cart.isInCart(product.id)" to="/cart">
             <button
@@ -92,6 +92,12 @@ onBeforeMount(() => {
               <span>Go to Cart</span>
             </button>
           </nuxt-link>
+          <button
+            v-else-if="product.stock == 0"
+            class="add-cart py-1 px-2 text-sm font-semibold duration-150border border-black rounded bg-slate-400 text-slate-800 italic cursor-not-allowed"
+          >
+            Out of stock
+          </button>
           <button
             v-else
             @click="cart.addItem(product)"
