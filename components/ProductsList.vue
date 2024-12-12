@@ -47,14 +47,14 @@ const toggleWishlist = (product) => {
     </button>
     <!-- /_-_-_-_-----_----_______---- -->
 
-    <div class="card flex flex-wrap items-center justify-center gap-4">
+    <div class="card flex flex-wrap items-center justify-center gap-4 py-3">
       <div
         class="w-auto"
         v-for="(product, index) in filteredProducts"
         :key="index"
       >
         <div
-          class="h-[18rem] rounded-lg bg-white px-2 pb-3 duration-125 shadow-sm shadow-black hover:shadow-md hover:bg-neutral-200 duration-150"
+          class="h-[18rem] rounded-lg bg-white px-2 duration-125 shadow-sm shadow-black hover:shadow-md hover:bg-neutral-200 duration-150"
         >
           <nuxt-link :to="`/products/${product.id}`">
             <img
