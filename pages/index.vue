@@ -12,7 +12,7 @@ import Slider from "~/components/reusable/Slider.vue";
     <!-- Banner -->
 
     <div
-      class="banner container flex flex-col text-center  py-10 m-10 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat bg-blend-overlay md:bg-transparent bg-gray-800 bg-opacity-50 md:h-screen relative"
+      class="banner  flex flex-col text-center sm:px-10  py-10 m-10 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('~/public/images/bannerBG.jpg')] bg-no-repeat bg-blend-overlay md:bg-transparent bg-gray-800 bg-opacity-50 md:h-screen relative"
     >
       <h1 class="md:text-5xl font-extrabold mb-4 absolute top-5 left-0 right-0">
         <span
@@ -59,8 +59,8 @@ import Slider from "~/components/reusable/Slider.vue";
     </div>
 
     <!-- Category Section-->
-    <div class="category container sm:mx-10 py-12">
-      <h1 class=" text-xl sm:text-3xl font-bold dark:text-white">Browse by Categories</h1>
+    <div class="category container mx-auto py-12">
+      <h1 class=" text-2xl sm:text-3xl font-bold dark:text-white">Browse by Categories</h1>
 
       <Slider
         :sliderItems="data.categories"
@@ -72,8 +72,8 @@ import Slider from "~/components/reusable/Slider.vue";
     </div>
 
     <!-- Carousel -->
-    <div class="Product-slider container sm:mx-10 py-12">
-      <h1 class=" text-xl  sm:text-3xl font-bold dark:text-white mb-5">Hot Items</h1>
+    <div class="Product-slider container mx-auto py-12">
+      <h1 class=" text-2xl  sm:text-3xl font-bold dark:text-white mb-5">Hot Items</h1>
       <Slider
         :sliderItems="data.products"
         type="product"
