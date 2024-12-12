@@ -27,11 +27,11 @@ const item = useProductStore();
       </div>
 
       <div
-        class="nav-center flex flex-col md:flex-row justify-between md:justify-center sm:items-center py-2 w-full px-2 relative mr-3 sm:mr-0"
+        class="nav-center flex flex-col md:flex-row justify-between md:justify-center sm:items-center py-2 w-full px-2 relative mr-4 sm:mr-0"
       >
         <form
           @submit.prevent="item.getProducts()"
-          class="search-bar bg-white flex items-center rounded overflow-hidden p-1 text-black   md:w-1/2"
+          class="search-bar bg-white flex items-center rounded overflow-hidden p-1 text-black  w-3/4  md:w-1/2"
         >
           <input
             v-model="item.searchInputText"
