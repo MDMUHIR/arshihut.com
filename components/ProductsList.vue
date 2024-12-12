@@ -54,7 +54,7 @@ const toggleWishlist = (product) => {
         :key="index"
       >
         <div
-          class="h-[18rem] rounded-lg bg-white px-2 duration-125 shadow-sm shadow-black hover:shadow-md hover:bg-neutral-200 duration-150"
+          class="h-[18rem] rounded-lg bg-white px-2 pb-3 duration-125 shadow-sm shadow-black hover:shadow-md hover:bg-neutral-200 duration-150"
         >
           <nuxt-link :to="`/products/${product.id}`">
             <img
