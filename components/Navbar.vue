@@ -99,7 +99,7 @@ const item = useProductStore();
 
       <!-- Login buttons -->
       <div
-        class="nav-end absolute right-0 bottom-2 sm:static flex flex-col sm:flex-row justify-between items-center"
+        class="nav-end absolute right-0 bottom-2 sm:static flex flex-col sm:flex-row justify-between items-end sm:items-center mx-2"
       >
         <nuxt-link to="/cart">
           <iconsCartIcon />
