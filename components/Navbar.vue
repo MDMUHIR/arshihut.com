@@ -27,7 +27,7 @@ const item = useProductStore();
       </div>
 
       <div
-        class="nav-center flex flex-col md:flex-row justify-between md:justify-center sm:items-center py-2 w-full px-2 relative mr-4 sm:mr-0"
+        class="nav-center flex flex-col md:flex-row justify-between md:justify-center items-center py-2 w-full px-2 relative mr-4 sm:mr-0"
       >
         <form
           @submit.prevent="item.getProducts()"
@@ -99,7 +99,7 @@ const item = useProductStore();
 
       <!-- Login buttons -->
       <div
-        class="nav-end absolute right-0 bottom-2 sm:static flex flex-col sm:flex-row justify-between items-end sm:items-center "
+        class="nav-end absolute right-0 bottom-3 sm:static flex flex-col sm:flex-row justify-between items-end sm:items-center "
       >
         <nuxt-link to="/cart">
           <iconsCartIcon />
