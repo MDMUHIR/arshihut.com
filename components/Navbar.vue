@@ -31,7 +31,7 @@ const item = useProductStore();
       >
         <form
           @submit.prevent="item.getProducts()"
-          class="search-bar bg-white flex items-center rounded overflow-hidden p-1 text-black md:w-1/2"
+          class="search-bar bg-white flex items-center rounded overflow-hidden p-1 text-black  mx-2 sm:mx-0 md:w-1/2"
         >
           <input
             v-model="item.searchInputText"
@@ -99,7 +99,7 @@ const item = useProductStore();
 
       <!-- Login buttons -->
       <div
-        class="nav-end absolute right-0 bottom-2 sm:static flex flex-col sm:flex-row justify-between items-end sm:items-center mx-2"
+        class="nav-end absolute right-0 bottom-2 sm:static flex flex-col sm:flex-row justify-between items-end sm:items-center mr-2 sm:mr-0"
       >
         <nuxt-link to="/cart">
           <iconsCartIcon />
