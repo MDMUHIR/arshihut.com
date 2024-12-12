@@ -59,8 +59,8 @@ import Slider from "~/components/reusable/Slider.vue";
     </div>
 
     <!-- Category Section-->
-    <div class="category mx-10 py-12">
-      <h1 class="text-3xl font-bold dark:text-white">Browse by Categories</h1>
+    <div class="category sm:mx-10 py-12">
+      <h1 class=" text-xl sm:text-3xl font-bold dark:text-white">Browse by Categories</h1>
 
       <Slider
         :sliderItems="data.categories"
@@ -72,8 +72,8 @@ import Slider from "~/components/reusable/Slider.vue";
     </div>
 
     <!-- Carousel -->
-    <div class="category mx-10 py-12">
-      <h1 class="text-3xl font-bold dark:text-white mb-5">Hot Items</h1>
+    <div class="Product-slider sm:mx-10 py-12">
+      <h1 class=" text-xl  sm:text-3xl font-bold dark:text-white mb-5">Hot Items</h1>
       <Slider
         :sliderItems="data.products"
         type="product"
