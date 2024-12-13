@@ -47,7 +47,7 @@ const toggleWishlist = (product) => {
     </button>
     <!-- /_-_-_-_-----_----_______---- -->
 
-    <div class="card flex flex-wrap items-center justify-center gap-4 py-3 Scrollbar min-h-screen max-h-auto">
+    <div class="card flex flex-wrap sm:items-center justify-center gap-4 py-3 Scrollbar min-h-screen max-h-auto">
       <div
         class="w-auto"
         v-for="(product, index) in filteredProducts"
