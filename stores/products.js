@@ -24,7 +24,7 @@ export const useProductStore = defineStore("product", () => {
   const addProduct = () => {
     const res = fetchUploadApi("api/admin/products/add", productData);
     res.then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       data.products.push(response.data);
       showAddForm.value = false;
       clearSubmition();
