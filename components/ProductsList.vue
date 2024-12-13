@@ -23,7 +23,7 @@ const toggleWishlist = (product) => {
 </script>
 
 <template>
-  <div class="main relative overflow-y-auto pb-20 min-h-screen">
+  <div class="main relative overflow-y-auto Scrollbar pb-20 min-h-screen">
     <!-- for searching compoonent -->
     <button
       v-if="productStore.toggleFilteredProducts()"
