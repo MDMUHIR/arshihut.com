@@ -48,7 +48,7 @@ export const useUserStore = defineStore("users", () => {
       "DELETE"
     );
     res.then((response) => {
-      console.log(response);
+      // console.log(response);
       data.allUsers.splice(index, 1);
       notify("user deleted successfully", "success");
     });
