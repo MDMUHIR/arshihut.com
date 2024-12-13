@@ -28,7 +28,7 @@ const toggleWishlist = (product) => {
     <button
       v-if="productStore.toggleFilteredProducts()"
       @click="filteredProducts.length = 0"
-      class="top-56 sm:top-[73px] right-1 sm:right-0 fixed bg-red-500 hover:text-red-500 px-5 border hover:bg-white text-white rotate-90 sm:rotate-0"
+      class="fixed sm:top-56 sm:top-[73px] right-[-23px] sm:right-0 fixed bg-red-500 hover:text-red-500 px-5 border hover:bg-white text-white rotate-90 sm:rotate-0"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
