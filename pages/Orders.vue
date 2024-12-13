@@ -22,7 +22,7 @@ const getStatusClass = (status) => {
 </script>
 
 <template>
-  <div class="main min-h-svh">
+  <div class="main min-h-screen">
     <div class="page-hero flex justify-center items-center">
       <h1
         class="text-xl text-center font-bold px-5 py-1 pt-5 bg-orange-400 rounded-b-3xl shadow-lg"
