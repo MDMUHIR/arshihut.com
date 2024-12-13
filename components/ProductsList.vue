@@ -56,7 +56,7 @@ const toggleWishlist = (product) => {
         <div
           class="h-[18rem] rounded-lg bg-white px-2 duration-125 shadow-sm shadow-black hover:shadow-md hover:bg-neutral-200 duration-150"
         >
-          <nuxt-link :to="`/products/${product.id}`">
+          <nuxt-link :to="`/products/${product.id}`" @click="filteredProducts.length = 0">
             <img
               class="rounded-lg h-4/6 object-center cursor-pointer mx-auto"
               :src="apiBase + product.image"
@@ -64,7 +64,7 @@ const toggleWishlist = (product) => {
             />
           </nuxt-link>
           <div class="middle flex items-center justify-between">
-            <nuxt-link :to="`/product/${product.id}`" class="">
+            <nuxt-link :to="`/product/${product.id}`" @click="filteredProducts.length = 0" class="">
               <p class="my-2 font-bold text-gray-700 text-center truncate">
                 {{ truncatedHeadingText(product.name) }}
               </p>
