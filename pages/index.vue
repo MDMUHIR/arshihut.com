@@ -78,7 +78,7 @@ import Slider from "~/components/reusable/Slider.vue";
         :sliderItems="data.products"
         type="product"
         customStyles=" py-7 rounded-2xl shadow-inner shadow-black"
-        imgStyle="w-full h-auto bg-[#344940]"
+        imgStyle="w-full h-auto bg-[#5a7569] mb-1"
       />
     </div>
 
