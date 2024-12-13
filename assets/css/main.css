@@ -24,11 +24,11 @@
 
 .carousel__next {
     background: #cecece !important;
-    border-radius: 15% !important;
-    padding: 10px 0px !important; 
+    border-radius: 5% !important;
+    padding: 8px 0px !important; 
 }
 .carousel__prev {
     background: #cecece !important;
-    border-radius: 15% !important;
-    padding: 10px 0px !important;
+    border-radius: 5% !important;
+    padding: 8px 0px !important;
 }
