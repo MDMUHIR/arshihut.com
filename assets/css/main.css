@@ -14,13 +14,29 @@
 }
 
 /* Handle */
-.Scrollbar::-webkit-scrollbar-thumb {
-  opacity: 0.1;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  background: rgba(243, 0, 0, 0.676);
-  -webkit-box-shadow: inset 0 0 6px rgba(251, 0, 0, 0.5);
+/* Style a custom scrollbar */
+.Scrollbar::-webkit-scrollbar {
+  width: 3px; /* Width of the scrollbar */
 }
+
+.Scrollbar::-webkit-scrollbar-thumb {
+  opacity: 0.1; /* Thumb opacity */
+  border-radius: 5px; /* Rounded edges for the thumb */
+  background: rgb(240, 117, 2); /* Thumb color */
+  box-shadow: inset 0 0 6px rgba(251, 0, 0, 0.5); /* Thumb shadow */
+}
+
+/* Hide the scrollbar completely */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Webkit browsers */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+
 
 .carousel__next {
     background: #cecece !important;
