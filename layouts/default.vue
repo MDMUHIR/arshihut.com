@@ -27,7 +27,7 @@ onBeforeMount(async () => {
         <h2 class="text-cyan-400 bg-black w-36 text-center px-2 border">
           Filtered Products
         </h2>
-        <ProductsList :filteredProducts="product.filteredProducts" class="" />
+        <ProductsList :filteredProducts="product.filteredProducts" class=" h-auto overflow-scroll" />
       </div>
       <slot />
     </div>
