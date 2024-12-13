@@ -21,3 +21,14 @@
   background: rgba(243, 0, 0, 0.676);
   -webkit-box-shadow: inset 0 0 6px rgba(251, 0, 0, 0.5);
 }
+
+.carousel__next {
+    background: #cecece !important;
+    border-radius: 15% !important;
+    padding: 10px 0px !important; 
+}
+.carousel__prev {
+    background: #cecece !important;
+    border-radius: 15% !important;
+    padding: 10px 0px !important;
+}
