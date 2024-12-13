@@ -23,7 +23,7 @@ const toggleWishlist = (product) => {
 </script>
 
 <template>
-  <div class="main relative Scrollbar pb-20 min-h-screen max-h-auto">
+  <div class="main relative ">
     <!-- for searching compoonent -->
     <button
       v-if="productStore.toggleFilteredProducts()"
@@ -47,7 +47,7 @@ const toggleWishlist = (product) => {
     </button>
     <!-- /_-_-_-_-----_----_______---- -->
 
-    <div class="card flex flex-wrap items-center justify-center gap-4 py-3">
+    <div class="card flex flex-wrap items-center justify-center gap-4 py-3 Scrollbar min-h-screen max-h-auto">
       <div
         class="w-auto"
         v-for="(product, index) in filteredProducts"
