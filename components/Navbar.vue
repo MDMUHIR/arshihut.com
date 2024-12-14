@@ -142,7 +142,7 @@ const item = useProductStore();
           </client-only>
         </div>
 
-        <dropdown v-if="showDdMenu" class="absolute right-0 top-16 mt-3 z-10" />
+        <dropdown v-if="showDdMenu" class="absolute right-0 top-16 mt-[18px] sm:mt-[8px]  z-10" />
       </div>
     </div>
   </div>
