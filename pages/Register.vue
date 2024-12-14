@@ -102,7 +102,7 @@ const passwordnputType = computed(() =>
             <p
               class="text-sm text-indigo-500 hover:text-indigo-700 focus:outline-none"
             >
-              Already have a Account?
+              Already have an Account?
             </p>
           </nuxt-link>
         </div>
