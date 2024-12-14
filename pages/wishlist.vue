@@ -56,7 +56,7 @@ import { data } from "~/composables/states";
           <div class="middle flex justify-between">
             <nuxt-link :to="`/product/${product.product_id}`">
               <p class="my-4 pl-4 font-bold text-gray-500">
-                {{ product.product.name }}
+                 {{ truncatedHeadingText(product.product.name) }}
               </p>
             </nuxt-link>
             <button @click="toggleWishlist(product)" class="w-6">
