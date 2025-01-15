@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   app: {
     head: {
-      title: "MD MUHIR",
+      title: "DIGITAL NEST",
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
   },
