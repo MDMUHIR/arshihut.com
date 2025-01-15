@@ -2,7 +2,12 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
-
+  app: {
+    head: {
+      title: "MD MUHIR",
+      link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+    },
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
