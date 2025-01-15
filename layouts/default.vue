@@ -19,7 +19,7 @@ onBeforeMount(async () => {
     <div class="header">
       <Navbar />
     </div>
-    <div class="body mt-24 sm:mt-16 dark:bg-[#212121]">
+    <div class="body mt-24 sm:mt-16 dark:bg-[#212121] xl:container xl:mx-auto">
       <div
         v-if="product.toggleFilteredProducts()"
         class="Filtered-Profducts fixed top-0 left-0 right-0 bottom-0 mt-[7rem] sm:mt-[65px] z-40 bg-stone-800/85 dark:bg-gray-800/95 w-full min-h-svh sm:pt-4 md:pt-2 pb-32  shadow-inner shadow-cyan-500 overflow-y-auto Scrollbar"
