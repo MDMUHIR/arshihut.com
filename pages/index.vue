@@ -1,14 +1,12 @@
 <script setup>
   const auth = useAuthStore();
-
   const item = useProductStore();
-
   import "vue3-carousel/dist/carousel.css";
   import Slider from "~/components/reusable/Slider.vue";
 </script>
 
 <template>
-  <div class="main mx-3 pt-2 min-h-svh">
+  <div class="main mx-3 pt-2 min-h-svh mb-5">
     <!-- Banner -->
 
     <Banner />
