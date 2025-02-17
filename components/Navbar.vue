@@ -1,7 +1,7 @@
 <script setup>
-const auth = useAuthStore();
-const route = useRoute();
-const item = useProductStore();
+  const auth = useAuthStore();
+  const route = useRoute();
+  const item = useProductStore();
 </script>
 
 <template>
@@ -12,17 +12,8 @@ const item = useProductStore();
       <div
         class="nav-home flex justify-center items-center h-full px-2 oreder-1"
       >
-        <nuxt-link to="/">
-          <button class="text-2xl font-bold duration-150">
-            <span
-              :class="
-                route.path === '/' ? 'bg-gradient-to-r' : 'bg-gradient-to-l  '
-              "
-              class="bg-clip-text text-transparent from-white to-red-400 hover:from-[#616161] hover:to-red-500 duration-200"
-            >
-              DIGITALNEST
-            </span>
-          </button>
+        <nuxt-link to="/" class=" flex items-center justify-center">
+          <img src="/Logo.png" alt="ArshiHut" class="w-[10rem] h-[3.5rem]" />
         </nuxt-link>
       </div>
 
@@ -31,7 +22,7 @@ const item = useProductStore();
       >
         <form
           @submit.prevent="item.getProducts()"
-          class="search-bar bg-white flex items-center rounded overflow-hidden p-1 text-black  w-3/4  md:w-1/2"
+          class="search-bar bg-white flex items-center rounded overflow-hidden p-1 text-black w-3/4 md:w-1/2"
         >
           <input
             v-model="item.searchInputText"
@@ -99,7 +90,7 @@ const item = useProductStore();
 
       <!-- Login buttons -->
       <div
-        class="nav-end absolute right-0 bottom-3 sm:static flex flex-col sm:flex-row justify-between items-end sm:items-center "
+        class="nav-end absolute right-0 bottom-3 sm:static flex flex-col sm:flex-row justify-between items-end sm:items-center"
       >
         <nuxt-link to="/cart">
           <iconsCartIcon />
@@ -142,7 +133,10 @@ const item = useProductStore();
           </client-only>
         </div>
 
-        <dropdown v-if="showDdMenu" class="absolute right-0 top-16 mt-[18px] sm:mt-[8px]  z-10" />
+        <dropdown
+          v-if="showDdMenu"
+          class="absolute right-0 top-16 mt-[18px] sm:mt-[8px] z-10"
+        />
       </div>
     </div>
   </div>

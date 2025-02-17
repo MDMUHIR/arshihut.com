@@ -175,7 +175,7 @@ const checkoutTotal = computed(() => {
 </script>
 
 <template>
-  <div class="h-full min-h-screen bg-stone-200 pb-2">
+  <div class="h-full min-h-screen  pb-2">
     <div class="page-hero flex justify-center items-center">
       <h1
         class="text-xl text-center font-bold px-5 py-1 pt-5 bg-orange-400 rounded-b-3xl shadow-lg"

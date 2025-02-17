@@ -16,7 +16,7 @@ onBeforeMount(() => {
 <template>
   <div class="w-full min-h-screen flex flex-col justify-center">
     <div
-      class="relative flex flex-col md:flex-row space-y-3 rounded-xl shadow-lg p-3 w-full md:space-x-2 mx-auto border border-white bg-white dark:bg-black/25"
+      class="relative flex flex-col md:flex-row space-y-3 rounded-xl shadow-lg p-3 w-full md:space-x-2 mx-auto border border-white bg-white"
     >
       <div class="w-full md:w-1/3 grid place-items-center">
         <img
