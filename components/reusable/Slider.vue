@@ -112,7 +112,7 @@ const config = {
             </div>
             <div class="flex items-center justify-center">
               <h2
-                class="text-xl font-bold text-gray-500 dark:text-[#e5e5e5] text-center"
+                class="text-xl font-bold text-gray-500 text-center"
               >
                 {{ truncatedHeadingText(product.name) }}
               </h2>
@@ -124,7 +124,7 @@ const config = {
       <template #addons>
         <Pagination />
         <Navigation
-          class="bg-gray-500 dark:bg-gray-100 rounded-lg hover:bg-purple-500 py-2"
+          class="bg-gray-500  rounded-lg hover:bg-purple-500 py-2"
         />
       </template>
     </Carousel>
