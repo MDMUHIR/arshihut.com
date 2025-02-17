@@ -5,7 +5,7 @@
 
 <template>
   <div
-    class="banner flex flex-col text-center sm:px-10 py-4 mx-3 sm:mx-10 my-10 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('/images/bannerBG.jpg')] bg-no-repeat relative"
+    class="banner flex flex-col text-center sm:px-10 py-4 sm:mx-10 mt-10 mb-1 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('/images/bannerBG.jpg')] bg-no-repeat relative"
   >
     <h1
       class="md:text-4xl text-2xl font-extrabold absolute top-5 left-0 right-0 px-4"
