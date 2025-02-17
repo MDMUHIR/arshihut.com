@@ -8,14 +8,14 @@
 </script>
 
 <template>
-  <div class="main pt-2 pb-10 min-h-svh">
+  <div class="main mx-3 pt-2 pb-10 min-h-svh">
     <!-- Banner -->
 
     <Banner />
 
     <!-- Category Section-->
-    <div class="category container mx-auto py-12">
-      <h1 class="text-2xl sm:text-3xl font-bold dark:text-white ml-2 sm:ml-0">
+    <div class="category container mx-auto py-1">
+      <h1 class="text-2xl md:text-3xl font-bold dark:text-white ml-2 sm:ml-0">
         Browse by Categories
       </h1>
 
@@ -29,9 +29,9 @@
     </div>
 
     <!-- Carousel -->
-    <div class="Product-slider container mx-auto py-12">
+    <div class="Product-slider container mx-auto py-1">
       <h1
-        class="text-2xl sm:text-3xl font-bold dark:text-white ml-2 sm:ml-0 mb-5"
+        class="text-2xl md:text-3xl font-bold dark:text-white ml-2 sm:ml-0 mb-5"
       >
         Hot Items
       </h1>
