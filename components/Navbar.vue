@@ -1,102 +1,152 @@
 <script setup>
-  const auth = useAuthStore();
-  const route = useRoute();
-  const item = useProductStore();
+  // Import necessary composables and stores
+  const auth = useAuthStore(); // Store for authentication state
+  const route = useRoute(); // Vue Router's route object
+  const item = useProductStore(); // Store for product-related data and actions
+
+  // Reactive variable to control the visibility of the mobile menu
+  const showMenu = ref(false);
 </script>
 
 <template>
-  <div
-    class="nab w-full border-b shadow-md bg-gradient-to-r from-[#171717] to-stone-700 fixed top-0 left-0 right-0 text-white z-50"
+  <!-- Navigation bar -->
+  <nav
+    class="nab w-full border-b shadow-md bg-gradient-to-r from-gray-900 to-black fixed top-0 left-0 right-0 text-white z-50"
   >
-    <div class="nav-top flex flex-col sm:flex-row justify-between items-center">
-      <div
-        class="nav-home flex justify-center items-center h-full px-2 oreder-1"
-      >
-        <nuxt-link to="/" class=" flex items-center justify-center">
-          <img src="/Logo.png" alt="ArshiHut" class="w-[10rem] h-[3.5rem]" />
-        </nuxt-link>
+    <!-- -------------------------------------------
+               Navbar top part
+        ------------------------------------------- -->
+    <div class="nav-top flex justify-between items-center">
+      <!-- Left section of the navbar -->
+      <div class="nav-left flex justify-center items-center">
+        <!-- Mobile menu toggle button (visible only on small screens) -->
+        <div class="flex md:hidden mx-3 items-center pt-2 md:pt-0">
+          <button @click="showMenu = !showMenu">
+            <!-- Animated hamburger icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+            >
+              <g
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="3"
+              >
+                <path d="M5 5L19 19M5 19L19 5">
+                  <animate
+                    fill="freeze"
+                    attributeName="d"
+                    dur="0.4s"
+                    values="M5 5L19 19M5 19L19 5;M5 5L19 5M5 19L19 19"
+                  />
+                </path>
+                <path d="M12 12H12" opacity="0">
+                  <animate
+                    fill="freeze"
+                    attributeName="d"
+                    begin="0.2s"
+                    dur="0.4s"
+                    values="M12 12H12;M5 12H19"
+                  />
+                  <set
+                    fill="freeze"
+                    attributeName="opacity"
+                    begin="0.2s"
+                    to="1"
+                  />
+                </path>
+              </g>
+            </svg>
+          </button>
+        </div>
+
+        <!--  Nav Logo
+        ------------------------------------------- -->
+        <div
+          class="nav-home flex justify-center items-center h-full md:px-5 oreder-1"
+        >
+          <!-- Logo linking to the home page -->
+          <nuxt-link to="/" class="flex items-center justify-center">
+            <img
+              src="/Logo.png"
+              alt="ArshiHut"
+              class="w-[190px] h-[3.5rem] p-1"
+            />
+          </nuxt-link>
+        </div>
       </div>
 
-      <div
-        class="nav-center flex flex-col md:flex-row justify-between md:justify-center items-center py-2 w-full px-2 relative mr-4 sm:mr-0"
-      >
+      <!-- -------------------------------------------
+                Search bar and navlinks (visible on medium and larger screens)
+        ------------------------------------------- -->
+      <div class="nav-center hidden md:flex justify-center items-center px-2">
+        <!-- Search bar form -->
         <form
           @submit.prevent="item.getProducts()"
-          class="search-bar bg-white flex items-center rounded overflow-hidden p-1 text-black w-3/4 md:w-1/2"
+          class="search-bar bg-white flex items-center rounded-full overflow-hidden p-1 text-black w-3/4 md:w-1/2 focus-within:outline focus-within:outline-2 focus-within:outline-orange-500"
         >
           <input
             v-model="item.searchInputText"
             type="text "
-            class="px-2 w-full rounded-l outline-none text-sm md:text-lg font-medium pl-4 focus: md:h-[47px] bg-transparent"
-            placeholder="Search"
+            class="px-2 w-full outline-none text-sm md:text-lg pl-4"
+            placeholder="Search "
           />
           <button class="px-2">
+            <!-- Search icon -->
             <svg
-              class="h-6"
               xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              viewBox="0 0 50 50"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
             >
               <path
-                d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"
-              ></path>
+                fill="currentColor"
+                d="M9.539 15.23q-2.398 0-4.065-1.666Q3.808 11.899 3.808 9.5t1.666-4.065T9.539 3.77t4.064 1.666T15.269 9.5q0 1.042-.369 2.017t-.97 1.668l5.909 5.907q.14.14.15.345q.009.203-.15.363q-.16.16-.354.16t-.354-.16l-5.908-5.908q-.75.639-1.725.989t-1.96.35m0-1q1.99 0 3.361-1.37q1.37-1.37 1.37-3.361T12.9 6.14T9.54 4.77q-1.991 0-3.361 1.37T4.808 9.5t1.37 3.36t3.36 1.37"
+              />
             </svg>
           </button>
         </form>
 
         <!-- -------------------------------------------
-        nav Navigation buttons
+                Nav Links
         ------------------------------------------- -->
-
-        <div
-          class="nav-customer-items flex justify-center items-center gap-4 md:gap-0 mt-2 md:mt-0 mr-2 sm:mr-0"
-        >
-          <nuxt-link to="/products">
-            <button
-              :class="
-                route.path === '/products' ? 'text-orange-500  bg-white  ' : ''
-              "
-              class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-[.5px] before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 md:h-14 border-2 px-2"
+        <ul class="flex px-4 mx-auto font-heading font-semibold space-x-6">
+          <li>
+            <!-- Link to Products page with active class -->
+            <nuxt-link
+              to="/products"
+              :class="route.path === '/products' ? 'text-[#f7ac5d]  ' : ''"
+              >Products</nuxt-link
             >
-              Products
-            </button>
-          </nuxt-link>
-          <nuxt-link to="/categories">
-            <button
-              :class="
-                route.path === '/categories'
-                  ? 'text-orange-500   bg-white '
-                  : ''
-              "
-              class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-[.5px] before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150 p-0 md:h-14 border-2 px-2"
+          </li>
+          <li>
+            <!-- Link to Categories page with active class -->
+            <nuxt-link
+              to="/categories"
+              :class="route.path === '/categories' ? 'text-[#f7ac5d]' : ''"
+              >Categories</nuxt-link
             >
-              Categories
-            </button>
-          </nuxt-link>
-
-          <!-- <button
-            :class="
-              route.path === '/support'
-                ? 'text-orange-500 scale-110 font-bold  px-2 rounded bg-white shadow-inner'
-                : 'font-semibold'
-            "
-            class="nav-item text-sm lg:text-lg relative mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 duration-150p-0"
-          >
-            Support
-          </button> -->
-        </div>
+          </li>
+        </ul>
       </div>
 
-      <!-- Login buttons -->
-      <div
-        class="nav-end absolute right-0 bottom-3 sm:static flex flex-col sm:flex-row justify-between items-end sm:items-center"
-      >
+      <!-- -------------------------------------------
+               Cart and Login section
+        ------------------------------------------- -->
+      <div class="nav-end flex justify-center items-center pt-3 md:pt-0">
+        <!-- Cart icon linking to the cart page -->
         <nuxt-link to="/cart">
           <iconsCartIcon />
         </nuxt-link>
+
+        <!-- User authentication section -->
         <div class="z-10">
           <client-only>
+            <!-- If user is authenticated, show user icon with dropdown toggle -->
             <button
               v-if="auth.isAuthenticated"
               @click="togDropdMenu()"
@@ -105,10 +155,12 @@
               <IconsUserIcon />
             </button>
 
+            <!-- If user is not authenticated, show login button -->
             <nuxt-link v-else to="/login">
               <button
-                class="relative flex mx-2 text-sm font-medium before:bg-orange-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
+                class="relative flex mx-2 text-sm font-medium before:bg-orange-600 before:absolute before:-bottom-1 before:left-[2px] before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
               >
+                <!-- Login icon -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -133,13 +185,67 @@
           </client-only>
         </div>
 
+        <!-- Dropdown menu (visible when toggled) -->
         <dropdown
           v-if="showDdMenu"
           class="absolute right-0 top-16 mt-[18px] sm:mt-[8px] z-10"
         />
       </div>
     </div>
-  </div>
+
+    <!-- -------------------------------------------
+                Navbar bottom part (visible on small screens)
+        ------------------------------------------- -->
+    <div v-if="showMenu" class="nav-bottom block md:hidden">
+      <div
+        class="nav-center flex flex-col md:flex-row justify-between md:justify-center items-center py-1 w-full px-2 relative mr-4 sm:mr-0"
+      >
+        <!-- Search bar for mobile view -->
+        <form
+          @submit.prevent="item.getProducts()"
+          class="search-bar bg-white flex items-center rounded-full overflow-hidden p-1 text-black w-3/4 md:w-1/2 focus-within:outline focus-within:outline-2 focus-within:outline-orange-500"
+        >
+          <input
+            v-model="item.searchInputText"
+            type="text "
+            class="px-2 w-full outline-none text-sm md:text-lg pl-4"
+            placeholder="Search "
+          />
+          <button class="px-2">
+            <!-- Search icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-[1.4rem]"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M9.539 15.23q-2.398 0-4.065-1.666Q3.808 11.899 3.808 9.5t1.666-4.065T9.539 3.77t4.064 1.666T15.269 9.5q0 1.042-.369 2.017t-.97 1.668l5.909 5.907q.14.14.15.345q.009.203-.15.363q-.16.16-.354.16t-.354-.16l-5.908-5.908q-.75.639-1.725.989t-1.96.35m0-1q1.99 0 3.361-1.37q1.37-1.37 1.37-3.361T12.9 6.14T9.54 4.77q-1.991 0-3.361 1.37T4.808 9.5t1.37 3.36t3.36 1.37"
+              />
+            </svg>
+          </button>
+        </form>
+
+        <!-- Mobile navigation links -->
+        <ul class="flex px-4 mx-auto font-heading font-semibold space-x-5 py-1">
+          <li>
+            <nuxt-link
+              to="/products"
+              :class="route.path === '/products' ? 'text-[#f7ac5d]  ' : ''"
+              >Products</nuxt-link
+            >
+          </li>
+          <li>
+            <nuxt-link
+              to="/categories"
+              :class="route.path === '/categories' ? 'text-[#f7ac5d]' : ''"
+              >Categories</nuxt-link
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <style scoped></style>

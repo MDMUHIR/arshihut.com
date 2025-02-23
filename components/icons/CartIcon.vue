@@ -1,12 +1,11 @@
 <script setup>
-const cart = useCartStore();
-
+  const cart = useCartStore();
 </script>
 
 <template>
   <div class="flex items-center justify-center mb-1 md:mb-0">
     <div
-      class="relative scale-75 inline mx-2 font-medium before:bg-orange-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
+      class="relative scale-75 inline mx-2 font-medium before:bg-orange-600 before:absolute before:-bottom-1 before:left-[2px] before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +23,7 @@ const cart = useCartStore();
       </svg>
       <ClientOnly>
         <span
-          class="absolute -top-2 left-4 rounded-full bg-red-500 p-0.5 px-2 text-sm text-red-50"
+          class="absolute -top-2 left-4 rounded-full bg-red-500 p-0.5 px-2 text-sm text-red-50 animate-bounce"
           >{{ cart.totalCartItems }}</span
         >
       </ClientOnly>
