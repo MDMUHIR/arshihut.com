@@ -74,7 +74,7 @@
             <img
               src="/Logo.png"
               alt="ArshiHut"
-              class="w-[190px] h-[3.5rem] p-1"
+              class="w-[160px] h-[70px] p-1"
             />
           </nuxt-link>
         </div>

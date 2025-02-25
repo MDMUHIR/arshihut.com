@@ -1,16 +1,16 @@
 <script setup>
-const cart = useCartStore();
-const route = useRoute();
-const id = route.params.id;
+  const cart = useCartStore();
+  const route = useRoute();
+  const id = route.params.id;
 
-const product = ref({});
-onBeforeMount(() => {
-  const res = fetchApiData(`api/products/${id}`, {}, "GET");
-  res.then((response) => {
-    console.log(response);
-    product.value = response.data;
+  const product = ref({});
+  onBeforeMount(() => {
+    const res = fetchApiData(`api/products/${id}`, {}, "GET");
+    res.then((response) => {
+      console.log(response);
+      product.value = response.data;
+    });
   });
-});
 </script>
 
 <template>
@@ -25,12 +25,9 @@ onBeforeMount(() => {
           class="rounded-xl"
         />
       </div>
-      <div class="w-full md:w-2/3 dark:text-white flex flex-col space-y-2 p-3">
+      <div class="w-full md:w-2/3 flex flex-col space-y-2 p-3">
         <div class="flex justify-between item-center">
-          <p
-            v-if="product.category"
-            class="text-gray-500 dark:text-gray-200 font-medium md:block"
-          >
+          <p v-if="product.category" class="text-gray-500 font-medium md:block">
             {{ product.category.name }}
           </p>
           <div class="flex items-center">
@@ -71,23 +68,21 @@ onBeforeMount(() => {
             Superhost
           </div>
         </div>
-        <h3
-          class="font-black text-gray-800 dark:text-gray-200 md:text-3xl text-xl"
-        >
+        <h3 class="font-black text-gray-800 md:text-3xl text-xl">
           {{ product.name }}
         </h3>
-        <p class="md:text-lg text-gray-500 text-base dark:text-white">
+        <p class="md:text-lg text-gray-500 text-base">
           {{ product.description }}
         </p>
         <div
           class="bottom-part flex flex-col items-center md:flex-row justify-between"
         >
-          <p class="text-xl font-black text-gray-800 dark:text-white">
-            ${{ product.stock == 0 ? "00.00" : product.price }}
+          <p class="text-xl font-black text-gray-800">
+            ৳{{ product.stock == 0 ? "00.00" : product.price }}
           </p>
           <nuxt-link v-if="cart.isInCart(product.id)" to="/cart">
             <button
-              class="add-cart bg-gray-400 hover:bg-gray-500 text-white border-black add-cart py-1 md:py-2 px-2 md:px-5 text-sm font-semibold border-2 rounded md:ml-2 mt-2 md:mt-0"
+              class="add-cart bg-gray-400 hover:bg-gray-500 text-white border-black add-cart py-1 md:py-2 px-2 md:px-5 text-sm font-semibold rounded md:ml-2 mt-2 md:mt-0"
             >
               <span>Go to Cart</span>
             </button>
@@ -101,7 +96,7 @@ onBeforeMount(() => {
           <button
             v-else
             @click="cart.addItem(product)"
-            class="add-cart py-1 md:py-2 px-2 md:px-5 text-sm font-semibold bg-blue-500 hover:bg-blue-600 text-white border-2 border-black rounded md:ml-2 mt-2 md:mt-0"
+            class="add-cart py-1 md:py-2 px-2 md:px-5 text-sm font-semibold bg-blue-500 hover:bg-blue-600 text-white border-black rounded md:ml-2 mt-2 md:mt-0"
           >
             Add to Cart
           </button>

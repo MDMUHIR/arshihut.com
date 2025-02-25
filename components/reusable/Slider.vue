@@ -9,6 +9,10 @@
       type: String,
       default: "",
     },
+    cardProps: {
+      type: String,
+      default: "",
+    },
     imgStyle: {
       type: String,
       default: "",
@@ -85,7 +89,8 @@
       <Slide v-for="product in sliderItems" :key="product.id">
         <div class="carousel__item h-full">
           <div
-            class="max-w-[15rem] min-w-[10rem] h-full rounded-lg p-2 pt-3 duration-125 flex flex-col justify-center items-center"
+            :class="cardProps"
+            class="max-w-[15rem] min-w-[10rem] h-full rounded-lg duration-125 flex justify-center items-center"
           >
             <div
               class="ClickOpertor"
@@ -111,7 +116,7 @@
               </nuxt-link>
             </div>
             <div class="flex items-center justify-center">
-              <h2 class="text-xl font-bold text-gray-500 text-center">
+              <h2 class="text- text-gray-500 text-center">
                 {{ truncatedHeadingText(product.name) }}
               </h2>
             </div>
