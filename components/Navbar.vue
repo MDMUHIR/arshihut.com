@@ -3,11 +3,10 @@
   const auth = useAuthStore(); // Store for authentication state
   const route = useRoute(); // Vue Router's route object
   const item = useProductStore(); // Store for product-related data and actions
-
-  // Reactive variable to control the visibility of the mobile menu
-  const showMenu = ref(false);
+  
+  // Import state and functions from controller
+  import { showBottomMenu, showDdMenu, togDropdMenu } from '~/composables/controler';
 </script>
-
 <template>
   <!-- Navigation bar -->
   <nav
@@ -21,7 +20,8 @@
       <div class="nav-left flex justify-center items-center">
         <!-- Mobile menu toggle button (visible only on small screens) -->
         <div class="flex md:hidden mx-3 items-center pt-2 md:pt-0">
-          <button @click="showMenu = !showMenu">
+          <!-- <pre>{{ showBottomMenu }}</pre> -->
+          <button @click="showBottomMenu = !showBottomMenu">
             <!-- Animated hamburger icon -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -186,17 +186,14 @@
         </div>
 
         <!-- Dropdown menu (visible when toggled) -->
-        <dropdown
-          v-if="showDdMenu"
-          class="absolute right-0 top-16 mt-[18px] sm:mt-[8px] z-10"
-        />
+        <Dropdown v-if="showDdMenu" class="absolute right-0 top-[70px] z-10" />
       </div>
     </div>
 
     <!-- -------------------------------------------
                 Navbar bottom part (visible on small screens)
         ------------------------------------------- -->
-    <div v-if="showMenu" class="nav-bottom block md:hidden">
+    <div v-if="showBottomMenu" class="nav-bottom block md:hidden">
       <div
         class="nav-center flex flex-col md:flex-row justify-between md:justify-center items-center py-1 w-full px-2 relative mr-4 sm:mr-0"
       >
@@ -232,15 +229,13 @@
             <nuxt-link
               to="/products"
               :class="route.path === '/products' ? 'text-[#f7ac5d]  ' : ''"
-              >Products</nuxt-link
-            >
+              >Products</nuxt-link>
           </li>
           <li>
             <nuxt-link
               to="/categories"
               :class="route.path === '/categories' ? 'text-[#f7ac5d]' : ''"
-              >Categories</nuxt-link
-            >
+              >Categories</nuxt-link>
           </li>
         </ul>
       </div>
@@ -249,3 +244,4 @@
 </template>
 
 <style scoped></style>
+
