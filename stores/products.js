@@ -32,12 +32,16 @@ export const useProductStore = defineStore("product", () => {
   };
 
   const getProducts = async (categoryId) => {
+    if (categoryId == null) {
+      loading.value = true;
+    }
+
     try {
       const response = await fetchApiData("api/products", {}, "GET");
       if (response) {
         data.products = response.data;
-
         lastProduct.value = response.data[response.data.length - 1];
+        loading.value = false;
       }
 
       // Filter products Category after data is fetched
