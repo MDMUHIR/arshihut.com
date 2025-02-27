@@ -11,7 +11,7 @@
   >
     <client-only>
       <button
-        class="flex w-full items-center p-3 font-semibold text-white transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black"
+        class="flex w-full items-center p-3 font-semibold text-white transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black r-gray-700"
       >
         <svg
           height="45px"
@@ -48,10 +48,10 @@
           </g>
         </svg>
         <div class="mx-1">
-          <h1 class="font-semibold text-gray-700 dark:text-gray-200">
+          <h1 class="font-semibold text-gray-200">
             {{ auth.user.name }}
           </h1>
-          <p class="font-semibold text-gray-500 dark:text-gray-400">
+          <p class="font-semibold text-gray-400">
             {{ auth.user.email }}
           </p>
         </div>
@@ -67,7 +67,7 @@
                 ? ' bg-black/75 italic'
                 : 'text-gray-100'
             "
-            class="block w-full px-4 py-3 mt-2 font-bold capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black rounded-r-full"
+            class="block w-full px-4 py-3 mt-2 font-bold capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
           >
             Dashboard
           </button>
@@ -79,7 +79,7 @@
                 ? ' bg-black/75 italic'
                 : 'text-gray-100'
             "
-            class="block w-full px-4 py-3 font-bold capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black rounded-r-full"
+            class="block w-full px-4 py-3 font-bold capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
           >
             Customer View
           </button>
@@ -96,7 +96,7 @@
                 ? ' font-bold shadow-md shadow-white border-red-600  bg-white   text-black '
                 : 'text-white'
             "
-            class="flex items-center justify-center w-full px-4 py-3 mt-2 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black rounded-r-full"
+            class="flex items-center justify-center w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -121,19 +121,19 @@
                 ? ' font-bold  border-red-600  bg-white    text-black shadow-md shadow-white'
                 : 'text-white'
             "
-            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black rounded-r-full"
+            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
           >
             My Orders
           </button>
         </nuxt-link>
 
         <!-- <button
-          class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform  hover:bg-gray-100/50 hover:text-black   rounded-r-full"
+          class="block w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform  hover:bg-gray-200 m-1  hover:text-blackull"
         >
           Invite Friends
         </button> -->
 
-        <hr class="border-gray-200 dark:border-gray-700" />
+        <hr class="border-gray-700" />
         <nuxt-link to="/support">
           <button
             :class="
@@ -141,16 +141,16 @@
                 ? ' font-bold  border-red-600  bg-white   text-black shadow-md shadow-white'
                 : 'text-white'
             "
-            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black rounded-r-full"
+            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
           >
             Help & Support
           </button>
         </nuxt-link>
-        <hr class="border-gray-200 dark:border-gray-700" />
+        <hr class="border-gray-700" />
       </template>
       <button
         @click="auth.logout()"
-        class="flex justify-center items-center w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform hover:bg-gray-100/50 hover:text-black rounded-r-full"
+        class="flex justify-center items-center w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
       >
         <!--  @click="authStore.logout()" -->
         <svg
@@ -173,7 +173,7 @@
 
         Log Out
       </button>
-      <hr class="border-gray-200 dark:border-gray-700" />
+      <hr class="border-gray-700" />
       <button
         @click="togDropdMenu()"
         class="Close w-full py-1 hover:bg-red-600 hover:text-stone-900 px-5 text-red-600 font-bold text-center border-red-500 border-2 rounded-bl-lg bg-stone-900 border-r-0"

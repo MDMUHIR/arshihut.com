@@ -10,7 +10,6 @@
   });
 
   const auth = useAuthStore();
-
   const wishStore = useWishlistStore();
 
   const toggleWishlist = (product) => {
@@ -74,10 +73,14 @@
 
         <!-- Actual products -->
 
-        <template v-for="(product, index) in filteredProducts" :key="index">
+        <template
+          v-else
+          v-for="(product, index) in filteredProducts"
+          :key="index"
+        >
           <!-- Card -->
           <div
-            class="relative flex flex-col text-gray-700 bg-white border shadow-md bg-clip-border rounded-xl w-full sm:min-w-[10rem] sm:max-w-[20rem] overflow-hidden"
+            class="relative flex flex-col text-gray-700 bg-white border shadow-md bg-clip-border rounded-xl w-full sm:min-w-[10rem] sm:max-w-[20rem] overflow-hidden hover:shadow-xl hover:shadow-[#c4c3c3] duration-150"
           >
             <div
               class="overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl"
