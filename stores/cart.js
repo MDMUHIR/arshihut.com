@@ -1,6 +1,10 @@
 export const useCartStore = defineStore(
   "cart",
   () => {
+    // state----->
+    const loadingCart = ref(false);
+
+    // Actions---->
     const auth = useAuthStore();
 
     const totalCartItems = computed(() => {
@@ -26,26 +30,27 @@ export const useCartStore = defineStore(
     };
 
     // add item to cart
-    const addItem = (product) => {
-      // console.log(auth.user);
-
-      const index = data.cart.findIndex(
-        (item) => item.product_id == product.id
-      );
-
+    const addItem = async (product) => {
       if (auth.user === null) {
         notify(
           "Please login or create a user account to add items to cart",
           "error"
         );
+        return;
       }
 
-      const res = fetchAuthorizedApi(
-        "api/cart/add",
-        { product_id: product.id, quantity: 1, price: product.price },
-        "POST"
-      );
-      res.then((response) => {
+      loadingCart.value = true;
+      try {
+        const index = data.cart.findIndex(
+          (item) => item.product_id == product.id
+        );
+
+        const response = await fetchAuthorizedApi(
+          "api/cart/add",
+          { product_id: product.id, quantity: 1, price: product.price },
+          "POST"
+        );
+
         let cartItem = response.data;
         cartItem.product = product;
         if (index == -1) {
@@ -55,57 +60,85 @@ export const useCartStore = defineStore(
         }
 
         notify("Added to cart", "success");
-      });
+      } catch (error) {
+        console.error("Error adding item to cart:", error);
+        notify("Failed to add item to cart", "error");
+      } finally {
+        loadingCart.value = false;
+      }
     };
 
-    const deleteItem = (item, index) => {
-      const res = fetchAuthorizedApi(
-        `api/cart/delete/${item.id}`,
-        {},
-        "delete"
-      );
+    const deleteItem = async (item, index) => {
+      loadingCart.value = true;
+      try {
+        const response = await fetchAuthorizedApi(
+          `api/cart/delete/${item.id}`,
+          {},
+          "delete"
+        );
 
-      res.then((response) => {
         if (response.status) {
           data.cart.splice(index, 1);
-          notify("Dleleted from cart", "error");
+          notify("Deleted from cart", "error");
         }
-      });
+      } catch (error) {
+        console.error("Error deleting item from cart:", error);
+        notify("Failed to delete item from cart", "error");
+      } finally {
+        loadingCart.value = false;
+      }
     };
 
-    const updateCart = (status, item, index) => {
-      const params = { cart_id: item.id };
+    const updateCart = async (status, item, index) => {
+      loadingCart.value = true;
+      try {
+        const params = { cart_id: item.id };
 
-      if (status === "plus") {
-        console.log("updateCart +");
-        data.cart[index].quantity = data.cart[index].quantity + 1;
-        params.quantity = data.cart[index].quantity;
-      } else {
-        if (data.cart[index].quantity == 1) {
-          alert("You can't decrease anymore");
-        } else {
-          console.log("updateCart -");
-          data.cart[index].quantity = data.cart[index].quantity - 1;
+        if (status === "plus") {
+          data.cart[index].quantity = data.cart[index].quantity + 1;
           params.quantity = data.cart[index].quantity;
+        } else {
+          if (data.cart[index].quantity == 1) {
+            alert("You can't decrease anymore");
+            return;
+          } else {
+            data.cart[index].quantity = data.cart[index].quantity - 1;
+            params.quantity = data.cart[index].quantity;
+          }
         }
-      }
 
-      const res = fetchAuthorizedApi(`api/cart/update`, params, "POST");
-      res.then((response) => {
+        const response = await fetchAuthorizedApi(
+          `api/cart/update`,
+          params,
+          "POST"
+        );
         if (response.status) {
           data.cart[index].quantity = response.data.quantity;
           data.cart[index].total = response.data.total;
         }
-      });
+      } catch (error) {
+        console.error("Error updating cart:", error);
+        notify("Failed to update cart", "error");
+      } finally {
+        loadingCart.value = false;
+      }
     };
 
     const fetchCartData = () => {
+      loadingCart.value = true;
       const res = fetchAuthorizedApi("api/cart");
-      res.then((response) => {
-        if (response) {
-          data.cart = response.data;
-        }
-      });
+      res
+        .then((response) => {
+          if (response) {
+            data.cart = response.data;
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching cart data:", error);
+        })
+        .finally(() => {
+          loadingCart.value = false;
+        });
     };
     fetchCartData();
 
@@ -113,6 +146,7 @@ export const useCartStore = defineStore(
       data.cart = [];
     };
     return {
+      loadingCart,
       totalCartItems,
       totalPrice,
       isInCart,

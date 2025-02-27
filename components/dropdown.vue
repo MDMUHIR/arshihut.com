@@ -7,11 +7,11 @@
 
 <template>
   <div
-    class="w-56 overflow-hidden bg-gradient-to-l from-gray-900 to-black rounded-bl-lg shadow-xl shadow-black/50"
+    class="w-56 overflow-hidden bg-gradient-to-r from-black to-slate-900 rounded-bl-lg shadow-2xl shadow-black/30 border border-slate-700/50 backdrop-blur-sm"
   >
     <client-only>
       <button
-        class="flex w-full items-center p-3 font-semibold text-white transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black r-gray-700"
+        class="flex w-full items-center p-2 font-semibold text-white transition-all duration-300 ease-in-out hover:bg-slate-700/50 hover:text-slate-200 border-b border-slate-700/50"
       >
         <svg
           height="45px"
@@ -47,14 +47,14 @@
             ></path>
           </g>
         </svg>
-        <div class="mx-1">
-          <h1 class="font-semibold text-gray-200">
+        <article class="ml-1 w-[10.5rem] text-wrap text-left">
+          <h1 class="font-bold text-gray-200">
             {{ auth.user.name }}
           </h1>
-          <p class="font-semibold text-gray-400">
+          <p class="text-gray-400 text-sm truncate max-w-[10rem]">
             {{ auth.user.email }}
           </p>
-        </div>
+        </article>
       </button>
 
       <!-- for admin __-_-_-_--_--__ -->
@@ -67,7 +67,7 @@
                 ? ' bg-black/75 italic'
                 : 'text-gray-100'
             "
-            class="block w-full px-4 py-3 mt-2 font-bold capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
+            class="block w-full px-4 py-3 mt-2 font-bold capitalize transition-all duration-300 ease-in-out hover:bg-slate-700/50 hover:text-slate-200"
           >
             Dashboard
           </button>
@@ -79,7 +79,7 @@
                 ? ' bg-black/75 italic'
                 : 'text-gray-100'
             "
-            class="block w-full px-4 py-3 font-bold capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
+            class="block w-full px-4 py-3 font-bold capitalize transition-all duration-300 ease-in-out hover:bg-slate-700/50 hover:text-slate-200"
           >
             Customer View
           </button>
@@ -96,7 +96,7 @@
                 ? ' font-bold shadow-md shadow-white border-red-600  bg-white   text-black '
                 : 'text-white'
             "
-            class="flex items-center justify-center w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
+            class="flex items-center justify-center w-full px-4 py-3 font-semibold capitalize transition-all duration-300 ease-in-out hover:bg-slate-700/50 hover:text-slate-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +121,7 @@
                 ? ' font-bold  border-red-600  bg-white    text-black shadow-md shadow-white'
                 : 'text-white'
             "
-            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
+            class="block w-full px-4 py-3 font-semibold capitalize transition-all duration-300 ease-in-out hover:bg-slate-700/50 hover:text-slate-200"
           >
             My Orders
           </button>
@@ -141,7 +141,7 @@
                 ? ' font-bold  border-red-600  bg-white   text-black shadow-md shadow-white'
                 : 'text-white'
             "
-            class="block w-full px-4 py-3 font-semibold capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
+            class="block w-full px-4 py-3 font-semibold capitalize transition-all duration-300 ease-in-out hover:bg-slate-700/50 hover:text-slate-200"
           >
             Help & Support
           </button>
@@ -150,7 +150,7 @@
       </template>
       <button
         @click="auth.logout()"
-        class="flex justify-center items-center w-full px-4 py-3 font-semibold text-white capitalize transition-colors duration-200 transform hover:bg-gray-200 m-1 hover:text-black "
+        class="flex justify-center items-center w-full px-4 py-3 font-semibold text-white capitalize transition-all duration-300 ease-in-out hover:bg-slate-700/50 hover:text-slate-200"
       >
         <!--  @click="authStore.logout()" -->
         <svg
@@ -176,7 +176,7 @@
       <hr class="border-gray-700" />
       <button
         @click="togDropdMenu()"
-        class="Close w-full py-1 hover:bg-red-600 hover:text-stone-900 px-5 text-red-600 font-bold text-center border-red-500 border-2 rounded-bl-lg bg-stone-900 border-r-0"
+        class="w-full py-2 px-5 text-red-400 font-bold text-center transition-all duration-300 ease-in-out hover:bg-red-500/20 hover:text-red-300 border-t border-slate-700/50 bg-slate-800/50"
       >
         Close
       </button>

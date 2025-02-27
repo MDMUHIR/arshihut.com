@@ -66,7 +66,7 @@
       >
         Hot Items
       </h1>
-      <ProductsList :filteredProducts="data.products" />
+      <ProductsList :listProducts="data.products" />
     </div>
   </div>
 </template>

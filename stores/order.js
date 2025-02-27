@@ -1,34 +1,56 @@
 export const useOrderStore = defineStore("order", () => {
+  // ___________States_-_-_-_-_-_-_-_-_-_
+  const loadingOrders = ref(false);
+
+  // ___________Actions_-_-_-_-_-_-_-_-_-_
+
   const cart = useCartStore();
   const placeOrder = async (checkout) => {
-    const res = fetchAuthorizedApi("api/orders/add", checkout, "POST");
-    res.then((response) => {
+    loadingOrders.value = true;
+    try {
+      const response = await fetchAuthorizedApi(
+        "api/orders/add",
+        checkout,
+        "POST"
+      );
       if (response.status) {
         cart.emptyCart();
         return true;
       } else {
         return false;
       }
-    });
+    } catch (error) {
+      console.error("Failed to place order:", error);
+      return false;
+    } finally {
+      loadingOrders.value = false;
+    }
   };
 
-  const fetchOrders = () => {
-    const res = fetchAuthorizedApi("api/orders", {}, "GET");
-    res.then((response) => {
-      // console.log(response.data);
+  const fetchOrders = async () => {
+    loadingOrders.value = true;
+    try {
+      const response = await fetchAuthorizedApi("api/orders", {}, "GET");
       data.orders = response.data;
-    });
+    } catch (error) {
+      console.error("Failed to fetch orders:", error);
+    } finally {
+      loadingOrders.value = false;
+    }
   };
 
   const orders = ref([]);
 
   // fetch orders data for admin
   const fetchAdminOrders = async () => {
+    loadingOrders.value = true;
     try {
       const response = await fetchAuthorizedApi("api/admin/orders", {}, "GET");
       orders.value = response.data;
     } catch (error) {
       console.error("Failed to fetch admin orders:", error);
+    } finally {
+      loadingOrders.value = false;
     }
   };
 
@@ -40,8 +62,6 @@ export const useOrderStore = defineStore("order", () => {
       );
     }
   };
-
-  // fetchAdminOrders();
 
   // Function to get the sum of totals for the current month
   const getCurrentMonthTotalSum = () => {
@@ -72,6 +92,7 @@ export const useOrderStore = defineStore("order", () => {
   };
 
   return {
+    loadingOrders,
     orders,
     placeOrder,
     fetchOrders,

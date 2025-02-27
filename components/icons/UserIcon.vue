@@ -7,7 +7,7 @@
     stroke="currentColor"
     :class="
       showDdMenu
-        ? 'scale-110 font-bold shadow-inner shadow-black bg-gradient-to-r from-red-500/50 to-black/50 p-1'
+        ? 'scale-110  bg-gradient-to-r from-white to-white  flex justify-center items-center rounded-full text-orange-400 font-extrabold '
         : ''
     "
     class="w-7 h-7 rounded-full duration-150"

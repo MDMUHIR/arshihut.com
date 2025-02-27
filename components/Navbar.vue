@@ -150,7 +150,7 @@
             <button
               v-if="auth.isAuthenticated"
               @click="togDropdMenu()"
-              class="relative mx-2 rounded-full text-sm font-medium before:bg-violet-600 before:absolute before:-bottom-1 before:left-0 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0 hover:scale-125 duration-300"
+              class="relative mx-2 rounded-full"
             >
               <IconsUserIcon />
             </button>

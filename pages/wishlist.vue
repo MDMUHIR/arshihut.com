@@ -1,98 +1,76 @@
 <script setup>
-const wishStore = useWishlistStore();
-const cart = useCartStore();
+  import { data } from "~/composables/states";
+  import { storeToRefs } from "pinia";
 
-onBeforeMount(() => {
-  wishStore.fetchWishlistItems();
-});
-const toggleWishlist = (product) => {
-  console.log(product.product_id);
+  const wishStore = useWishlistStore();
+  const cart = useCartStore();
+  const { loadingWishlist } = storeToRefs(wishStore);
 
-  if (wishStore.isInWishlist(product.product_id)) {
-    wishStore.removeFromWishlist(product.id);
-  } else {
-    wishStore.addToWishlist(product);
-  }
-};
-import { data } from "~/composables/states";
+  onBeforeMount(() => {
+    wishStore.fetchWishlistItems();
+  });
+
+  const listProducts = computed(() => {
+    return data.wishlist.map((item) => ({
+      ...item.product,
+      id: item.product_id,
+    }));
+  });
 </script>
 
 <template>
-  <div class="main pb-12 ">
-    <div class="page-hero flex justify-center items-center">
+  <div class="main pb-12 min-h-screen">
+    <div class="page-hero flex justify-center items-center pb-8">
       <h1
-        class="text-xl text-center font-bold px-5 py-1  bg-orange-400 rounded-b-3xl shadow-lg"
+        class="text-lg md:text-2xl text-center font-bold px-8 py-2 bg-orange-400 rounded-b-3xl shadow-lg text-white transform hover:scale-105 transition-transform duration-300"
       >
-        Wishlist
+        My Wishlist
       </h1>
     </div>
-    <!-- while the cart is empty -->
+
+    <!-- loadingWishlist state -->
     <div
-      v-if="data.wishlist.length === 0"
-      class="rounded-lg  flex justify-center items-center"
+      v-if="loadingWishlist"
+      class="loader fixed inset-0 w-full flex justify-center items-center bg-white bg-opacity-50"
     >
-      <p class="text-center font-light text-2xl italic mt-36 text-red-500">
-        !!! The Wishlist is Empty
-      </p>
+      <reusableItemLoader />
     </div>
+
+    <!-- Wishlist products with container -->
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-4 mt-4"
+      v-else-if="data.wishlist.length > 0"
+      class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8"
     >
-      <div
-        class="mx-auto px-5"
-        v-for="(product, index) in data.wishlist"
-        :key="index"
+      <ProductsList :list-products="listProducts" />
+    </div>
+
+    <!-- Empty wishlist state -->
+    <div
+      v-else
+      class="rounded-xl flex flex-col justify-center items-center bg-gray-100 shadow-sm mx-4 sm:mx-8 p-8 mt-8 text-center space-y-4"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-24 w-24 mx-auto text-gray-300"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
       >
-        <div
-          class="max-w-xs min-w-56 h-80 rounded-lg bg-white p-2 pt-3 shadow duration-125 hover:shadow-md hover:bg-neutral-200"
-        >
-          <nuxt-link :to="`/products/${product.product_id}`">
-            <img
-              class="rounded-lg h-4/6 object-center cursor-pointer mx-auto"
-              :src="apiBase + product.product.image"
-              alt="product"
-            />
-          </nuxt-link>
-          <div class="middle flex justify-between">
-            <nuxt-link :to="`/product/${product.product_id}`">
-              <p class="my-4 pl-4 font-bold text-gray-500">
-                 {{ truncatedHeadingText(product.product.name) }}
-              </p>
-            </nuxt-link>
-            <button @click="toggleWishlist(product)" class="w-6">
-              <IconsBookmark
-                v-if="!wishStore.isInWishlist(product.product_id)"
-                class="w-full"
-              />
-              <IconsBookmarkDash
-                v-if="wishStore.isInWishlist(product.product_id)"
-                class="w-full"
-              />
-            </button>
-          </div>
-
-          <div class="bottom flex justify-between items-center">
-            <p class="ml-3 text-sm font-bold text-gray-800">
-              ${{ product.product.price }}
-            </p>
-
-            <nuxt-link v-if="cart.isInCart(product.product_id)" to="/cart">
-              <button
-                class="add-cart bg-gray-400 hover:bg-gray-500 text-white border-black add-cart py-1 px-2 md:px-5 text-sm font-semibold border-2 rounded md:ml-2 mt-2 md:mt-0"
-              >
-                <span>Go to Cart</span>
-              </button>
-            </nuxt-link>
-            <button
-              v-else
-              @click="cart.addItem(product.product)"
-              class="add-cart py-1 px-2 text-sm font-semibold bg-blue-500 hover:bg-blue-600 text-white border border-black rounded"
-            >
-              Add to Cart
-            </button>
-          </div>
-        </div>
-      </div>
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+        />
+      </svg>
+      <p class="text-2xl font-medium text-gray-600">Your wishlist is empty</p>
+      <p class="text-gray-400">Start adding items you love to your wishlist</p>
+      <nuxt-link
+        to="/products"
+        class="inline-block mt-4 px-6 py-2 bg-orange-400 text-white rounded-full hover:bg-orange-500 transition-colors duration-300"
+      >
+        Explore Products
+      </nuxt-link>
     </div>
   </div>
 </template>

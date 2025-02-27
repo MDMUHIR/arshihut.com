@@ -1,64 +1,94 @@
 <script setup></script>
 
 <template>
+  <!-- Card -->
   <div
-    class="w-[380px] relative shadow-md mx-auto my-[50px] bg-[#fafafa] font-roboto"
+    class="relative flex flex-col text-gray-700 bg-white border shadow-md bg-clip-border rounded-xl w-full sm:min-w-[10rem] sm:max-w-[20rem] overflow-hidden hover:shadow-xl hover:shadow-[#c4c3c3] duration-150"
   >
     <div
-      class="absolute left-0 top-5 uppercase text-sm font-bold bg-red-600 text-white py-[3px] px-[10px]"
+      class="overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl"
     >
-      Hot
-    </div>
-    <div
-      class="flex items-center justify-center h-[300px] p-[50px] bg-[#f0f0f0]"
-    >
-      <img
-        src="https://i.imgur.com/xdbHo4E.png"
-        alt=""
-        class="max-w-full max-h-full"
-      />
-    </div>
-    <div class="p-[30px]">
-      <span class="block text-xs font-bold uppercase text-gray-400 mb-[18px]"
-        >Women,bag</span
-      >
-      <h4>
-        <a
-          href=""
-          class="font-medium block mb-[18px] uppercase text-[#363636] no-underline transition-colors duration-300 hover:text-[#fbb72c]"
-          >Women leather bag</a
+      <div class="img relative">
+        <nuxt-link
+          :to="`/products/${product.id}`"
+          @click="filteredProducts.length = 0"
         >
-      </h4>
-      <p class="text-[15px] leading-[22px] mb-[18px] text-gray-500">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus
-        nostrum!
+          <img
+            :src="apiBase + product.image"
+            alt="product"
+            class="object-cover w-full h-full"
+          />
+        </nuxt-link>
+        <button
+          @click="toggleWishlist(product)"
+          class="absolute top-1 right-1 rounded-full w-[35px] h-[35px] bg-white flex items-center justify-center shadow-md"
+        >
+          <IconsBookmarkDash
+            v-if="wishStore.isInWishlist(product.id)"
+            class="w-[24px] h-[25px]"
+          />
+
+          <IconsBookmark v-else class="w-[25px] h-[25px]" />
+          <span
+            class="iconify"
+            data-icon="material-symbols-light:favorite-outline"
+            data-inline="false"
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Cart Center -->
+    <div class="px-5 sm:my-2 text-center">
+      <p
+        class="text-sm sm:text-base antialiased font-medium text-blue-gray-900 truncate"
+      >
+        {{ product.name }}
       </p>
-      <div class="overflow-hidden border-t border-gray-200 pt-5">
-        <div class="float-left w-1/2">
-          <div class="text-lg text-[#fbb72c] font-semibold">
-            <small
-              class="text-[80%] font-normal line-through inline-block mr-[5px]"
-              >$96.00</small
-            >$230.99
-          </div>
-        </div>
-        <div class="float-left w-1/2 text-right">
-          <a
-            href=""
-            class="inline-block ml-[5px] text-[#e1e1e1] transition-colors duration-300 text-[17px] hover:text-[#fbb72c]"
-            ><i class="fa fa-heart"></i
-          ></a>
-          <a
-            href=""
-            class="inline-block ml-[5px] text-[#e1e1e1] transition-colors duration-300 text-[17px] hover:text-[#fbb72c]"
-            ><i class="fa fa-shopping-cart"></i
-          ></a>
-        </div>
+    </div>
+
+    <!-- Cart Bottom -->
+    <div
+      class="flex flex-col sm:flex-row justify-between items-center text-center m-2 sm:m-1 shadow-inner shadow-[#c4c3c3] sm:shadow-none rounded sm:rounded-none overflow-hidden"
+    >
+      <p
+        class="antialiased text-sm sm:text-base font-medium sm:leading-relaxed text-blue-gray-900 mx-3 sm:mb-1 w-full sm:w-auto"
+      >
+        <span class="font-bold sm:text-2xl">৳</span
+        >{{ formatPrice(product.price) }}
+      </p>
+
+      <!-- Add cart buttons -->
+      <div
+        class="add-cart-buttons w-full h-full sm:p-0 sm:rounded-br-xl sm:rounded-tl-xl overflow-hidden"
+      >
+        <nuxt-link
+          v-if="cart.isInCart(product.id)"
+          @click="filteredProducts.length = 0"
+          to="/cart"
+        >
+          <button
+            class="add-cart w-full h-full py-1 px-2 text-sm font-semibold bg-gray-400 hover:bg-gray-500 text-white"
+          >
+            <span>Go to Cart</span>
+          </button>
+        </nuxt-link>
+        <button
+          v-else-if="product.stock == 0"
+          class="add-cart w-full h-full py-1 px-2 text-sm font-semibold duration-150 bg-red-400 text-white italic cursor-not-allowed"
+        >
+          Out of stock
+        </button>
+        <button
+          v-else
+          @click="cart.addItem(product)"
+          class="add-cart w-full h-full py-1 px-2 text-sm duration-150 text-white bg-blue-500 hover:bg-[#640e8b]"
+        >
+          Add to Cart <img src="" alt="" />
+        </button>
       </div>
     </div>
   </div>
 </template>
 
-<style>
-  @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
-</style>
+<style scoped></style>

@@ -3,7 +3,7 @@
   const productStore = useProductStore();
   // Define props
   const props = defineProps({
-    filteredProducts: {
+    listProducts: {
       type: Array,
       required: true,
     },
@@ -73,11 +73,7 @@
 
         <!-- Actual products -->
 
-        <template
-          v-else
-          v-for="(product, index) in filteredProducts"
-          :key="index"
-        >
+        <template v-else v-for="(product, index) in listProducts" :key="index">
           <!-- Card -->
           <div
             class="relative flex flex-col text-gray-700 bg-white border shadow-md bg-clip-border rounded-xl w-full sm:min-w-[10rem] sm:max-w-[20rem] overflow-hidden hover:shadow-xl hover:shadow-[#c4c3c3] duration-150"
@@ -88,7 +84,7 @@
               <div class="img relative">
                 <nuxt-link
                   :to="`/products/${product.id}`"
-                  @click="filteredProducts.length = 0"
+                  @click="listProducts.length = 0"
                 >
                   <img
                     :src="apiBase + product.image"
@@ -141,7 +137,7 @@
               >
                 <nuxt-link
                   v-if="cart.isInCart(product.id)"
-                  @click="filteredProducts.length = 0"
+                  @click="listProducts.length = 0"
                   to="/cart"
                 >
                   <button

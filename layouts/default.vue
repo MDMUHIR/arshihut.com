@@ -30,7 +30,7 @@
           class="heading-tab flex items-center bg-white mx-3 md:container md:mx-auto rounded-lg mb-10 fixed top-20 left-0 right-0"
         >
           <h2
-            class=" font-serif text-center w-full text-sm md:text-xl antialiased text-blue-gray-900"
+            class="font-serif text-center w-full text-sm md:text-xl antialiased text-blue-gray-900"
           >
             Filtered Products
           </h2>
@@ -38,7 +38,7 @@
           <button
             v-if="product.toggleFilteredProducts()"
             @click="product.filteredProducts.length = 0"
-            class="text-red-500 flex justify-center items-center mr-2 border pr-3 my-1 hover:scale-105 duration-200 shadow-inner shadow-black  antialiased"
+            class="text-red-500 flex justify-center items-center mr-2 border pr-3 my-1 hover:scale-105 duration-200 shadow-inner shadow-black antialiased"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@
         <!-- Body Content -->
         <div class="mx-3 md:container md:mx-auto">
           <ProductsList
-            :filteredProducts="product.filteredProducts"
+            :listProducts="product.filteredProducts"
             class="h-auto"
           />
         </div>
