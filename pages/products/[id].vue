@@ -1,5 +1,14 @@
 <script setup>
   const cart = useCartStore();
+  const wishStore = useWishlistStore();
+
+  const toggleWishlist = (product) => {
+    if (wishStore.isInWishlist(product.id)) {
+      wishStore.getProductToRemove(product.id);
+    } else {
+      wishStore.addToWishlist(product);
+    }
+  };
   const route = useRoute();
   const id = route.params.id;
 
@@ -25,11 +34,16 @@
           class="rounded-xl"
         />
       </div>
-      <div class="w-full md:w-2/3 flex flex-col space-y-2 p-3">
-        <div class="flex justify-between item-center">
-          <p v-if="product.category" class="text-gray-500 font-medium md:block">
-            {{ product.category.name }}
-          </p>
+      <div
+        class="w-full md:w-2/3 min-h-full flex flex-col justify-around space-y-2 p-3"
+      >
+        <div class="flex justify-between item-center border-b pb-2">
+          <div
+            class="bg-gray-200 px-3 py-1 rounded-full text-xs font-medium text-gray-800 block leading-5 font-mono"
+          >
+            {{ product?.category?.name || "Loading..." }}
+          </div>
+
           <div class="flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -48,32 +62,36 @@
               >
             </p>
           </div>
-          <div class="">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 text-pink-500"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+          <div class="wish-list buttons">
+            <button
+              @click="toggleWishlist(product)"
+              class="rounded-full w-[35px] h-[35px] bg-white flex items-center justify-center"
             >
-              <path
-                fill-rule="evenodd"
-                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                clip-rule="evenodd"
+              <IconsBookmarkDash
+                v-if="wishStore.isInWishlist(product.id)"
+                class="w-[24px] h-[25px]"
               />
-            </svg>
+
+              <IconsBookmark v-else class="w-[25px] h-[25px]" />
+              <span
+                class="iconify"
+                data-icon="material-symbols-light:favorite-outline"
+                data-inline="false"
+              ></span>
+            </button>
           </div>
-          <div
-            class="bg-gray-200 px-3 py-1 rounded-full text-xs font-medium text-gray-800 hidden md:block"
-          >
-            Superhost
-          </div>
+          
         </div>
-        <h3 class="font-black text-gray-800 md:text-3xl text-xl">
-          {{ product.name }}
-        </h3>
-        <p class="md:text-lg text-gray-500 text-base">
-          {{ product.description }}
-        </p>
+
+        <div class="center flex flex-col h-full justify-start mt-10">
+          <h3 class="font-black text-gray-800 md:text-3xl text-xl md:mb-3">
+            {{ product.name }}
+          </h3>
+          <p class="md:text-lg text-gray-500 text-base">
+            {{ product.description }}
+          </p>
+        </div>
+
         <div
           class="bottom-part flex flex-col items-center md:flex-row justify-between"
         >

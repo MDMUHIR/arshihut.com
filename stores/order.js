@@ -1,10 +1,11 @@
 export const useOrderStore = defineStore("order", () => {
   // ___________States_-_-_-_-_-_-_-_-_-_
   const loadingOrders = ref(false);
+  const orders = ref([]);
+  const cart = useCartStore();
 
   // ___________Actions_-_-_-_-_-_-_-_-_-_
 
-  const cart = useCartStore();
   const placeOrder = async (checkout) => {
     loadingOrders.value = true;
     try {
@@ -38,8 +39,6 @@ export const useOrderStore = defineStore("order", () => {
       loadingOrders.value = false;
     }
   };
-
-  const orders = ref([]);
 
   // fetch orders data for admin
   const fetchAdminOrders = async () => {

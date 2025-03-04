@@ -1,6 +1,8 @@
 export const useCategoryStore = defineStore("category", () => {
   // const categories = reactive([]);
 
+  const loadingCategory = ref(false);
+
   // integreat category data
 
   const categoryData = reactive({
@@ -26,37 +28,55 @@ export const useCategoryStore = defineStore("category", () => {
     }
   };
 
-  const addCategory = () => {
-    const res = fetchUploadApi("api/admin/categories/add", categoryData);
-    res.then((response) => {
-      console.log(response.data);
+  const addCategory = async () => {
+    loadingCategory.value = true;
+    try {
+      const response = await fetchUploadApi(
+        "api/admin/categories/add",
+        categoryData
+      );
       data.categories.push(response.data);
       showAddForm.value = false;
       categoryData.name = "";
       categoryData.description = "";
       categoryData.image = null;
       previewImage.value = null;
-    });
+    } catch (error) {
+      console.error("Failed to add category:", error);
+    } finally {
+      loadingCategory.value = false;
+    }
   };
-  const deleteCategory = (index, item) => {
-    const res = fetchAuthorizedApi(
-      "api/admin/categories/delete/" + item.id,
-      {},
-      "DELETE"
-    );
-    res.then((response) => {
+  const deleteCategory = async (index, item) => {
+    loadingCategory.value = true;
+    try {
+      await fetchAuthorizedApi(
+        "api/admin/categories/delete/" + item.id,
+        {},
+        "DELETE"
+      );
       data.categories.splice(index, 1);
-    });
+    } catch (error) {
+      console.error("Failed to delete category:", error);
+    } finally {
+      loadingCategory.value = false;
+    }
   };
 
-  const getCategories = () => {
-    const res = fetchApiData("api/categories", {}, "GET");
-    res.then((response) => {
+  const getCategories = async () => {
+    loadingCategory.value = true;
+    try {
+      const response = await fetchApiData("api/categories", {}, "GET");
       data.categories = response.data;
-    });
+    } catch (error) {
+      console.error("Failed to fetch categories:", error);
+    } finally {
+      loadingCategory.value = false;
+    }
   };
 
   return {
+    loadingCategory,
     categoryData,
     previewImage,
     showAddForm,

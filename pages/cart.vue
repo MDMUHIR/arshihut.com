@@ -1,6 +1,10 @@
 <script setup>
   const cart = useCartStore();
   import { data } from "~/composables/states";
+
+  onBeforeMount(() => {
+    cart.fetchCartData();
+  });
 </script>
 
 <template>
@@ -108,7 +112,7 @@
         class="mt-4 h-full rounded-lg border bg-white p-4 shadow-lg md:mt-0 md:w-1/3 sticky top-24 transition-all duration-300 hover:shadow-xl"
       >
         <div class="mb-4">
-          <h2 class="text-xl font-bold mb-3 text-gray-800">Order Summary</h2>
+          <h2 class="text-xl font-bold mb-3 text-gray-800">Cart Summary</h2>
 
           <div class="border-t pt-3 mt-3">
             <div class="flex justify-between">

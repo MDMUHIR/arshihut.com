@@ -1,67 +1,46 @@
 <script setup>
-  const auth = useAuthStore();
-  const item = useProductStore();
+  import { Swiper, SwiperSlide } from "swiper/vue";
+  import { Pagination, Autoplay } from "swiper/modules";
+  import "swiper/css";
+  import "swiper/css/pagination";
+  import "swiper/css/autoplay";
+
+  const modules = [Pagination, Autoplay];
+
+  const slides = [
+    { id: 1, image: "/images/banner/Slider1.png", title: "Slide 1" },
+    { id: 2, image: "/images/banner/Slider2.png", title: "Slide 2" },
+  ];
 </script>
 
 <template>
   <div
-    class="banner flex flex-col text-center  py-4 mb-1 rounded-2xl shadow-lg shadow-black bg-cover bg-center bg-[url('/images/bannerBG.jpg')] bg-no-repeat relative"
+    class="w-full max-w-screen-2xl mx-auto px-2 sm:px-4 lg:px-6 my-4 sm:my-6"
   >
-    <h1
-      class="md:text-4xl text-2xl font-extrabold absolute top-5 left-0 right-0 px-4"
-    >
-      <span
-        class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-white bg-opacity-75"
+    <div class="relative overflow-hidden rounded-lg shadow-lg">
+      <swiper
+        :modules="modules"
+        :pagination="{
+          dynamicBullets: true,
+          clickable: true,
+        }"
+        :autoplay="{
+          delay: 3000,
+          disableOnInteraction: false,
+        }"
+        :loop="true"
+        class="w-full"
       >
-        GREAT DEAL
-      </span>
-    </h1>
-
-    <div
-      v-if="item.lastProduct"
-      class="img-details flex flex-col-reverse md:flex-row justify-between items-center mt-10"
-    >
-      <!-- details-part -->
-      <div class="details md:w-1/2 flex flex-col items-center">
-        <h1
-          class="text-xl md:text-2xl font-bold font-mono text-white leading-normal"
-        >
-          {{ item.lastProduct.name }}
-        </h1>
-        <h1
-          v-if="item.lastProduct.category"
-          class="text-xl italic font-thin text-gray-300 font-serif w-full mt-10"
-        >
-          {{ item.lastProduct.category.name }}
-        </h1>
-      </div>
-      <!-- image -->
-      <div class="image md:w-1/2 rounded-lg overflow-hidden">
-        <nuxt-link :to="`/products/${item.lastProduct.id}`">
-          <img
-            class="w-auto max-h-[13rem] sm:max-h-[15rem] hover:scale-105 duration-150 mx-auto"
-            :src="apiBase + item.lastProduct.image"
-            alt="Product Image"
-          />
-        </nuxt-link>
-      </div>
-    </div>
-    <div
-      v-else
-      class="img-details flex flex-col-reverse md:flex-row justify-between items-center md:my-auto"
-    >
-      <!-- Skeleton Loader -->
-      <div class="details md:w-1/2 flex flex-col items-center space-y-4">
-        <div class="h-8 w-3/4 bg-gray-300 animate-pulse"></div>
-        <div class="h-6 w-1/2 bg-gray-300 animate-pulse"></div>
-      </div>
-      <div
-        class="image w-full md:w-1/2 inline-block rounded-lg overflow-hidden"
-      >
-        <div class="h-64 bg-gray-300 animate-pulse"></div>
-      </div>
+        <swiper-slide v-for="slide in slides" :key="slide.id">
+          <div class="relative w-full h-full object-contain flex">
+            <img
+              :src="slide.image"
+              :alt="slide.title"
+              class="w-full h-full object-conatin object-center"
+            />
+          </div>
+        </swiper-slide>
+      </swiper>
     </div>
   </div>
 </template>
-
-<style scoped></style>

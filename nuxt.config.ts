@@ -4,33 +4,34 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   app: {
     head: {
-      title: "DIGITAL NEST",
+      title: "Arshi Hut",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
           name: "description",
           content:
-            "Digital Nest - Your one-stop shop for digital products and electronics",
+            "Arshi Hut - Your one-stop shop for fency products and accessories",
         },
         {
           name: "keywords",
-          content: "digital products, electronics, e-commerce, online shopping",
+          content:
+            "fency products, hand craft, pottery, e-commerce, online shopping",
         },
         { name: "robots", content: "index, follow" },
-        { property: "og:title", content: "DIGITAL NEST" },
+        { property: "og:title", content: "Arshi Hut" },
         {
           property: "og:description",
           content:
-            "Digital Nest - Your one-stop shop for digital products and electronics",
+            "Arshi Hut - Your one-stop shop for fency products and accessories",
         },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: "DIGITAL NEST" },
+        { name: "twitter:title", content: "Arshi Hut" },
         {
           name: "twitter:description",
           content:
-            "Digital Nest - Your one-stop shop for digital products and electronics",
+            "Arshi Hut - Your one-stop shop for fency products and accessories",
         },
       ],
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],

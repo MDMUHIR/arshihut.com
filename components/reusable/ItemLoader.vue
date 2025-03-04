@@ -3,81 +3,85 @@
 <template>
   <div class="main">
     <div class="container">
-      <div class="dot bg-red-500 rounded-full"></div>
-      <div class="dot bg-gray-500 rounded-full"></div>
-      <div class="dot bg-orange-500 rounded-full"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
     </div>
   </div>
 </template>
+
 <style scoped>
   .container {
-    --uib-size: 40px;
-    --uib-color: black;
-    --uib-speed: 1.3s;
-    --uib-dot-size: 25%;
+    --uib-size: 80px;
+    --uib-color: #ff0000;
+    --uib-speed: 1.5s;
+    --uib-dot-size: calc(var(--uib-size) * 0.18);
     position: relative;
-    display: inline-block;
-    height: var(--uib-size);
+    top: 15%;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: var(--uib-size);
-    animation: spin var(--uib-speed) infinite linear;
+    height: var(--uib-size);
   }
 
   .dot {
     position: absolute;
-    left: calc(50% - var(--uib-dot-size) / 2);
-    height: 100%;
-    width: var(--uib-dot-size);
-  }
-
-  .dot:after {
-    content: "";
-    position: absolute;
     top: 0;
     left: 0;
-    height: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     width: 100%;
-    padding-bottom: 100%;
-    background-color: var(--uib-color);
+    height: 100%;
+  }
+
+  .dot::before {
+    content: "";
+    display: block;
+    height: calc(var(--uib-size) * 0.22);
+    width: calc(var(--uib-size) * 0.22);
     border-radius: 50%;
+    background-color: var(--uib-color);
     transition: background-color 0.3s ease;
   }
 
   .dot:nth-child(1) {
-    transform: rotate(120deg);
-  }
-
-  .dot:nth-child(1)::after {
-    animation: wobble var(--uib-speed) infinite ease-in-out;
+    animation: leapFrog var(--uib-speed) ease infinite;
   }
 
   .dot:nth-child(2) {
-    transform: rotate(-120deg);
+    transform: translateX(calc(var(--uib-size) * 0.4));
+    animation: leapFrog var(--uib-speed) ease calc(var(--uib-speed) / -1.5)
+      infinite;
   }
 
-  .dot:nth-child(2)::after {
-    animation: wobble var(--uib-speed) infinite ease-in-out;
+  .dot:nth-child(3) {
+    transform: translateX(calc(var(--uib-size) * 0.8)) rotate(0deg);
+    animation: leapFrog var(--uib-speed) ease calc(var(--uib-speed) / -3)
+      infinite;
   }
 
-  .dot:nth-child(3)::after {
-    animation: wobble var(--uib-speed) infinite ease-in-out;
-  }
-
-  @keyframes spin {
+  @keyframes leapFrog {
     0% {
-      transform: rotate(0deg);
+      transform: translateX(0) rotate(0deg);
     }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
 
-  @keyframes wobble {
-    0%,
-    100% {
-      transform: translateY(0%);
+    33.333% {
+      transform: translateX(0) rotate(180deg);
     }
-    50% {
-      transform: translateY(65%);
+
+    66.666% {
+      transform: translateX(calc(var(--uib-size) * -0.38)) rotate(180deg);
+    }
+
+    99.999% {
+      transform: translateX(calc(var(--uib-size) * -0.78)) rotate(180deg);
+    }
+
+    100% {
+      transform: translateX(0) rotate(0deg);
     }
   }
 </style>

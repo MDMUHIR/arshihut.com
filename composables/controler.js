@@ -26,6 +26,7 @@ export const notify = (msg, type) => {
     autoClose: 2000,
     hideProgressBar: true,
     dangerouslyHTMLString: true,
+    position: "bottom-right",
   });
 };
 

@@ -140,6 +140,8 @@ export const useCartStore = defineStore(
           loadingCart.value = false;
         });
     };
+
+    // #/ Fetch cart data when the store is created
     fetchCartData();
 
     const emptyCart = () => {
