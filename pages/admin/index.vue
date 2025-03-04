@@ -1,41 +1,39 @@
 <script setup>
-definePageMeta({
-  layout: "adminlayout",
+  definePageMeta({
+    layout: "adminlayout",
 
-  middleware: ["auth"],
-  requiresAuth: true,
-  type: "admin",
-});
+    middleware: ["auth"],
+    requiresAuth: true,
+    type: "admin",
+  });
 
-const userCtrl = useUserStore();
+  const userCtrl = useUserStore();
 
-const order = useOrderStore();
+  const order = useOrderStore();
 
-const auth = useAuthStore();
+  const auth = useAuthStore();
 
-const productStore = useProductStore();
+  const productStore = useProductStore();
 
-onBeforeMount(() => {
-  userCtrl.fetchAllUsers();
-  order.fetchAdminOrders();
-});
+  onBeforeMount(() => {
+    userCtrl.fetchAllUsers();
+    order.fetchAdminOrders();
+  });
 
-console.log(auth.getUserToken());
+  console.log(auth.getUserToken());
 
-const user = useUserStore();
-user.fetchAllUsers();
+  const user = useUserStore();
+  user.fetchAllUsers();
 </script>
 
 <template>
-  <div class="main pt-10">
-    <!-- <pre>{{ auth.getUserToken() }}</pre> -->
+  <div
+    class="main pt-10 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 min-h-screen"
+  >
     <ClientOnly>
-      <!--  -->
-      <div
-        class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4 p-4"
-      >
+      <div class="mb-12 grid gap-y-6 gap-x-6 md:grid-cols-2 xl:grid-cols-4 p-6">
         <div
-          class="card relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-sm shadow-black"
+          class="card relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
         >
           <div
             class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-gray-600 to-yellow-400 text-white shadow-yellow-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center font-extrabold"
@@ -56,7 +54,7 @@ user.fetchAllUsers();
           </div>
         </div>
         <div
-          class="card relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-sm shadow-black"
+          class="card relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
         >
           <div
             class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-600 to-pink-400 text-white shadow-green-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center"
@@ -90,7 +88,7 @@ user.fetchAllUsers();
 
         <!-- All Users -->
         <div
-          class="card relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-sm shadow-black"
+          class="card relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
         >
           <div
             class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-pink-600 to-pink-400 text-white shadow-pink-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center"
@@ -132,7 +130,7 @@ user.fetchAllUsers();
 
         <!-- Sales -->
         <div
-          class="card relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-sm shadow-black"
+          class="card relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
         >
           <div
             class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center"
@@ -164,7 +162,7 @@ user.fetchAllUsers();
         </div>
         <!-- Sales -->
         <div
-          class="card relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-sm shadow-black"
+          class="card relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
         >
           <div
             class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-cyan-600 to-cyan-400 text-white shadow-cyan-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center"
@@ -196,8 +194,15 @@ user.fetchAllUsers();
         </div>
       </div>
 
-      <div class="Out_Of_Stock px-5">
-        <h1 class="text-3xl font-bold dark:text-white">Out of Stock</h1>
+      <div class="Out_Of_Stock px-6 mt-8">
+        <h1
+          class="text-3xl font-bold dark:text-white mb-6 border-l-4 border-red-500 pl-4 flex items-center"
+        >
+          <span class="mr-2">Out of Stock</span>
+          <span class="text-sm font-normal text-gray-500 dark:text-gray-400"
+            >(Items requiring attention)</span
+          >
+        </h1>
 
         <AdminProductList
           :filteredProducts="productStore.filterOutOfStockProducts()"

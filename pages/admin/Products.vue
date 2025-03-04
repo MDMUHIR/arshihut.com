@@ -7,40 +7,37 @@ const productStore = useProductStore();
 </script>
 
 <template>
-  <div class="main Admin-Products py-7">
-    <!--Add product Button and input -->
-    <div class="top-bar flex flex-col md:flex-row justify-between px-4 pt-2">
-      <!-- AddForm Toggler Button -->
+  <div class="main Admin-Products py-7 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 min-h-screen px-4">
+    <div class="top-bar flex flex-col md:flex-row justify-between gap-4 mb-6">
       <button
         v-if="!productStore.showAddForm && !productStore.showUpdateForm"
         @click="productStore.showAddForm = true"
-        type="submit"
-        class="px-6 py-2 block rounded-md text-lg font-semibold text-indigo-100 bg-purple-600 hover:bg-purple-700 duration-150"
+        class="px-6 py-3 rounded-lg text-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1"
       >
         Add New Product
       </button>
       <form
         @submit.prevent="productStore.getAdminFilteredProducts()"
-        class="search-bar bg-white flex items-center rounded-lg overflow-hidden p-1 text-black border-2 border-purple-600"
+        class="search-bar bg-white flex items-center rounded-lg overflow-hidden p-2 shadow-md hover:shadow-lg transition-all duration-300 border-2 border-purple-600 w-full md:w-auto"
       >
         <input
           v-model="productStore.searchProduct"
-          type="text "
-          class="px-2 w-full rounded outline-none text-sm"
-          placeholder="Search for user"
+          type="text"
+          class="px-4 w-full rounded outline-none text-base"
+          placeholder="Search products..."
         />
-        <button class="border-l-2 px-2">
+        <button class="border-l-2 px-4 py-2 hover:bg-purple-50 transition-colors duration-300">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            width="20"
-            height="20"
-            viewBox="0 0 50 50"
+            class="h-5 w-5 text-purple-600"
+            viewBox="0 0 20 20"
+            fill="currentColor"
           >
             <path
-              d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"
-            ></path>
+              fill-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clip-rule="evenodd"
+            />
           </svg>
         </button>
       </form>

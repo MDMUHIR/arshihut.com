@@ -1,57 +1,56 @@
 <script setup>
-definePageMeta({
-  layout: "adminlayout",
-});
-const orderStore = useOrderStore();
-const order = ref({});
-
-onBeforeMount(() => {
-  const res = fetchAuthorizedApi(`api/admin/orders/${id}`, {}, "GET");
-  res.then((response) => {
-   
-    order.value = response.data;
+  definePageMeta({
+    layout: "adminlayout",
   });
-});
+  const orderStore = useOrderStore();
+  const order = ref({});
 
-const route = useRoute();
-const id = route.params.id;
-
-const orderStatus = [
-  "pending",
-  "processing",
-  "shipped",
-  "delivered",
-  "canceled",
-];
-
-const getStatusClass = (status) => {
-  return status === "pending"
-    ? "bg-blue-300"
-    : status === "processing"
-    ? "bg-yellow-300"
-    : status === "shipped"
-    ? "bg-teal-300"
-    : status === "delivered"
-    ? "bg-green-400"
-    : status === "canceled"
-    ? "bg-red-500"
-    : "bg-indigo-200"; // Default case
-};
-
-const updateOrder = () => {
-  const res = fetchAuthorizedApi(
-    "api/admin/orders/update",
-    order.value,
-    "POST"
-  );
-  res.then((response) => {
-    navigateTo("/admin/orders");
+  onBeforeMount(() => {
+    const res = fetchAuthorizedApi(`api/admin/orders/${id}`, {}, "GET");
+    res.then((response) => {
+      order.value = response.data;
+    });
   });
-};
+
+  const route = useRoute();
+  const id = route.params.id;
+
+  const orderStatus = [
+    "pending",
+    "processing",
+    "shipped",
+    "delivered",
+    "canceled",
+  ];
+
+  const getStatusClass = (status) => {
+    return status === "pending"
+      ? "bg-blue-300"
+      : status === "processing"
+      ? "bg-yellow-300"
+      : status === "shipped"
+      ? "bg-teal-300"
+      : status === "delivered"
+      ? "bg-green-400"
+      : status === "canceled"
+      ? "bg-red-500"
+      : "bg-indigo-200"; // Default case
+  };
+
+  const updateOrder = () => {
+    const res = fetchAuthorizedApi(
+      "api/admin/orders/update",
+      order.value,
+      "POST"
+    );
+    res.then((response) => {
+      navigateTo("/admin/orders");
+    });
+  };
 </script>
 
 <template>
-  <div class="w-full  bg-stone-300 dark:bg-[#443c3c] z-2 py-10 md:px-10">
+  <div class="w-full min-h-svh bg-stone-300 dark:bg-[#443c3c] z-2 py-10 md:px-10 ">
     <div
       class="relative flex flex-col md:flex-row space-y-3 rounded-xl shadow-lg p-3 w-full md:space-x-2 mx-auto border border-white bg-white z-2"
     >
@@ -73,7 +72,7 @@ const updateOrder = () => {
                 v-model="order.status"
               >
                 <option
-                  class="bg-wite"
+                  class="bg-white"
                   v-for="(status, index) in orderStatus"
                   :value="status"
                   :key="index"
@@ -97,42 +96,44 @@ const updateOrder = () => {
               <span class="font-bold">Phone:</span> {{ order.phone }}
             </p>
             <p class="md:text-lg text-gray-500 text-sm">
-              <span class="font-bold">Email:</span>
-              {{ order.email }}
+              <span class="font-bold">Email:</span> {{ order.email }}
             </p>
           </div>
-          <div class="exts">
+          <div class="order-details">
             <p class="md:text-lg text-gray-500 text-sm">
-              <span class="font-bold">Address:</span> {{ order.line1 }}
+              <span class="font-bold">Address:</span> {{ order.address }}
             </p>
-            <p v-if="order.line2" class="md:text-lg text-gray-500 text-sm">
-              <span class="font-bold">Address-2:</span> {{ order.line2 }}
+            <p class="md:text-lg text-gray-500 text-sm">
+              <span class="font-bold">City:</span> {{ order.city }}
             </p>
-            <div class="City flex">
-              <p class="md:text-lg text-gray-500 text-sm">
-                <span class="font-bold">City:</span> {{ order.city }}
-              </p>
-              <p class="md:text-lg text-gray-500 text-sm ml-3">
-                <span class="font-bold">Country:</span> {{ order.country }}
-              </p>
-            </div>
-            <p v-if="order.notes" class="md:text-lg text-gray-500 text-sm">
-              <span class="font-bold">Note:</span> {{ order.notes }}
+            <p class="md:text-lg text-gray-500 text-sm">
+              <span class="font-bold">Postal Code:</span>
+              {{ order.postal_code }}
             </p>
           </div>
         </div>
         <!--  -->
 
-        <div class="border my-5 p-5">
-          <!-- v-if="toggleOrderId == order.id" -->
+        <div class="border my-5 p-5 ">
           <div
-            class="flex items-center my-3"
+            class="flex items-center my-3 border-b shadow-md"
             v-for="product in order.products"
             :key="product.id"
           >
-            <router-link class="w-2/3" :to="`/products/${product.id}`">{{
-              product.name
-            }}</router-link>
+            <!-- <pre>{{ product }}</pre> -->
+            <nuxt-link class="w-2/3" :to="`/products/${product.id}`">
+              <div class="flex justify-start items-center gap-x-2 ">
+                <img
+                  :src="apiBase + product.image"
+                  alt="Product Img"
+                  class="w-10 xl:w-16"
+                />
+
+                <p class="item-name font-semibold ">
+                  {{ product.name }}
+                </p>
+              </div>
+            </nuxt-link>
             <p class="w-[100px]">${{ product.price }}</p>
             <p class="flex">
               Quantity:
@@ -184,9 +185,7 @@ const updateOrder = () => {
       </div>
     </div>
 
-    <div class="py-10">
-      <ProductsList :filteredProducts="order.products" />
-    </div>
+    <!-- Product Images and Details -->
   </div>
 </template>
 

@@ -38,89 +38,53 @@ const formatDate = (dateString) => {
 </script>
 
 <template>
-  <div class="main Admin-Orders pt-5">
-    <!-- while there in no order -->
-    <div
-      v-if="order.orders.length === 0"
-      class="rounded-lg w-full flex justify-center items-center"
-    >
-      <p class="text-center font-light text-2xl italic mt-36 text-red-500">
+  <div class="main Admin-Orders pt-5 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 min-h-screen px-4">
+    <div v-if="order.orders.length === 0" class="flex justify-center items-center h-[60vh]">
+      <p class="text-3xl font-light italic text-red-500 bg-white/80 px-8 py-4 rounded-lg shadow-lg">
         !!! There is no order...
       </p>
     </div>
-    <div class="orders p-4 grid grid-col-1 md:grid-cols-2 gap-2 ">
+    <div class="orders grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
       <template v-for="(item, index) in order.orders" :key="index">
-        <nuxt-link :to="`orders/${item.id}`">
-          <div
-            class="rounded-lg p-2 sm:p-6 shadow-md md:border bg-white my-5 sm:my-2 border-2 hover:bg-rose-400 hover:text-white duration-150 relative"
-          >
-            <div class="top">
-              <div class="sm:flex sm:w-full justify-between items-center">
-                <p
-                  class="text-xl font-semibold absolute top-2 left-2 border px-1 rounded-full border-black bg-white text-black"
-                >
+        <nuxt-link :to="`orders/${item.id}`" class="transform hover:scale-[1.02] transition-all duration-300">
+          <div class="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-rose-400 relative">
+            <div class="flex flex-col space-y-4">
+              <div class="flex justify-between items-start">
+                <span class="absolute top-2 left-2 w-8 h-8 flex items-center justify-center bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-white font-semibold rounded-full border-2 border-gray-300 dark:border-gray-500">
                   {{ index + 1 }}
-                </p>
-                <div class="mt-2 sm:mt-0 border p-1 rounded">
-                  <p
-                    class="text-xl font-semibold text-gray-900 border text-center px-1 mb-1"
-                  >
-                    Order id: {{ item.id }}
-                  </p>
-
-                  <p
-                    class="text-xl font-normal border italic text-gray-900 text-center px-2 pb-1 rounded"
-                    :class="getStatusClass(item.status)"
-                  >
+                </span>
+                <div class="flex-1 ml-10">
+                  <p class="text-lg font-semibold text-gray-900 dark:text-white">Order ID: {{ item.id }}</p>
+                  <span class="px-3 py-1 text-sm font-medium rounded-full mt-2 inline-block" :class="getStatusClass(item.status)">
                     {{ item.status }}
-                  </p>
-                </div>
-                <div class="mt-2 sm:mt-0 text-center border p-1 rounded">
-                  <p class="text-xl font-bold text-gray-900 border flex">
-                    <IconsUserIcon /> {{ item.name }}
-                  </p>
-
-                  <p class="mt-1 text-sm text-gray-700">{{ item.phone }}</p>
-                  <p class="mt-1 text-sm text-gray-700">{{ item.email }}</p>
-                </div>
-                <div class="mt-2 sm:mt-0 border rounded p-1">
-                  <p
-                    class="text-sm font-bold text-gray-900 border p-1 text-center"
-                  >
-                    Total Amount
-                  </p>
-                  <h2
-                    class="text-xl font-bold text-red-900 text-center my-1"
-                    :class="
-                      item.payment_status ? 'text-red-500' : 'text-green-500'
-                    "
-                  >
-                    <!-- ${{ order.calculateTotal(item.products) }} -->
-                    ${{ item.total }}
-                  </h2>
-                  <h2
-                    class="text-xl font-normal border italic text-gray-900 text-center bg-purple-300 pb-1 rounded"
-                    :class="
-                      item.payment_method === 'cod'
-                        ? 'bg-orange-300'
-                        : 'bg-indigo-500'
-                    "
-                  >
-                    {{ item.payment_method }}
-                  </h2>
+                  </span>
                 </div>
               </div>
-            </div>
-            <div class="bottom">
-              <div
-                class="mt-2 flex flex-col md:flex-row justify-between sm:mt-0 text-center p-1"
-              >
-                <p class="text-xs">
-                  Created: {{ formatDate(item.created_at) }}
-                </p>
-                <p class="text-xs">
-                  Updated: {{ formatDate(item.updated_at) }}
-                </p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                <div class="bg-gray-50 dark:bg-gray-600 p-3 rounded-lg">
+                  <div class="flex items-center space-x-2">
+                    <IconsUserIcon class="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                    <p class="font-semibold text-gray-800 dark:text-white">{{ item.name }}</p>
+                  </div>
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{{ item.phone }}</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">{{ item.email }}</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-600 p-3 rounded-lg">
+                  <p class="text-sm font-semibold text-gray-600 dark:text-gray-300">Total Amount</p>
+                  <p class="text-xl font-bold" :class="item.payment_status ? 'text-red-500' : 'text-green-500'">
+                    ${{ item.total }}
+                  </p>
+                  <span class="px-3 py-1 text-sm font-medium rounded-full mt-2 inline-block"
+                    :class="item.payment_method === 'cod' ? 'bg-orange-300 text-orange-800' : 'bg-indigo-300 text-indigo-800'">
+                    {{ item.payment_method }}
+                  </span>
+                </div>
+              </div>
+              <div class="border-t dark:border-gray-600 pt-3 mt-2">
+                <div class="flex flex-col sm:flex-row justify-between text-xs text-gray-500 dark:text-gray-400">
+                  <p>Created: {{ formatDate(item.created_at) }}</p>
+                  <p>Updated: {{ formatDate(item.updated_at) }}</p>
+                </div>
               </div>
             </div>
           </div>
