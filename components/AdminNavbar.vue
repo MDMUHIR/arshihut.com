@@ -1,7 +1,7 @@
 <script setup>
   const auth = useAuthStore();
   const route = useRoute();
-
+  const orderStore = useOrderStore();
   // Mobile menu state
   const isMobileMenuOpen = ref(false);
   const toggleMobileMenu = () => {
@@ -82,13 +82,20 @@
           >
             <button
               :class="[
-                'px-4 py-2 rounded-lg font-medium transition-all duration-300',
+                'px-4 py-2 rounded-lg font-medium transition-all duration-300 relative',
                 route.path === `/admin/${item}`
                   ? 'bg-emerald-700/50 shadow-inner scale-105'
                   : 'hover:bg-emerald-600/30 hover:scale-105',
               ]"
             >
               {{ item.charAt(0).toUpperCase() + item.slice(1) }}
+              <ClientOnly>
+                <span
+                  v-show="item === 'orders'"
+                  class="absolute -top-1 right-0 rounded-full bg-red-500 p-0.5 px-2 text-sm text-red-50 animate-bounce"
+                  >{{ orderStore.getPendingOrders().length }}</span
+                >
+              </ClientOnly>
             </button>
           </nuxt-link>
         </div>
@@ -128,13 +135,20 @@
         >
           <button
             :class="[
-              'w-full text-left px-4 py-2 rounded-lg font-medium transition-all duration-300',
+              'w-full text-left px-4 py-2 rounded-lg font-medium transition-all duration-300 relative',
               route.path === `/admin/${item}`
                 ? 'bg-emerald-700/50 shadow-inner'
                 : 'hover:bg-emerald-600/30',
             ]"
           >
             {{ item.charAt(0).toUpperCase() + item.slice(1) }}
+            <ClientOnly>
+              <span
+                v-show="item === 'orders'"
+                class="absolute top-2 left-50 ml-5 rounded-full bg-red-500 p-0.5 px-2 text-sm text-red-50 animate-pulse"
+                >{{ orderStore.getPendingOrders().length }}</span
+              >
+            </ClientOnly>
           </button>
         </nuxt-link>
       </div>

@@ -8,8 +8,8 @@ coupon.fetchCoupons();
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6">
-    <div class="max-w-7xl mx-auto">
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 py-5">
+    <div class="max-w-7xl mx-auto p-4">
       <!-- Add Coupon Button -->
       <button
         v-if="!coupon.showCouAddform && !coupon.showCouUpdateform"

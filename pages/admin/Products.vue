@@ -7,8 +7,8 @@ const productStore = useProductStore();
 </script>
 
 <template>
-  <div class="main Admin-Products py-7 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 min-h-screen px-4">
-    <div class="top-bar flex flex-col md:flex-row justify-between gap-4 mb-6">
+  <div class="main Admin-Products py-5 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 min-h-screen px-4">
+    <div class="top-bar flex flex-col md:flex-row justify-between gap-4 mb-6 p-4">
       <button
         v-if="!productStore.showAddForm && !productStore.showUpdateForm"
         @click="productStore.showAddForm = true"

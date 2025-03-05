@@ -12,10 +12,10 @@
 
 <template>
   <div
-    class="main Admin-Categories pt-5 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 min-h-screen px-4"
+    class="main Admin-Categories py-5 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 min-h-screen px-4"
   >
     <!-- Add Category Button -->
-    <div class="flex justify-between items-center mb-8 px-4">
+    <div class="flex justify-between items-center mb-8 p-4 ">
       <h1 class="text-3xl font-bold text-gray-800 dark:text-white">
         Categories Management
       </h1>

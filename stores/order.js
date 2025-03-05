@@ -1,7 +1,7 @@
 export const useOrderStore = defineStore("order", () => {
   // ___________States_-_-_-_-_-_-_-_-_-_
   const loadingOrders = ref(false);
-  const orders = ref([]);
+  // const orders = ref([]);
   const cart = useCartStore();
 
   // ___________Actions_-_-_-_-_-_-_-_-_-_
@@ -45,31 +45,27 @@ export const useOrderStore = defineStore("order", () => {
     loadingOrders.value = true;
     try {
       const response = await fetchAuthorizedApi("api/admin/orders", {}, "GET");
-      orders.value = response.data;
+      if (response && response.data) {
+        data.orders = response.data;
+        console.log("Admin orders loaded:", data.orders);
+      }
     } catch (error) {
       console.error("Failed to fetch admin orders:", error);
+      data.orders = [];
     } finally {
       loadingOrders.value = false;
     }
   };
 
-  const calculateTotal = (products) => {
-    if (products) {
-      return products.reduce(
-        (acc, product) => acc + product.price * product.pivot.quantity,
-        0
-      );
-    }
-  };
+  const getMonthlyOrders = () => {
+    // if (!data.orders.length) return 0;
 
-  // Function to get the sum of totals for the current month
-  const getCurrentMonthTotalSum = () => {
     const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth() + 1; // Months are 0-indexed
 
     // Filter orders by the current month
-    const filteredOrders = orders.value.filter((order) => {
+    const filteredOrders = data.orders.filter((order) => {
       const orderDate = new Date(order.created_at);
       return (
         orderDate.getFullYear() === currentYear &&
@@ -90,13 +86,16 @@ export const useOrderStore = defineStore("order", () => {
     };
   };
 
+  const getPendingOrders = () => {
+    return data.orders.filter((order) => order.status === "pending");
+  };
+
   return {
     loadingOrders,
-    orders,
     placeOrder,
     fetchOrders,
     fetchAdminOrders,
-    calculateTotal,
-    getCurrentMonthTotalSum,
+    getMonthlyOrders,
+    getPendingOrders,
   };
 });
