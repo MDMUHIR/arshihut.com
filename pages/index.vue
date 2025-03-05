@@ -47,7 +47,7 @@
           v-else
           v-for="(category, index) in data.categories"
           :key="index"
-          class="flex-shrink-0 w-[120px] bg-gray-200 rounded-2xl overflow-hidden shadow-md shadow-[#979797] "
+          class="flex-shrink-0 w-[120px] bg-gray-200 rounded-2xl overflow-hidden shadow-md shadow-[#979797]"
         >
           <div
             @click="item.getProducts(category.id)"
@@ -69,7 +69,7 @@
     </div>
 
     <!-- Hot items -->
-    <div class="Hot Items mt-8">
+    <div class="Hot Items mt-3">
       <h1
         class="text-xl md:text-2xl text-[#0F1111] font-semibold md:font-bold ml-2 mb-2 sm:ml-0"
       >

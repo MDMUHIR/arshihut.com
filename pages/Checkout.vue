@@ -49,71 +49,6 @@
         "Mymensingh",
       ],
     },
-    // {
-    //   name: "Nepal",
-    //   code: "+977",
-    //   cities: [
-    //     "Kathmandu",
-    //     "Pokhara",
-    //     "Biratnagar",
-    //     "Birgunj",
-    //     "Dharan",
-    //     "Bharatpur",
-    //     "Janakpur",
-    //   ],
-    // },
-    // {
-    //   name: "India",
-    //   code: "+91",
-    //   cities: [
-    //     "Mumbai",
-    //     "Delhi",
-    //     "Bangalore",
-    //     "Hyderabad",
-    //     "Ahmedabad",
-    //     "Chennai",
-    //     "Kolkata",
-    //   ],
-    // },
-    // {
-    //   name: "Pakistan",
-    //   code: "+92",
-    //   cities: [
-    //     "Karachi",
-    //     "Lahore",
-    //     "Faisalabad",
-    //     "Rawalpindi",
-    //     "Multan",
-    //     "Gujranwala",
-    //     "Islamabad",
-    //   ],
-    // },
-    // {
-    //   name: "Sri Lanka",
-    //   code: "+94",
-    //   cities: [
-    //     "Colombo",
-    //     "Galle",
-    //     "Kandy",
-    //     "Jaffna",
-    //     "Negombo",
-    //     "Anuradhapura",
-    //     "Polonnaruwa",
-    //   ],
-    // },
-    // {
-    //   name: "Bhutan",
-    //   code: "+975",
-    //   cities: [
-    //     "Thimphu",
-    //     "Phuntsholing",
-    //     "Paro",
-    //     "Punakha",
-    //     "Wangdue Phodrang",
-    //     "Jakar",
-    //     "Mongar",
-    //   ],
-    // },
   ]);
 
   const renderCities = () => {
@@ -410,7 +345,9 @@
                   <div class="text-lg font-bold text-gray-800">
                     ৳{{ checkoutTotal }} BDT.
                   </div>
-                  <p class="text-xs font-mono italic text-gray-500">including VAT</p>
+                  <p class="text-xs font-mono italic text-gray-500">
+                    including VAT
+                  </p>
                 </div>
               </div>
             </div>

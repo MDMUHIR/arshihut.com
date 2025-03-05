@@ -46,11 +46,11 @@ const productStore = useProductStore();
     <!-- Add product Form -->
     <div
       v-if="productStore.showAddForm || productStore.showUpdateForm"
-      class="bg-stone-500/50 p-2 border shadow-2xl m-3 mt-6 flex items-center justify-center h-5/6 fixed top-16 -left-4 -right-4"
+      class="bg-stone-500/50 p-2 border shadow-2xl m-3 mt-6 flex items-center justify-center h-5/6 fixed top-16 left-4 right-4 z-20 rounded-xl"
     >
       <form
         @submit.prevent="productStore.formSubmition()"
-        class="bg-white w-full h-full scroll-m-1 overflow-scroll m-10 rounded-lg border shadow-2xl"
+        class="bg-white w-full h-full scroll-m-1 overflow-y-scroll m-10 rounded-lg border shadow-2xl"
       >
         <div class="md:px-20 p-6">
           <div class="rounded-md w-full mx-auto px-2">

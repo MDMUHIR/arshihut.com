@@ -22,7 +22,7 @@
       >
         <div class="relative aspect-square overflow-hidden">
           <img
-            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105 z-10"
             :src="apiBase + product.image"
             :alt="product.name"
           />
