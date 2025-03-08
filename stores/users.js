@@ -30,10 +30,7 @@ export const useUserStore = defineStore("users", () => {
     res.then((response) => {
       if (response) {
         data.allUsers.push(response.data);
-        addUserForm.name = "";
-        addUserForm.email = "";
-        addUserForm.type = "customer";
-        showUserAddForm.value = false;
+        closeSubmition();
         notify("User added successfully", "success");
       } else {
         alert("Something wents wrong");
@@ -79,7 +76,7 @@ export const useUserStore = defineStore("users", () => {
 
         notify("User updated successfully", "success");
       }
-      cancelSubmition();
+      closeSubmition();
     });
   };
 
@@ -91,7 +88,7 @@ export const useUserStore = defineStore("users", () => {
     }
   };
 
-  const cancelSubmition = () => {
+  const closeSubmition = () => {
     showUserAddForm.value = false;
     showUserUpdateForm.value = false;
     addUserForm.id = null;
@@ -134,7 +131,7 @@ export const useUserStore = defineStore("users", () => {
     addUserForm,
     fetchAllUsers,
     addUser,
-    cancelSubmition,
+    closeSubmition,
     deleteUser,
     editSelection,
     formSubmition,

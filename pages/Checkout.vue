@@ -284,8 +284,13 @@
                   v-model="checkout.payment_method"
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none focus:border-transparent transition duration-200"
                 >
-                  <option value="cod">Cash on Delivery</option>
-                  <option value="paypal">PayPal</option>
+                  <option value="cod">
+                    Cash on Delivery (Pay when you receive)
+                  </option>
+                  <option value="bkash">bKash (Mobile Banking)</option>
+                  <option value="nagad">Nagad (Mobile Banking)</option>
+                  <!-- <option value="bank">Bank Transfer</option>
+                  <option value="card">Credit/Debit Card</option> -->
                 </select>
               </div>
 
@@ -299,6 +304,7 @@
                     class="w-full flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-orange-400 outline-none focus:border-transparent transition duration-200"
                     placeholder="Enter coupon code"
                   />
+                  <!-- {{ coupon.couponData }} -->
                   <button
                     type="button"
                     @click="coupon.applyCoupon(checkout)"

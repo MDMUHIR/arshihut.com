@@ -1,14 +1,18 @@
 <script setup>
-definePageMeta({
-  layout: "adminlayout",
-});
+  definePageMeta({
+    layout: "adminlayout",
+  });
 
-const coupon = useCouponStore();
-coupon.fetchCoupons();
+  const coupon = useCouponStore();
+  onBeforeMount(() => {
+    coupon.fetchCoupons();
+  });
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 py-5">
+  <div
+    class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 py-5"
+  >
     <div class="max-w-7xl mx-auto p-4">
       <!-- Add Coupon Button -->
       <button
@@ -26,16 +30,25 @@ coupon.fetchCoupons();
         class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
       >
         <form @submit.prevent="coupon.formSubmit()" class="w-full max-w-2xl">
-          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden">
+          <div
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden"
+          >
             <div class="p-6 space-y-6">
-              <h2 class="text-2xl font-bold text-gray-900 dark:text-white text-center">
-                {{ coupon.showCouUpdateform ? 'Update Coupon' : 'Add New Coupon' }}
+              <h2
+                class="text-2xl font-bold text-gray-900 dark:text-white text-center"
+              >
+                {{
+                  coupon.showCouUpdateform ? "Update Coupon" : "Add New Coupon"
+                }}
               </h2>
 
               <div class="space-y-4">
                 <!-- Coupon Code -->
                 <div>
-                  <label for="code" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label
+                    for="code"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
                     Coupon Code
                   </label>
                   <input
@@ -49,7 +62,10 @@ coupon.fetchCoupons();
 
                 <!-- Coupon Type -->
                 <div>
-                  <label for="type" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label
+                    for="type"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
                     Coupon Type
                   </label>
                   <select
@@ -64,7 +80,10 @@ coupon.fetchCoupons();
 
                 <!-- Discount Amount -->
                 <div>
-                  <label for="discount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label
+                    for="discount"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
                     Discount Amount
                   </label>
                   <input
@@ -81,7 +100,7 @@ coupon.fetchCoupons();
               <div class="flex justify-end space-x-4 mt-6">
                 <button
                   type="button"
-                  @click="coupon.cancelSubmition()"
+                  @click="coupon.closeSubmition()"
                   class="px-6 py-2 rounded-lg text-gray-700 bg-gray-100 hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-200"
                 >
                   Cancel
@@ -90,7 +109,7 @@ coupon.fetchCoupons();
                   type="submit"
                   class="px-6 py-2 rounded-lg text-white bg-purple-600 hover:bg-purple-700 transition-colors duration-200 shadow-md hover:shadow-lg"
                 >
-                  {{ coupon.showCouUpdateform ? 'Update' : 'Add' }} Coupon
+                  {{ coupon.showCouUpdateform ? "Update" : "Add" }} Coupon
                 </button>
               </div>
             </div>
@@ -101,33 +120,42 @@ coupon.fetchCoupons();
       <!-- Coupons Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-8">
         <template v-for="(item, index) in data.coupons" :key="index">
-          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
+          <div
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700"
+          >
             <div class="p-6 space-y-4">
               <div class="flex items-center justify-between">
-                <span class="px-3 py-1 text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 rounded-full">
+                <span
+                  class="px-3 py-1 text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 rounded-full"
+                >
                   Code: {{ item.code }}
                 </span>
-                <span class="text-sm text-gray-500 dark:text-gray-400">#{{ index + 1 }}</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400"
+                  >#{{ index + 1 }}</span
+                >
               </div>
 
               <div class="space-y-2">
                 <p class="text-lg font-semibold text-gray-900 dark:text-white">
-                  {{ item.type === 'fixed' ? '$' : '' }}{{ item.discount }}{{ item.type === 'percentage' ? '%' : '' }} Off
+                  {{ item.type === "fixed" ? "$" : "" }}{{ item.discount
+                  }}{{ item.type === "percentage" ? "%" : "" }} Off
                 </p>
                 <p class="text-sm text-gray-500 dark:text-gray-400 capitalize">
                   Type: {{ item.type }}
                 </p>
               </div>
 
-              <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div
+                class="flex justify-end space-x-3 pt-4 border-t border-gray-200 dark:border-gray-700"
+              >
                 <button
-                  @click="coupon.editCoupon(item)"
+                  @click="coupon.editSelection(item)"
                   class="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200"
                 >
                   Edit
                 </button>
                 <button
-                  @click="coupon.deleteCoupon(item.id)"
+                  @click="coupon.deleteCoupon(index, item.id)"
                   class="px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors duration-200"
                 >
                   Delete

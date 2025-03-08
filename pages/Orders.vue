@@ -142,7 +142,7 @@
                   class="flex flex-col sm:flex-row gap-3 sm:gap-6 p-3 sm:p-4 bg-gray-50 rounded-lg transition-all duration-300 hover:shadow-md"
                 >
                   <nuxt-link
-                    :to="`/product/${product.id}`"
+                    :to="`/products/${product.id}`"
                     class="sm:w-32 flex-shrink-0"
                   >
                     <img
@@ -152,7 +152,7 @@
                     />
                   </nuxt-link>
                   <div class="flex-grow">
-                    <nuxt-link :to="`/product/${product.id}`">
+                    <nuxt-link :to="`/products/${product.id}`">
                       <h2
                         class="text-lg font-semibold text-gray-900 hover:text-purple-600 transition-colors duration-200"
                       >

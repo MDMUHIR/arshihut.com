@@ -3,92 +3,115 @@ export const useCouponStore = defineStore("coupon", () => {
   const showCouAddform = ref(false);
   const showCouUpdateform = ref(false);
   const couponForm = reactive({
+    id: null,
     code: "",
     type: "fixed",
     discount: "",
   });
-
   const couponData = ref(null);
-
   // Actions/-----------/
-
   const fetchCoupons = () => {
     const res = fetchAuthorizedApi("api/admin/coupon", {}, "GET");
     res.then((response) => {
-      data.coupons = response.data;
-    });
-  };
-
-  const addCoupons = () => {
-    const res = fetchAuthorizedApi("api/admin/coupon/add", couponForm, "POST");
-
-    res.then((response) => {
       if (response.status) {
-        data.coupons.push(response.data);
-        couponForm.code = "";
-        couponForm.type = "fixed";
-        couponForm.discount = "";
-        showCouAddform.value = false;
+        data.coupons = response.data;
       } else {
-        alert("Something wents wrong");
+        notify("Failed to fetch coupons", "error");
       }
     });
   };
-  const deleteCoupons = (index, item) => {
+  const addCoupons = () => {
+    if (!couponForm.code || !couponForm.discount) {
+      notify("Please fill all required fields", "error");
+      return;
+    }
+    const res = fetchAuthorizedApi("api/admin/coupon/add", couponForm, "POST");
+    res.then((response) => {
+      if (response.status) {
+        data.coupons.push(response.data);
+        notify("Coupon added successfully", "success");
+        closeSubmition();
+      } else {
+        notify("Failed to add coupon", "error");
+      }
+    });
+  };
+  const deleteCoupon = (index, id) => {
     const res = fetchAuthorizedApi(
-      `api/admin/coupon/delete/${item.id}`,
+      `api/admin/coupon/delete/${id}`,
       {},
       "DELETE"
     );
-
     res.then((response) => {
-      data.coupons.splice(index, 1);
+      if (response.status) {
+        data.coupons.splice(index, 1);
+        notify("Coupon deleted successfully", "success");
+      } else {
+        notify("Failed to delete coupon", "error");
+      }
     });
   };
 
-  const updateCoupon = (couponForm) => {
-    const res = fetchUploadApi("api/admin/coupon/update", couponForm);
+  const updateCoupon = () => {
+    if (!couponForm.code || !couponForm.discount) {
+      notify("Please fill all required fields", "error");
+      return;
+    }
+    const res = fetchAuthorizedApi(
+      "api/admin/coupon/update",
+      couponForm,
+      "POST"
+    );
+    res.then((response) => {
+      if (response.status) {
+        const index = data.coupons.findIndex(
+          (coupon) => coupon.id === couponForm.id
+        );
+        if (index !== -1) {
+          data.coupons[index] = response.data;
+          notify("Coupon updated successfully", "success");
+        }
+        closeSubmition();
+      } else {
+        notify("Failed to update coupon", "error");
+      }
+    });
   };
   const formSubmit = () => {
-    if (showCouAddform.value == true) {
+    if (showCouAddform.value) {
       addCoupons();
-    } else if (showCouUpdateform.value == true) {
+    } else if (showCouUpdateform.value) {
       updateCoupon();
     }
   };
-
-  const editSelection = (item) => {
+  const editSelection = (coupon) => {
     showCouUpdateform.value = true;
-
-    couponForm.code = item.code;
-    couponForm.type = item.type;
-    couponForm.discount = item.discount;
+    couponForm.id = coupon.id;
+    couponForm.code = coupon.code;
+    couponForm.type = coupon.type;
+    couponForm.discount = coupon.discount;
   };
-
-  const cancelSubmition = () => {
+  const closeSubmition = () => {
     showCouAddform.value = false;
     showCouUpdateform.value = false;
-
     couponForm.code = "";
     couponForm.type = "fixed";
     couponForm.discount = "";
   };
 
-  // ______Customer's logics______
-
-  // apply-coupon function for customer
-  const applyCoupon = (data) => {
+  // for Users
+  const applyCoupon = (checkout) => {
     const res = fetchAuthorizedApi(
-      `api/verify-coupon`,
-      { code: data.coupon },
+      "api/verify-coupon",
+      { code: checkout.coupon },
       "POST"
     );
     res.then((response) => {
       if (response.status) {
+        notify("Coupon applied successfully", "success");
         couponData.value = response.data;
       } else {
-        alert("Invalid coupon");
-        couponData.value = null;
+        notify("Invalid coupon code", "error");
       }
     });
   };
@@ -99,11 +122,11 @@ export const useCouponStore = defineStore("coupon", () => {
     couponData,
     fetchCoupons,
     addCoupons,
-    deleteCoupons,
+    deleteCoupon,
     updateCoupon,
     formSubmit,
     editSelection,
-    cancelSubmition,
+    closeSubmition,
     applyCoupon,
   };
 });

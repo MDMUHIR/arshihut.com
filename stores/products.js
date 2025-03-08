@@ -132,6 +132,8 @@ export const useProductStore = defineStore("product", () => {
             break;
           }
         }
+      } else {
+        alert("Something wents wrong");
       }
       clearSubmition();
     });
