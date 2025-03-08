@@ -90,6 +90,15 @@ export const useOrderStore = defineStore("order", () => {
     return data.orders.filter((order) => order.status === "pending");
   };
 
+  const calculateTotalPrice = (products) => {
+    if (products) {
+      return products.reduce(
+        (acc, product) => acc + product.price * product.pivot.quantity,
+        0
+      );
+    }
+  };
+
   return {
     loadingOrders,
     placeOrder,
@@ -97,5 +106,6 @@ export const useOrderStore = defineStore("order", () => {
     fetchAdminOrders,
     getMonthlyOrders,
     getPendingOrders,
+    calculateTotalPrice,
   };
 });

@@ -50,7 +50,9 @@
 </script>
 
 <template>
-  <div class="w-full min-h-svh bg-stone-300 dark:bg-[#443c3c] z-2 py-10 md:px-10 ">
+  <div
+    class="w-full min-h-svh bg-stone-300 dark:bg-[#443c3c] z-2 py-10 md:px-10"
+  >
     <div
       class="relative flex flex-col md:flex-row space-y-3 rounded-xl shadow-lg p-3 w-full md:space-x-2 mx-auto border border-white bg-white z-2"
     >
@@ -114,7 +116,7 @@
         </div>
         <!--  -->
 
-        <div class="border my-5 p-5 ">
+        <div class="border my-5 p-5">
           <div
             class="flex items-center my-3 border-b shadow-md"
             v-for="product in order.products"
@@ -122,14 +124,14 @@
           >
             <!-- <pre>{{ product }}</pre> -->
             <nuxt-link class="w-2/3" :to="`/products/${product.id}`">
-              <div class="flex justify-start items-center gap-x-2 ">
+              <div class="flex justify-start items-center gap-x-2">
                 <img
                   :src="apiBase + product.image"
                   alt="Product Img"
                   class="w-10 xl:w-16"
                 />
 
-                <p class="item-name font-semibold ">
+                <p class="item-name font-semibold">
                   {{ product.name }}
                 </p>
               </div>
@@ -159,7 +161,7 @@
             "
           >
             <span class="text-black">Total:</span> ${{
-              orderStore.calculateTotal(order.products)
+              orderStore.calculateTotalPrice(order.products)
             }}
             <span
               class="text-sm font-black text-gray-800 mx-2 py-1 rounded px-2"

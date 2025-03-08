@@ -51,11 +51,11 @@
         !!! There is no order...
       </p>
     </div>
-    
+
     <div class="orders grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
       <template v-for="(item, index) in data.orders" :key="index">
         <nuxt-link
-          :to="`orders/${item.id}`"
+          :to="`/admin/orders/${item.id}`"
           class="transform hover:scale-[1.02] transition-all duration-300"
         >
           <div
@@ -111,7 +111,8 @@
                       item.payment_status ? 'text-red-500' : 'text-green-500'
                     "
                   >
-                    ${{ item.total }}
+                    ${{ order.calculateTotalPrice(item.products) }}
+                    <!-- orderStore.calculateTotalPrice(order.products) -->
                   </p>
                   <span
                     class="px-3 py-1 text-sm font-medium rounded-full mt-2 inline-block"
